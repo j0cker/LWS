@@ -1,8 +1,9 @@
 <?PHP
+include  '../../global.php';
 include '../../conexioni.php';
 $hoja=$_GET["hoja"];
-$hoja = $hoja * 10;
-$query = $conn->query("SELECT * FROM categorias ORDER by id DESC LIMIT ".($hoja-10).",".$hoja."") OR die("Error: ".mysqli_error($conn));
+$hoja = $hoja * $contHojas;
+$query = $conn->query("SELECT * FROM categorias ORDER by id DESC LIMIT ".($hoja-$contHojas).",".$hoja."") OR die("Error: ".mysqli_error($conn));
 if($query->num_rows>0){
   $c=0;
   $array_cat = array();

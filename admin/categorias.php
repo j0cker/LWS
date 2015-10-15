@@ -1,5 +1,6 @@
 <?PHP 
 require_once('session.php');
+include '../global.php';
 if($status=="OK"){
 ?>
 <!DOCTYPE html>
@@ -12,13 +13,29 @@ require_once('desktop/header.php');
 var comillas = "'";
 var hoja = 1;
 contCat();
-function contCat(){
-	$.ajax({url:   "scripts/get-cont-categorias.php",
-			type:  'POST',
+function totalCat(){
+	$.ajax({url:   "scripts/total-categorias.php",
+			type:  'GET',
 			success:  function (response) {
 			  obj = JSON.parse(response);
 			  if(obj.true!="false"){
-				console.log(obj.cont);
+				  console.log(obj.cont);
+			  } else {
+			    alert("Categoría No Eliminada");
+			  }
+			}, error: function (response){
+			  alert("ERROR inténtelo de nuevo más tarde");
+			}
+	});
+}
+function contCat(){
+	$.ajax({url:   "scripts/get-cont-categorias.php",
+			type:  'GET',
+			success:  function (response) {
+			  obj = JSON.parse(response);
+			  if(obj.true!="false"){
+          $('#contDes').html(parseInt(obj.cont));
+          $('#contAnt').html(hoja);
 			  } else {
 			    alert("Categoría No Eliminada");
 			  }
@@ -93,6 +110,7 @@ function altaCategoria(){
 			  alert("Categoría Agregada");
 			  getCategorias();
 			  hoja = 1;
+        contCat();
 			}, error: function (response){
 			  alert("ERROR inténtelo de nuevo más tarde");
 			}
