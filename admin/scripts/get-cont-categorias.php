@@ -5,6 +5,7 @@ $query = $conn->query("SELECT * FROM categorias") OR die("Error: ".mysqli_error(
 if($query->num_rows>0){
   $obj =  new stdclass();
   $obj->true = "true";
+  $obj->TContCat = $query->num_rows;
   $obj->cont = 1;
   for($c=10; $c<$query->num_rows+10; $c++){
     if($query->num_rows>=$c-9 && $query->num_rows<=$c && $c!=10)
