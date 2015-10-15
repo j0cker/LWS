@@ -13,27 +13,17 @@ require_once('desktop/header.php');
 var comillas = "'";
 var hoja = 1;
 contCat();
-function totalCat(){
-	$.ajax({url:   "scripts/total-categorias.php",
-			type:  'GET',
-			success:  function (response) {
-			  obj = JSON.parse(response);
-			  if(obj.true!="false"){
-				  console.log(obj.cont);
-			  } else {
-			    alert("Categoría No Eliminada");
-			  }
-			}, error: function (response){
-			  alert("ERROR inténtelo de nuevo más tarde");
-			}
-	});
-}
 function contCat(){
 	$.ajax({url:   "scripts/get-cont-categorias.php",
 			type:  'GET',
 			success:  function (response) {
 			  obj = JSON.parse(response);
 			  if(obj.true!="false"){
+          if(obj.cont<2){
+            $("#atras").css("display","none");
+          } else {
+            $("#atras").css("display","block");
+          }
           $('#contDes').html(parseInt(obj.cont));
           $('#contAnt').html(hoja);
 			  } else {
@@ -184,7 +174,7 @@ require_once('desktop/menu.php');
              <nav>
               <ul class="pagination">
                 <li>
-                  <a href="#" aria-label="Previous">
+                  <a id="atras" href="#" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                   </a>
                 </li>
@@ -192,7 +182,7 @@ require_once('desktop/menu.php');
                 <li><a href="#">de</a></li>
                 <li><a id="contDes" href="#">2</a></li>
                 <li>
-                  <a href="#" aria-label="Next">
+                  <a id="adelante" href="#" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                   </a>
                 </li>
