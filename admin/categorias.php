@@ -170,9 +170,9 @@ require_once('desktop/menu.php');
                     <span aria-hidden="true">&laquo;</span>
                   </a>
                 </li>
-                <li><a href="#">1</a></li>
+                <li><a id="contAnt" href="#">1</a></li>
                 <li><a href="#">de</a></li>
-                <li><a href="#">2</a></li>
+                <li><a id="contDes" href="#">2</a></li>
                 <li>
                   <a href="#" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
