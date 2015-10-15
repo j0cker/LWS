@@ -13,6 +13,27 @@ require_once('desktop/header.php');
 var comillas = "'";
 var hoja = 1;
 contCat();
+getCategorias(hoja);
+function adelanteButton(){
+  if(hoja<$('#contDes').html()){
+    console.log("siguiente hoja");
+    hoja = hoja +1;
+    getCategorias(hoja);
+    contCat();
+  } else {
+    alert("Fin de la lista");
+  }
+}
+function atrasButton(){
+  if(hoja!=1){
+    console.log("Anterior hoja");
+    hoja = hoja -1;
+    getCategorias(hoja);
+    $('#contAnt').html(hoja);
+  } else {
+    alert("Inicio de la Lista");
+  }
+}
 function contCat(){
 	$.ajax({url:   "scripts/get-cont-categorias.php",
 			type:  'GET',
@@ -21,8 +42,14 @@ function contCat(){
 			  if(obj.true!="false"){
           if(obj.cont<2){
             $("#atras").css("display","none");
+            $('#adelante').css("display","none");
           } else {
-            $("#atras").css("display","block");
+            if(hoja!=1){
+              $("#atras").css("display","block");
+              $('#atras').attr("onclick","atrasButton();");
+            }
+            $('#adelante').css("display","block");
+            $('#adelante').attr("onclick","adelanteButton();"); 
           }
           $('#contDes').html(parseInt(obj.cont));
           $('#contAnt').html(hoja);
@@ -34,7 +61,6 @@ function contCat(){
 			}
 	});
 }
-getCategorias();
 function eliminarCat(id){
 	$.ajax({data: { id:id },
 		    url:   "scripts/del-categoria.php",
@@ -42,18 +68,21 @@ function eliminarCat(id){
 			success:  function (response) {
 			  obj = JSON.parse(response);
 			  if(obj.true=="true"){
-				getCategorias();
+				  getCategorias(hoja);
 			    hoja = 1;
+          contCat();
 			    alert("Categoría Eliminada");
 			  } else {
 			    alert("Categoría No Eliminada");
 			  }
+        contCat();
+        getCategorias(hoja);
 			}, error: function (response){
 			  alert("ERROR inténtelo de nuevo más tarde");
 			}
 	});
 }
-function getCategorias(){
+function getCategorias(hoja){
 	$.ajax({      data: { hoja:hoja },
 					url:   "scripts/get-categorias.php",
 			type:  'GET',
@@ -98,7 +127,7 @@ function altaCategoria(){
 			type:  'POST',
 			success:  function (response) {
 			  alert("Categoría Agregada");
-			  getCategorias();
+			  getCategorias(hoja);
 			  hoja = 1;
         contCat();
 			}, error: function (response){
@@ -180,7 +209,7 @@ require_once('desktop/menu.php');
                 </li>
                 <li><a id="contAnt" href="#">1</a></li>
                 <li><a href="#">de</a></li>
-                <li><a id="contDes" href="#">2</a></li>
+                <li><a id="contDes" href="#">1</a></li>
                 <li>
                   <a id="adelante" href="#" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
