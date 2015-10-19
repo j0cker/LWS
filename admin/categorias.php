@@ -32,7 +32,27 @@ function buscar(){
         success:  function (response) {
           obj = JSON.parse(response);
           if(obj.true!="false"){
-            
+            var html = '';
+                html+='<center>';
+                html+='<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">';
+                  html+='<thead>';
+                  html+='<tr>';
+                    html+='<th style="text-align: left;">Categorías</th>';
+                    html+='<th></th>';
+                    html+='<th></th>';
+                  html+='</tr>';
+                  html+='</thead>';
+                  html+='<tbody>';
+                  for(var x=0; x<obj.cat.length; x++){
+                  html+='<tr>';
+                    html+='<td>'+obj.cat[x]+'</td>';
+                    html+='<td><button onclick="modCat();" style="margin-top: -7px;" type="button" class="glyphicon glyphicon-edit btn btn-warning"></button></td>';
+                    html+='<td><button onclick="eliminarCat('+comillas+''+obj.id[x]+''+comillas+');" style="margin-top: -7px;" type="button" class="glyphicon glyphicon-remove btn btn-danger"></button></td>';
+                  html+='</tr>';
+                  }
+                  html+='</tbody>';
+                html+='</table></center>';
+                $("#cats").html(html);
           } else {
             alert("No hay Coincidencias");
           }
@@ -82,6 +102,11 @@ function contCat(){
 			}
 	});
 }
+function modCat(id, nombre){
+  $("#editar").modal("show");
+  $("#categoriaEditar2").val(nombre);
+  $("#editar345").attr("onclick","editarCategoria("+id+");");
+}
 function eliminarCat(id){
 	$.ajax({data: { id:id },
 		    url:   "scripts/del-categoria.php",
@@ -124,7 +149,7 @@ function getCategorias(hoja){
 					  for(var x=0; x<obj.cat.length; x++){
 						html+='<tr>';
 						  html+='<td>'+obj.cat[x]+'</td>';
-						  html+='<td><button onclick="modCat();" style="margin-top: -7px;" type="button" class="glyphicon glyphicon-edit btn btn-warning"></button></td>';
+						  html+='<td><button onclick="modCat('+comillas+''+obj.id[x]+''+comillas+', '+comillas+''+obj.cat[x]+''+comillas+');" style="margin-top: -7px;" type="button" class="glyphicon glyphicon-edit btn btn-warning"></button></td>';
 						  html+='<td><button onclick="eliminarCat('+comillas+''+obj.id[x]+''+comillas+');" style="margin-top: -7px;" type="button" class="glyphicon glyphicon-remove btn btn-danger"></button></td>';
 						html+='</tr>';
 					  }
@@ -139,17 +164,35 @@ function getCategorias(hoja){
 			}
 	});
 }
+function editarCategoria(id){
+  if(!$("#categoriaEditar2").val()){
+    alert("Llenar Nombre de la categoría");
+  } else {
+	$.ajax({      data: { categoria:$("#categoriaEditar2").val(), option:"2", id:id },
+					url:   "scripts/alta-categoria.php",
+			type:  'POST',
+			success:  function (response) {
+			  alert("Categoría Editada");
+			  hoja = 1;
+        getCategorias(hoja);
+        contCat();
+			}, error: function (response){
+			  alert("ERROR inténtelo de nuevo más tarde");
+			}
+	});
+  }
+}
 function altaCategoria(){
   if(!$("#categoria").val()){
     alert("Llenar Nombre de la categoría");
   } else {
-	$.ajax({      data: { categoria:$("#categoria").val() },
+	$.ajax({      data: { categoria:$("#categoria").val(), option:"1" },
 					url:   "scripts/alta-categoria.php",
 			type:  'POST',
 			success:  function (response) {
 			  alert("Categoría Agregada");
-			  getCategorias(hoja);
 			  hoja = 1;
+        getCategorias(hoja);
         contCat();
 			}, error: function (response){
 			  alert("ERROR inténtelo de nuevo más tarde");
@@ -246,6 +289,49 @@ require_once('desktop/menu.php');
     </div><!--row-->
   </main>
 </div>
+
+<!-- arrayUsersModal -->
+  <div class="modal modal-signup" id="editar" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                  <h5 style="text-align: center; color: red;" id="arrayUsersModalLabel" class="modal-title text-center">Editar Categoría</h5>
+                  <p></p>
+              </div>
+              <div id="modal-body" class="modal-body" style="background-color: #e9eaec; height: 450px; overflow-y: auto;">
+                <div style="text-align: center;" id="arrayUsers">
+                  <div style="padding-top: 10px; box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12); background-color: #FFFFFF;" class="row">
+                    <div class="col-xs-12">
+                      <div style="padding-top: 40px; padding-bottom: 40px;" class="row">
+                        <div class="col-md-3">
+                        </div><!-- /.col-lg-6 -->
+                        <div class="col-md-6">
+                          <div class="input-group">
+                            <input id="categoriaEditar2" type="text" class="form-control" placeholder="Editar categoría">
+                            <span class="input-group-btn">
+                              <button id="editar345" onclick="editarCategoria();" class="btn btn-default" type="button">Editar</button>
+                            </span>
+                          </div><!-- /input-group -->
+                        </div><!-- /.col-lg-6 -->
+                        <div class="col-md-3">
+                        </div><!-- /.col-lg-6 -->
+                      </div><!-- /.row -->
+                    </div><!--col-xs-12-->
+                  </div><!--row-->  
+                   
+                </div>
+                  <!--<div class="divider"><span>Or</span></div>--->
+
+              </div><!--//modal-body-->
+              <!--
+              <div class="modal-footer">
+                  <p>Already have an account? <a class="login-link" id="login-link" href="http://themes.3rdwavemedia.com/tempo/1.4/#">Log in</a></p>                    
+              </div>--><!--//modal-footer-->
+          </div><!--//modal-content-->
+      </div><!--//modal-dialog-->
+  </div><!--//modal-->
+ 
 </body>
 <html>
 <?PHP

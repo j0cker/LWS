@@ -1,7 +1,8 @@
 <?PHP
 include  '../../global.php';
 include '../../conexioni.php';
-$query = $conn->query("SELECT * FROM categorias ORDER by id DESC LIMIT ".($hoja-$contHojas).",".$hoja."") OR die("Error: ".mysqli_error($conn));
+$buscar = $_GET["buscar"];
+$query = $conn->query("SELECT * FROM categorias WHERE nombreCategoria LIKE '%".$buscar."%'") OR die("Error: ".mysqli_error($conn));
 if($query->num_rows>0){
   $c=0;
   $array_cat = array();
