@@ -27,6 +27,7 @@ function adelanteButton(){
 function buscar(){
   if($("palabra").val()){
     $.ajax({url:   "scripts/buscar-categorias.php",
+        data: { buscar:$("#palabra").val() },
         type:  'GET',
         success:  function (response) {
           obj = JSON.parse(response);
@@ -200,7 +201,7 @@ require_once('desktop/menu.php');
           <div class="col-md-6">
             <div class="input-group">
               <span style="top: 0px;" class="input-group-addon glyphicon glyphicon-search" id="basic-addon1"></span>
-              <input style="" class="form-control" type="text" id="palabra" onkeyup="buscar();" placeholder="Buscar: ">
+              <input class="form-control" type="text" id="palabra" onkeyup="buscar();" placeholder="Buscar: ">
             </div>
           </div>
           <div class="col-md-3">
