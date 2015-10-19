@@ -25,7 +25,7 @@ function adelanteButton(){
   }
 }
 function buscar(){
-  if($("palabra").val()){
+  if($("#palabra").val()){
     $.ajax({url:   "scripts/buscar-categorias.php",
         data: { buscar:$("#palabra").val() },
         type:  'GET',
