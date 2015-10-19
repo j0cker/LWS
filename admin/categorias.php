@@ -24,6 +24,26 @@ function adelanteButton(){
     alert("Fin de la lista");
   }
 }
+function buscar(){
+  if($("palabra").val()){
+    $.ajax({url:   "scripts/buscar-categorias.php",
+        type:  'GET',
+        success:  function (response) {
+          obj = JSON.parse(response);
+          if(obj.true!="false"){
+            
+          } else {
+            alert("No hay Coincidencias");
+          }
+        }, error: function (response){
+          alert("ERROR inténtelo de nuevo más tarde");
+        }
+    });
+  } else {
+    contCat();
+    getCategorias(hoja);
+  }
+}
 function atrasButton(){
   if(hoja!=1){
     console.log("Anterior hoja");
@@ -180,7 +200,7 @@ require_once('desktop/menu.php');
           <div class="col-md-6">
             <div class="input-group">
               <span style="top: 0px;" class="input-group-addon glyphicon glyphicon-search" id="basic-addon1"></span>
-              <input style="" class="form-control" type="text" id="palabraArrayUser" onkeyup="buscarArraUser();" placeholder="Buscar: ">
+              <input style="" class="form-control" type="text" id="palabra" onkeyup="buscar();" placeholder="Buscar: ">
             </div>
           </div>
           <div class="col-md-3">
