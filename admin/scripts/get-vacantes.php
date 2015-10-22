@@ -7,7 +7,7 @@ $query = $conn->query("SELECT * FROM nuevasVacantes ORDER by id DESC LIMIT ".($h
 if($query->num_rows>0){
   $c=0;
   $array_id = array();
-  $categoria = '';
+  $categoria = array();
   $nombreEmpresa = array();
   $estado = array();
   $tipoTiempo = array();
@@ -16,14 +16,14 @@ if($query->num_rows>0){
 	  $array_id[] = $row["id"]; 
 	  $query2 = $conn->query("SELECT nombreCategoria FROM categorias WHERE id='".$row["id_cat"]."'") OR die("Error: ".mysqli_error($conn));
     if($query2->num_rows>0){
-      $row = $query->fetch_assoc();
-      $categoria = $row['nombreCategoria'];
+      $row2 = $query2->fetch_assoc();
+      $categoria[] = ''.utf8_decode($row2['nombreCategoria']).'';
     } else {
-      $categoria = 'ERROR Contacte al Admin';
+      $categoria[] = 'ERROR Contacte al Admin';
     }
-	  $nombreEmpresa[] = $row["nombreEmpresa"]; 
-	  $estado[] = $row["estado"];
-    $tipoTiempo[] = $row["tipoTiempo"];  
+	  $nombreEmpresa[] = utf8_decode($row["nombreEmpresa"]); 
+	  $estado[] = utf8_decode($row["estado"]);
+    $tipoTiempo[] = utf8_decode($row["tipoTiempo"]);  
     $fecha[] = $row["fecha"];  
 	  $c++;
   }

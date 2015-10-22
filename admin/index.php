@@ -46,6 +46,70 @@ function contCat(){
 	});
 }
 </script>
+<script>
+var comillas = "'";
+var hoja = 1;
+contCat();
+getCategorias(hoja);
+function getCategorias(hoja){
+	$.ajax({      data: { hoja:hoja },
+					url:   "scripts/get-vacantes.php",
+			type:  'GET',
+			success:  function (response) {
+		      obj = JSON.parse(response);
+			  if(obj.true=="true"){
+				  var html = '';
+				  html+='<center>';
+					html+='<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">';
+					  html+='<thead>';
+						html+='<tr>';
+              html+='<th style="text-align: left;">ID</th>';
+              html+='<th style="text-align: left;">Empresa</th>';
+              html+='<th style="text-align: left;">Categoría</th>';
+              html+='<th style="text-align: left;">Estado</th>';
+              html+='<th style="text-align: left;">Hora/Tipo</th>';
+              html+='<th style="text-align: left;">Publicación</th>';
+						  html+='<th></th>';
+						  html+='<th></th>';
+              html+='<th></th>';
+						html+='</tr>';
+					  html+='</thead>';
+					  html+='<tbody>';
+					  for(var x=0; x<obj.id.length; x++){
+						html+='<tr>';
+						  html+='<td>'+obj.id[x]+'</td>';
+              html+='<td>'+obj.nombreEmpresa[x]+'</td>';
+              html+='<td>'+obj.categoria[x]+'</td>';
+              html+='<td>'+obj.estado[x]+'</td>';
+              html+='<td>'+obj.tipoTiempo[x]+'</td>';
+              html+='<td>'+obj.fecha[x]+'</td>';
+              html+='<td>';
+                html+='<div class="dropdown">';
+                  html+='<button style="margin-top: -7px;" class="glyphicon glyphicon-share btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">';
+                    html+='<span class="caret"></span>';
+                  html+='</button>';
+                  html+='<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">';
+                    html+='<li><a style="text-align: left;" href="#">Facebook</a></li>';
+                    html+='<li><a style="text-align: left;" href="#">Twitter</a></li>';
+                  html+='</ul>';
+                html+='</div>';
+              html+='</td>';
+						  html+='<td><button onclick="modCat('+comillas+''+obj.id[x]+''+comillas+', '+comillas+''+obj.categoria[x]+''+comillas+');" style="margin-top: -7px;" type="button" class="glyphicon glyphicon-edit btn btn-warning"></button></td>';
+						  html+='<td><button onclick="eliminarCat('+comillas+''+obj.id[x]+''+comillas+');" style="margin-top: -7px;" type="button" class="glyphicon glyphicon-remove btn btn-danger"></button></td>';
+						html+='</tr>';
+					  }
+					  html+='</tbody>';
+					html+='</table></center>';
+					$("#cats").html(html);
+			  } else {
+				$("#cats").html('ERROR');
+			  }
+			}, error: function (response){
+			  alert("ERROR inténtelo de nuevo más tarde");
+			}
+	});
+}
+</script>
 </head>
 <body>
 <?PHP
@@ -64,10 +128,10 @@ require_once('desktop/menu.php');
     <div style="margin-top: 10px;" class="row">
         <div class="col-md-12 text-center">
             <div style="" class="col-md-3">
-              <button style="background-color: #C62828; border-color: #C62828; width: 200px;" type="button" class="btn btn-success"><span style="font-size: 25px;" class="fa fa-building-o"></span><br />Total de Vacantes<br />123</button>
+              <button style="background-color: #C62828; border-color: #C62828; width: 200px;" type="button" class="btn btn-success"><span style="font-size: 25px;" class="fa fa-building-o"></span><br />Total de Vacantes<br /><span id="contVaca1"></span></button>
             </div>
               <div style="" class="col-md-3">
-              <button style="background-color: #4527A0; border-color: #4527A0; width: 200px;" type="button" class="btn btn-success"><span style="font-size: 25px;" class="fa fa-building-o"></span><br />Vacantes Nuevas en el Mes<br /><span id="contVaca1"></span></button>
+              <button style="background-color: #4527A0; border-color: #4527A0; width: 200px;" type="button" class="btn btn-success"><span style="font-size: 25px;" class="fa fa-building-o"></span><br />Vacantes Nuevas en el Mes<br /><span id="contVacaMes"></span></button>
             </div>
             <div style="" class="col-md-3">
               <button style="background-color: #0277BD; border-color: #0277BD; width: 200px;" type="button" class="btn btn-success"><span style="font-size: 25px;" class="fa fa-briefcase"></span><br />Total de CV's<br />123</button>
@@ -110,89 +174,8 @@ require_once('desktop/menu.php');
         <div style="margin-top: 20px;" class="row">
           <div class="col-md-1">
           </div>
-          <div class="col-md-10">
-            <center>
-            <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-              <thead>
-                <tr>
-                  <th style="text-align: left;">ID</th>
-                  <th style="text-align: left;">Empresa</th>
-                  <th style="text-align: left;">Categoría</th>
-                  <th style="text-align: left;">Estado</th>
-                  <th style="text-align: left;">Hora/Tipo</th>
-                  <th style="text-align: left;">Publicación</th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Monta Cargista</td>
-                  <td>Operador</td>
-                  <td>Distrito Federal</td>
-                  <td>SkyAlert</td>
-                  <td>25/Julio/2015</td>
-                  <td>
-                    <div class="dropdown">
-                      <button style="margin-top: -7px;" class="glyphicon glyphicon-share btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        <span class="caret"></span>
-                      </button>
-                      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <li><a style="text-align: left;" href="#">Facebook</a></li>
-                        <li><a style="text-align: left;" href="#">Twitter</a></li>
-                      </ul>
-                    </div>
-                  </td>
-                  <td><button style="margin-top: -7px;" type="button" class="glyphicon glyphicon-edit btn btn-warning"></button></td>
-                  <td><button style="margin-top: -7px;" type="button" class="glyphicon glyphicon-remove btn btn-danger"></button></td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>Monta Cargista</td>
-                  <td>Operador</td>
-                  <td>Distrito Federal</td>
-                  <td>SkyAlert</td>
-                  <td>25/Julio/2015</td>
-                  <td>
-                    <div class="dropdown">
-                      <button style="margin-top: -7px;" class="glyphicon glyphicon-share btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        <span class="caret"></span>
-                      </button>
-                      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <li><a style="text-align: left;" href="#">Facebook</a></li>
-                        <li><a style="text-align: left;" href="#">Twitter</a></li>
-                      </ul>
-                    </div>
-                  </td>
-                  <td><button style="margin-top: -7px;" type="button" class="glyphicon glyphicon-edit btn btn-warning"></button></td>
-                  <td><button style="margin-top: -7px;" type="button" class="glyphicon glyphicon-remove btn btn-danger"></button></td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>Monta Cargista</td>
-                  <td>Operador</td>
-                  <td>Distrito Federal</td>
-                  <td>SkyAlert</td>
-                  <td>25/Julio/2015</td>
-                  <td>
-                    <div class="dropdown">
-                      <button style="margin-top: -7px;" class="glyphicon glyphicon-share btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        <span class="caret"></span>
-                      </button>
-                      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <li><a style="text-align: left;" href="#">Facebook</a></li>
-                        <li><a style="text-align: left;" href="#">Twitter</a></li>
-                      </ul>
-                    </div>
-                  </td>
-                  <td><button style="margin-top: -7px;" type="button" class="glyphicon glyphicon-edit btn btn-warning"></button></td>
-                  <td><button style="margin-top: -7px;" type="button" class="glyphicon glyphicon-remove btn btn-danger"></button></td>
-                </tr>
-              </tbody>
-            </table>
-            </center>
+          <div class="col-md-10" id="cats">
+            
           </div>
           <div class="col-md-1">
           </div>
