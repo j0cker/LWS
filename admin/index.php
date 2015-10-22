@@ -8,7 +8,27 @@ if($status=="OK"){
 require_once('desktop/header.php');
 ?>
 <script>
-contCat();
+  /*Contadores*/
+$( document ).ready(function() {
+  contCat();
+  contVaca();
+});
+function contVaca(){
+	$.ajax({url:   "scripts/get-cont-vacantes.php",
+			type:  'GET',
+			success:  function (response) {
+			  obj = JSON.parse(response);
+			  if(obj.true!="false"){
+          console.log(obj.TContCat);
+          $("#contVaca1").html(obj.TContCat);
+			  } else {
+			    alert("Error Contando Categorías");
+			  }
+			}, error: function (response){
+			  alert("ERROR inténtelo de nuevo más tarde");
+			}
+	});
+}
 function contCat(){
 	$.ajax({url:   "scripts/get-cont-categorias.php",
 			type:  'GET',
@@ -47,7 +67,7 @@ require_once('desktop/menu.php');
               <button style="background-color: #C62828; border-color: #C62828; width: 200px;" type="button" class="btn btn-success"><span style="font-size: 25px;" class="fa fa-building-o"></span><br />Total de Vacantes<br />123</button>
             </div>
               <div style="" class="col-md-3">
-              <button style="background-color: #4527A0; border-color: #4527A0; width: 200px;" type="button" class="btn btn-success"><span style="font-size: 25px;" class="fa fa-building-o"></span><br />Vacantes Nuevas en el Mes<br />123</button>
+              <button style="background-color: #4527A0; border-color: #4527A0; width: 200px;" type="button" class="btn btn-success"><span style="font-size: 25px;" class="fa fa-building-o"></span><br />Vacantes Nuevas en el Mes<br /><span id="contVaca1"></span></button>
             </div>
             <div style="" class="col-md-3">
               <button style="background-color: #0277BD; border-color: #0277BD; width: 200px;" type="button" class="btn btn-success"><span style="font-size: 25px;" class="fa fa-briefcase"></span><br />Total de CV's<br />123</button>
@@ -96,10 +116,10 @@ require_once('desktop/menu.php');
               <thead>
                 <tr>
                   <th style="text-align: left;">ID</th>
-                  <th style="text-align: left;">Empleo</th>
+                  <th style="text-align: left;">Empresa</th>
                   <th style="text-align: left;">Categoría</th>
                   <th style="text-align: left;">Estado</th>
-                  <th style="text-align: left;">Empresa</th>
+                  <th style="text-align: left;">Hora/Tipo</th>
                   <th style="text-align: left;">Publicación</th>
                   <th></th>
                   <th></th>

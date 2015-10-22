@@ -8,6 +8,28 @@ if($status=="OK"){
 require_once('desktop/header.php');
 ?>
 <script>
+$( document ).ready(function() {
+    getCategorias();
+});
+function getCategorias(){
+	$.ajax({url:   "scripts/get-categoriasTodas.php",
+			type:  'GET',
+			success:  function (response) {
+		      obj = JSON.parse(response);
+			  if(obj.true=="true"){
+				  var html = '';
+					  for(var x=0; x<obj.cat.length; x++){
+						  html+='<option value="'+obj.id[x]+'">'+obj.cat[x]+'</option>';
+					  }
+					$("#cats").html(html);
+			  } else {
+				$("#cats").html('ERROR');
+			  }
+			}, error: function (response){
+			  alert("ERROR inténtelo de nuevo más tarde");
+			}
+	});
+}
 function altaVacante(){
   if(!$("#nombreEmpresa").val()){
     alert("Llenar Nombre de la empresa");
@@ -33,6 +55,8 @@ function altaVacante(){
 	console.log($("#latitud").val() + " " + $("#longitud").val());
 	$.ajax({      data: { nombreEmpresa:$("#nombreEmpresa").val(),
 	                      direccionEmpresa:$("#direccionEmpresa").val(),
+              tipoTiempo:$("#tipoTiempo").val(),
+              id_cat:$("#cats").val(),
 						  estado:$("#estado").val(),
 						  descripcion:$("#descripcion").val(),
 						  requisitos:$("#requisitos").val(),
@@ -88,6 +112,21 @@ require_once('desktop/menu.php');
                 <div class="col-md-10"></div>
               </div>
             </div><!--row-->
+            
+            <div class="form-group form-group-default ">
+                <label>Elija Categoría</label>
+                <select class="form-control" id="cats"></select>
+            </div>
+            
+            <div class="form-group form-group-default ">
+                <label>Seleccione el tiempo, horas, tipo o duración del empleo</label>
+                <select class="form-control" id="tipoTiempo">
+                  <option value="Medio Tiempo">Medio Tiempo</option>
+                  <option value="Tiempo Completo">Tiempo Completo</option>
+                  <option value="Temporal">Temporal</option>
+                  <option value="Freelance">Freelance</option>
+                </select>
+            </div>
             
             <div class="row">
               <div class="col-md-12">
