@@ -24,6 +24,16 @@ function adelanteButton(){
     alert("Fin de la lista");
   }
 }
+function atrasButton(){
+  if(hoja!=1){
+    console.log("Anterior hoja");
+    hoja = hoja -1;
+    getCategorias(hoja);
+    $('#contAnt').html(hoja);
+  } else {
+    alert("Inicio de la Lista");
+  }
+}
 function buscar(){
   if($("#palabra").val()){
     $.ajax({url:   "scripts/buscar-categorias.php",
@@ -63,16 +73,6 @@ function buscar(){
   } else {
     contCat();
     getCategorias(hoja);
-  }
-}
-function atrasButton(){
-  if(hoja!=1){
-    console.log("Anterior hoja");
-    hoja = hoja -1;
-    getCategorias(hoja);
-    $('#contAnt').html(hoja);
-  } else {
-    alert("Inicio de la Lista");
   }
 }
 function contCat(){
@@ -186,7 +186,7 @@ function altaCategoria(){
   if(!$("#categoria").val()){
     alert("Llenar Nombre de la categoría");
   } else {
-	$.ajax({      data: { categoria:$("#categoria").val(), option:"1" },
+	$.ajax({data: { categoria:$("#categoria").val(), option:"1" },
 					url:   "scripts/alta-categoria.php",
 			type:  'POST',
 			success:  function (response) {

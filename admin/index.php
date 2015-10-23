@@ -13,6 +13,69 @@ $( document ).ready(function() {
   contCat();
   contVaca();
 });
+function buscar(){
+  if($("#palabra").val()){
+    $.ajax({url:   "scripts/buscar-vacantes.php",
+        data: { buscar:$("#palabra").val() },
+        type:  'GET',
+        success:  function (response) {
+          obj = JSON.parse(response);
+          if(obj.true!="false"){
+            var html = '';
+				  html+='<center>';
+					html+='<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">';
+					  html+='<thead>';
+						html+='<tr>';
+              html+='<th style="text-align: left;">ID</th>';
+              html+='<th style="text-align: left;">Empresa</th>';
+              html+='<th style="text-align: left;">Categoría</th>';
+              html+='<th style="text-align: left;">Estado</th>';
+              html+='<th style="text-align: left;">Hora/Tipo</th>';
+              html+='<th style="text-align: left;">Publicación</th>';
+						  html+='<th></th>';
+						  html+='<th></th>';
+              html+='<th></th>';
+						html+='</tr>';
+					  html+='</thead>';
+					  html+='<tbody>';
+					  for(var x=0; x<obj.id.length; x++){
+						html+='<tr>';
+						  html+='<td>'+obj.id[x]+'</td>';
+              html+='<td>'+obj.nombreEmpresa[x]+'</td>';
+              html+='<td>'+obj.categoria[x]+'</td>';
+              html+='<td>'+obj.estado[x]+'</td>';
+              html+='<td>'+obj.tipoTiempo[x]+'</td>';
+              html+='<td>'+obj.fecha[x]+'</td>';
+              html+='<td>';
+                html+='<div class="dropdown">';
+                  html+='<button style="margin-top: -7px;" class="glyphicon glyphicon-share btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">';
+                    html+='<span class="caret"></span>';
+                  html+='</button>';
+                  html+='<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">';
+                    html+='<li><a style="text-align: left;" href="#">Facebook</a></li>';
+                    html+='<li><a style="text-align: left;" href="#">Twitter</a></li>';
+                  html+='</ul>';
+                html+='</div>';
+              html+='</td>';
+						  html+='<td><button onclick="modCat('+comillas+''+obj.id[x]+''+comillas+', '+comillas+''+obj.categoria[x]+''+comillas+');" style="margin-top: -7px;" type="button" class="glyphicon glyphicon-edit btn btn-warning"></button></td>';
+						  html+='<td><button onclick="eliminarCat('+comillas+''+obj.id[x]+''+comillas+');" style="margin-top: -7px;" type="button" class="glyphicon glyphicon-remove btn btn-danger"></button></td>';
+						html+='</tr>';
+					  }
+					  html+='</tbody>';
+					html+='</table></center>';
+					$("#cats").html(html);
+          } else {
+            alert("No hay Coincidencias");
+          }
+        }, error: function (response){
+          alert("ERROR inténtelo de nuevo más tarde");
+        }
+    });
+  } else {
+    contCat();
+    getCategorias(hoja);
+  }
+}
 function contVaca(){
 	$.ajax({url:   "scripts/get-cont-vacantes.php",
 			type:  'GET',
@@ -49,10 +112,54 @@ function contCat(){
 <script>
 var comillas = "'";
 var hoja = 1;
-contCat();
-getCategorias(hoja);
+$(document).ready(function() {
+  contCat();
+  contCat2();
+  getCategorias(hoja);
+});
+function adelanteButton(){
+  if(hoja<$('#contDes').html()){
+    console.log("siguiente hoja");
+    hoja = hoja +1;
+    getCategorias(hoja);
+    contCat2();
+  } else {
+    alert("Fin de la lista");
+  }
+}
+function atrasButton(){
+  if(hoja!=1){
+    console.log("Anterior hoja");
+    hoja = hoja -1;
+    getCategorias(hoja);
+    $('#contAnt').html(hoja);
+  } else {
+    alert("Inicio de la Lista");
+  }
+}
+function eliminarCat(id){
+	$.ajax({data: { id:id },
+		    url:   "scripts/del-vacantes.php",
+			type:  'POST',
+			success:  function (response) {
+			  obj = JSON.parse(response);
+			  if(obj.true=="true"){
+				  getCategorias(hoja);
+			    hoja = 1;
+          contCat2();
+			    alert("Categoría Eliminada");
+			  } else {
+			    alert("Categoría No Eliminada");
+			  }
+        contCat2();
+        getCategorias(hoja);
+			}, error: function (response){
+			  alert("ERROR inténtelo de nuevo más tarde");
+			}
+	});
+}
 function getCategorias(hoja){
-	$.ajax({      data: { hoja:hoja },
+	$.ajax({data: { hoja:hoja },
 					url:   "scripts/get-vacantes.php",
 			type:  'GET',
 			success:  function (response) {
@@ -103,6 +210,33 @@ function getCategorias(hoja){
 					$("#cats").html(html);
 			  } else {
 				$("#cats").html('ERROR');
+			  }
+			}, error: function (response){
+			  alert("ERROR inténtelo de nuevo más tarde");
+			}
+	});
+}
+function contCat2(){
+	$.ajax({url:   "scripts/get-cont-vacantes.php",
+			type:  'GET',
+			success:  function (response) {
+			  obj = JSON.parse(response);
+			  if(obj.true!="false"){
+          if(obj.cont<2){
+            $("#atras").css("display","none");
+            $('#adelante').css("display","none");
+          } else {
+            if(hoja!=1){
+              $("#atras").css("display","block");
+              $('#atras').attr("onclick","atrasButton();");
+            }
+            $('#adelante').css("display","block");
+            $('#adelante').attr("onclick","adelanteButton();"); 
+          }
+          $('#contDes').html(parseInt(obj.cont));
+          $('#contAnt').html(hoja);
+			  } else {
+			    alert("Categoría No Eliminada");
 			  }
 			}, error: function (response){
 			  alert("ERROR inténtelo de nuevo más tarde");
@@ -165,7 +299,7 @@ require_once('desktop/menu.php');
           <div class="col-md-6">
             <div class="input-group">
               <span style="top: 0px;" class="input-group-addon glyphicon glyphicon-search" id="basic-addon1"></span>
-              <input style="" class="form-control" type="text" id="palabraArrayUser" onkeyup="buscarArraUser();" placeholder="Buscar: ">
+              <input class="form-control" type="text" id="palabra" onkeyup="buscar();" placeholder="Buscar: ">
             </div>
           </div>
           <div class="col-md-3">
@@ -188,15 +322,15 @@ require_once('desktop/menu.php');
              <nav>
               <ul class="pagination">
                 <li>
-                  <a href="#" aria-label="Previous">
+                  <a id="atras" href="#" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                   </a>
                 </li>
-                <li><a href="#">1</a></li>
+                <li><a id="contAnt" href="#">1</a></li>
                 <li><a href="#">de</a></li>
-                <li><a href="#">2</a></li>
+                <li><a id="contDes" href="#">1</a></li>
                 <li>
-                  <a href="#" aria-label="Next">
+                  <a id="adelante" href="#" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                   </a>
                 </li>
