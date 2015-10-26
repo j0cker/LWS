@@ -12,6 +12,7 @@ require_once('desktop/header.php');
 $( document ).ready(function() {
   contCat();
   contVaca();
+  contMVaca();
 });
 function buscar(){
   if($("#palabra").val()){
@@ -57,7 +58,7 @@ function buscar(){
                   html+='</ul>';
                 html+='</div>';
               html+='</td>';
-						  html+='<td><button onclick="modCat('+comillas+''+obj.id[x]+''+comillas+', '+comillas+''+obj.categoria[x]+''+comillas+');" style="margin-top: -7px;" type="button" class="glyphicon glyphicon-edit btn btn-warning"></button></td>';
+						  html+='<td><button onclick="window.location='+comilla+'alta-vacantes.php?id='+obj.id[x]+''+comilla+';" style="margin-top: -7px;" type="button" class="glyphicon glyphicon-edit btn btn-warning"></button></td>';
 						  html+='<td><button onclick="eliminarCat('+comillas+''+obj.id[x]+''+comillas+');" style="margin-top: -7px;" type="button" class="glyphicon glyphicon-remove btn btn-danger"></button></td>';
 						html+='</tr>';
 					  }
@@ -75,6 +76,22 @@ function buscar(){
     contCat();
     getCategorias(hoja);
   }
+}
+function contMVaca(){
+	$.ajax({url:   "scripts/get-cont-Mvacantes.php",
+			type:  'GET',
+			success:  function (response) {
+			  obj = JSON.parse(response);
+			  if(obj.true!="false"){
+          console.log(obj.TContCat);
+          $("#contVacaMes").html(obj.TContCat);
+			  } else {
+			    alert("Error Contando Categorías");
+			  }
+			}, error: function (response){
+			  alert("ERROR inténtelo de nuevo más tarde");
+			}
+	});
 }
 function contVaca(){
 	$.ajax({url:   "scripts/get-cont-vacantes.php",
@@ -111,6 +128,7 @@ function contCat(){
 </script>
 <script>
 var comillas = "'";
+var comilla = "'";
 var hoja = 1;
 $(document).ready(function() {
   contCat();
@@ -201,7 +219,7 @@ function getCategorias(hoja){
                   html+='</ul>';
                 html+='</div>';
               html+='</td>';
-						  html+='<td><button onclick="modCat('+comillas+''+obj.id[x]+''+comillas+', '+comillas+''+obj.categoria[x]+''+comillas+');" style="margin-top: -7px;" type="button" class="glyphicon glyphicon-edit btn btn-warning"></button></td>';
+						  html+='<td><button onclick="window.location='+comilla+'alta-vacantes.php?id='+obj.id[x]+''+comilla+';" style="margin-top: -7px;" type="button" class="glyphicon glyphicon-edit btn btn-warning"></button></td>';
 						  html+='<td><button onclick="eliminarCat('+comillas+''+obj.id[x]+''+comillas+');" style="margin-top: -7px;" type="button" class="glyphicon glyphicon-remove btn btn-danger"></button></td>';
 						html+='</tr>';
 					  }

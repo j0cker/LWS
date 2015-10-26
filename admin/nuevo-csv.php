@@ -35,6 +35,78 @@ $(document).ready(function(){
   });
 });  
 </script>
+<script>
+$( document ).ready(function() {
+    getCategorias();
+});
+function getCategorias(){
+	$.ajax({url:   "scripts/get-categoriasTodas.php",
+			type:  'GET',
+			success:  function (response) {
+		      obj = JSON.parse(response);
+			  if(obj.true=="true"){
+				  var html = '';
+					  for(var x=0; x<obj.cat.length; x++){
+						  html+='<option value="'+obj.id[x]+'">'+obj.cat[x]+'</option>';
+					  }
+					$("#cats").html($("#cats").html() + html);
+			  } else {
+				$("#cats").html('ERROR');
+			  }
+			}, error: function (response){
+			  alert("ERROR inténtelo de nuevo más tarde");
+			}
+	});
+}
+</script>
+<script>
+function nuevoCV(){
+  if($("#nombreCompleto").val()){
+  } else if($("#telefono").val()){
+    
+  } else if($("#email").val()){
+  } else if($("#estado").val()){
+  } else if($("#oferta").val()){
+  } else if($("#tituloProfesional").val()){
+  } else if($("#gradoEstudios").val()){
+  } else if($("#diplomado").val()){
+  } else if($("#habilidades").val()){
+  } else if($("#competencias").val()){
+  } else if($("#ultimoEmpleador").val()){
+  } else if($("#ultimoEmpleo").val()){
+  } else if($("#datepicker").val()){
+  } else if($("#datepicker2").val()){
+  } else if($("#trabajaActualmente").val()){
+  } else if($("#descripcionAnteriores").val()){
+  } else if($("#comentarios").val()){
+  } else {
+    $.ajax({data: { nombreEmpresa:$("#nombreEmpresa").val(),
+                direccionEmpresa:$("#direccionEmpresa").val(),
+                tipoTiempo:$("#tipoTiempo").val(),
+                id_cat:$("#cats").val(),
+                estado:$("#estado").val(),
+                descripcion:$("#descripcion").val(),
+                requisitos:$("#requisitos").val(),
+                latitud:$("#latitud").val(),
+                longitud:$("#longitud").val(),
+                actividades:$("#actividades").val(),
+                incentivos:$("#incentivos").val(),
+                prestaciones:$("#prestaciones").val(),
+                remuneracion:$("#remuneracion").val(),
+                contacto:$("#contacto").val(),
+                option:option,
+                id:id },
+            url:   "scripts/alta-vacantes.php",
+        type:  'POST',
+        success:  function (response) {
+          alert("Vacante Agregada");
+        }, error: function (response){
+          alert("ERROR inténtelo de nuevo más tarde");
+        }
+    });
+  }
+}
+</script>
 </head>
 <body>
 <?PHP
@@ -57,26 +129,40 @@ require_once('desktop/menu.php');
       <!-- Default panel contents -->
       <div class="panel-heading"><span style="font-size: 20px; padding-right: 10px;" class="fa fa-plus"></span> Nuevo CV's</div>
       <div style="color: black; background-color: #FFF;" class="panel-body text-left">
-        <form role="form">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group form-group-default ">
-                  <label>Escriba tipo de empleo que busca el candidato</label><br />
-                  <select class="form-control">
-                    <option value="tiempo completo">Tiempo completo</option>
-                  </select>
-                </div>
-              </div>
-              
-              <div class="col-md-6">
-                <div class="form-group form-group-default ">
-                  <label>Seleccione Categoría</label><br />
-                  <select class="form-control">
-                    <option value="tiempo completo">Operador</option>
-                  </select>
-                </div>
-              </div>
-            </div><!--row-->
+        <form role="form">            
+            <div class="form-group form-group-default ">
+                <label>Seleccione Categoría</label>
+                <select class="form-control" id="cats">
+                  <?PHP
+                    if($categoria){
+                      ?>
+                        <option value="<?PHP echo $row["id_cat"]; ?>"selected>
+                          <?PHP echo $categoria; ?>
+                        </option>
+                      <?PHP
+                    }
+                  ?>
+                </select>
+            </div>
+            
+            <div class="form-group form-group-default ">
+                <label>Escriba tipo de empleo que busca el candidato</label>
+                <select class="form-control" id="tipoTiempo">
+                  <?PHP
+                    if($row['tipoTiempo']){
+                      ?>
+                        <option value="<?PHP echo $row['tipoTiempo']; ?>" selected>
+                          <?PHP echo $row['tipoTiempo']; ?>
+                        </option>
+                      <?PHP
+                    }
+                  ?>
+                  <option value="Medio Tiempo">Medio Tiempo</option>
+                  <option value="Tiempo Completo">Tiempo Completo</option>
+                  <option value="Temporal">Temporal</option>
+                  <option value="Freelance">Freelance</option>
+                </select>
+            </div>
         
             <div class="row">
               <div class="col-md-12">
@@ -94,22 +180,22 @@ require_once('desktop/menu.php');
               <div class="col-md-12">
                 <div class="form-group form-group-default ">
                   <label>Nombre y Apellido</label>
-                  <input type="email" class="form-control" required>
+                  <input id="nombreCompleto" type="email" class="form-control" required>
                 </div>
                 
                 <div class="form-group form-group-default ">
                   <label>Teléfono de Contacto</label>
-                  <input type="email" class="form-control" required>
+                  <input id="telefono" type="email" class="form-control" required>
                 </div>
                 
                 <div class="form-group form-group-default ">
                   <label>Email de contacto</label>
-                  <input type="email" class="form-control" required>
+                  <input id="email" type="email" class="form-control" required>
                 </div>
                 
                 <div class="form-group form-group-default ">
                   <label>Estado en el que se radica</label><br />
-                  <select class="form-control" name="estados">
+                  <select id="estado" class="form-control" name="estados">
                     <option value="Todo México">Todo México</option>
                     <option value="Aguascalientes">Aguascalientes</option>
                     <option value="Baja California">Baja California</option>
@@ -160,7 +246,7 @@ require_once('desktop/menu.php');
                 <div class="col-sm-12">
                     <div class="form-group form-group-default">
                         <label>Oferta Laboral</label>
-                        <input type="text" class="form-control" required>
+                        <input id="oferta" type="text" class="form-control" required>
                     </div>
                 </div>
             </div><!--row-->
@@ -187,7 +273,7 @@ require_once('desktop/menu.php');
                 <div class="col-sm-12">
                     <div class="form-group form-group-default">
                         <label>Título profesional y/o Profesión</label>
-                        <input type="text" class="form-control" required>
+                        <input id="tituloProfesional" type="text" class="form-control" required>
                     </div>
                 </div>
             </div><!--row-->
@@ -196,7 +282,7 @@ require_once('desktop/menu.php');
                 <div class="col-sm-12">
                     <div class="form-group form-group-default">
                         <label>Último grado de estudios</label>
-                        <input type="text" class="form-control" required>
+                        <input id="gradoEstudios" type="text" class="form-control" required>
                     </div>
                 </div>
             </div><!--row-->
@@ -205,19 +291,19 @@ require_once('desktop/menu.php');
                 <div class="col-sm-12">
                     <div class="form-group form-group-default">
                         <label>Algún otro curso y/o Diplomado</label>
-                        <input type="text" class="form-control" required>
+                        <input id="diplomado" type="text" class="form-control" required>
                     </div>
                 </div>
             </div><!--row-->
             
             <div class="form-group form-group-default ">
                 <label>Escriba algunas de las habilidades que tiene el candidato</label>
-                <textarea style="height: 200px;" type="email" class="form-control"></textarea>
+                <textarea id="habilidades" style="height: 200px;" type="email" class="form-control"></textarea>
             </div>
             
             <div class="form-group form-group-default ">
                 <label>Escriba algunas de las competencias laborales que tiene el candidato</label>
-                <textarea style="height: 200px;" type="email" class="form-control"></textarea>
+                <textarea id="competencias" style="height: 200px;" type="email" class="form-control"></textarea>
             </div>
             
             
@@ -242,7 +328,7 @@ require_once('desktop/menu.php');
                 <div class="col-sm-12">
                     <div class="form-group form-group-default">
                         <label>Último Empleador</label>
-                        <input type="text" class="form-control" required>
+                        <input id="ultimoEmpleador" type="text" class="form-control" required>
                     </div>
                 </div>
             </div><!--row-->
@@ -251,7 +337,7 @@ require_once('desktop/menu.php');
                 <div class="col-sm-12">
                     <div class="form-group form-group-default">
                         <label>Ubicación del último empleo</label>
-                        <input type="text" class="form-control" required>
+                        <input id="ultimoEmpleo" type="text" class="form-control" required>
                     </div>
                 </div>
             </div><!--row-->
@@ -276,7 +362,7 @@ require_once('desktop/menu.php');
                 <div class="col-sm-12">
                   <div class="checkbox">
                     <label>
-                      <input type="checkbox"> ¿Actualmente trabaja ahí?
+                      <input id="trabajaActualmente" type="checkbox"> ¿Actualmente trabaja ahí?
                     </label>
                   </div>
                 </div>
@@ -285,7 +371,7 @@ require_once('desktop/menu.php');
             
             <div class="form-group form-group-default ">
                 <label>Escribe una breve descripción de las actividades que realizaban en su trabajo anterior y/o actual</label>
-                <textarea style="height: 200px;" type="email" class="form-control"></textarea>
+                <textarea id="descripcionAnteriores" style="height: 200px;" type="email" class="form-control"></textarea>
             </div>
             
             <div class="row">
@@ -309,21 +395,21 @@ require_once('desktop/menu.php');
                 <div class="col-sm-4">
                     <div class="form-group form-group-default">
                         <label>Vacante 1</label>
-                        <input type="text" class="form-control" required>
+                        <input id="vacante1" type="text" class="form-control" required>
                     </div>
                 </div>
                 
                 <div class="col-sm-4">
                     <div class="form-group form-group-default">
                         <label>Vacante 2</label>
-                        <input type="text" class="form-control" required>
+                        <input id="vacante2" type="text" class="form-control" required>
                     </div>
                 </div>
                 
                 <div class="col-sm-4">
                     <div class="form-group form-group-default">
                         <label>Vacante 3</label>
-                        <input type="text" class="form-control" required>
+                        <input id="vacante3" type="text" class="form-control" required>
                     </div>
                 </div>
               </div>
@@ -334,21 +420,21 @@ require_once('desktop/menu.php');
                 <div class="col-sm-4">
                     <div class="form-group form-group-default">
                         <label>Vacante 4</label>
-                        <input type="text" class="form-control" required>
+                        <input id="vacante4" type="text" class="form-control" required>
                     </div>
                 </div>
                 
                 <div class="col-sm-4">
                     <div class="form-group form-group-default">
                         <label>Vacante 5</label>
-                        <input type="text" class="form-control" required>
+                        <input id="vacante5" type="text" class="form-control" required>
                     </div>
                 </div>
                 
                 <div class="col-sm-4">
                     <div class="form-group form-group-default">
                         <label>Vacante 6</label>
-                        <input type="text" class="form-control" required>
+                        <input id="vacante6" type="text" class="form-control" required>
                     </div>
                 </div>
               </div>
@@ -367,7 +453,7 @@ require_once('desktop/menu.php');
             
             <div class="form-group form-group-default ">
                 <label>Si considera necesario agregar comentarios y/o notas al reclutador</label>
-                <textarea style="height: 200px;" type="email" class="form-control"></textarea>
+                <textarea id="comentarios" style="height: 200px;" type="email" class="form-control"></textarea>
             </div>
             
             <div class="row">
@@ -378,7 +464,7 @@ require_once('desktop/menu.php');
             
             <div class="row">
               <div class="col-md-12 text-center">
-                  <button type="button" class="btn btn-success"><span class="fa fa-plus" style="padding-right:15px; font-size: 15px;"></span>Nuevo CV</button>
+                  <button onclick="nuevoCV();" type="button" class="btn btn-success"><span class="fa fa-plus" style="padding-right:15px; font-size: 15px;"></span>Nuevo CV</button>
               </div>
             </div><!--row-->
             

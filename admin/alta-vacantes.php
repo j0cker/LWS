@@ -1,5 +1,6 @@
 <?PHP 
 require_once('session.php');
+require_once('../conexioni.php');
 if($status=="OK"){
 ?>
 <!DOCTYPE html>
@@ -21,7 +22,7 @@ function getCategorias(){
 					  for(var x=0; x<obj.cat.length; x++){
 						  html+='<option value="'+obj.id[x]+'">'+obj.cat[x]+'</option>';
 					  }
-					$("#cats").html(html);
+					$("#cats").html($("#cats").html() + html);
 			  } else {
 				$("#cats").html('ERROR');
 			  }
@@ -30,7 +31,7 @@ function getCategorias(){
 			}
 	});
 }
-function altaVacante(){
+function altaVacante(option, id){
   if(!$("#nombreEmpresa").val()){
     alert("Llenar Nombre de la empresa");
   } else if(!$("#direccionEmpresa").val()){
@@ -66,7 +67,9 @@ function altaVacante(){
 						  incentivos:$("#incentivos").val(),
 						  prestaciones:$("#prestaciones").val(),
 						  remuneracion:$("#remuneracion").val(),
-						  contacto:$("#contacto").val() },
+						  contacto:$("#contacto").val(),
+              option:option,
+              id:id },
 					url:   "scripts/alta-vacantes.php",
 			type:  'POST',
 			success:  function (response) {
@@ -82,6 +85,22 @@ function altaVacante(){
 <body>
 <?PHP
 require_once('desktop/menu.php');
+if($_GET["id"]){
+  $id=$_GET["id"];
+  $query = $conn->query("SELECT * FROM nuevasvacantes WHERE id='".$id."'") OR die("Error: ".mysqli_error($conn));
+  if($query->num_rows>0){
+    $row=$query->fetch_assoc(); 
+    $query2 = $conn->query("SELECT nombreCategoria FROM categorias WHERE id='".$row["id_cat"]."'") OR die("Error: ".mysqli_error($conn));
+    if($query2->num_rows>0){
+      $row2 = $query2->fetch_assoc();
+      $categoria = ''.utf8_decode($row2['nombreCategoria']).'';
+    } else {
+      $categoria = 'ERROR Contacte al Admin';
+    }
+  } else {
+    $row = '';
+  }
+}
 ?>
   <main class="mdl-layout__content">
     <div class="row">
@@ -115,12 +134,31 @@ require_once('desktop/menu.php');
             
             <div class="form-group form-group-default ">
                 <label>Elija Categoría</label>
-                <select class="form-control" id="cats"></select>
+                <select class="form-control" id="cats">
+                  <?PHP
+                    if($categoria){
+                      ?>
+                        <option value="<?PHP echo $row["id_cat"]; ?>"selected>
+                          <?PHP echo $categoria; ?>
+                        </option>
+                      <?PHP
+                    }
+                  ?>
+                </select>
             </div>
             
             <div class="form-group form-group-default ">
                 <label>Seleccione el tiempo, horas, tipo o duración del empleo</label>
                 <select class="form-control" id="tipoTiempo">
+                  <?PHP
+                    if($row['tipoTiempo']){
+                      ?>
+                        <option value="<?PHP echo $row['tipoTiempo']; ?>" selected>
+                          <?PHP echo $row['tipoTiempo']; ?>
+                        </option>
+                      <?PHP
+                    }
+                  ?>
                   <option value="Medio Tiempo">Medio Tiempo</option>
                   <option value="Tiempo Completo">Tiempo Completo</option>
                   <option value="Temporal">Temporal</option>
@@ -136,17 +174,24 @@ require_once('desktop/menu.php');
            
             <div class="form-group form-group-default ">
                 <label>Nombre de la Empresa</label>
-                <input id="nombreEmpresa" type="text" class="form-control" required>
+                <input value="<?PHP echo $row['nombreEmpresa']; ?>" id="nombreEmpresa" type="text" class="form-control" required>
             </div>
             
             <div class="form-group form-group-default ">
                 <label>Dirección de la Empresa</label>
-                <input id="direccionEmpresa" type="text" class="form-control" required>
+                <input value="<?PHP echo $row['direccionEmpresa']; ?>" id="direccionEmpresa" type="text" class="form-control" required>
             </div>
             
             <div class="form-group form-group-default ">
                 <label>Estado</label>
                 <select id="estado" class="form-control" name="estados">
+                  <?PHP
+                  if($row['estado']){
+                    ?>
+                      <option value="<?PHP echo $row['estado']; ?>" selected><?php echo $row['estado'];?></option>
+                    <?PHP
+                  }
+                  ?>
                     <option value="Todo México">Todo México</option>
                     <option value="Aguascalientes">Aguascalientes</option>
                     <option value="Baja California">Baja California</option>
@@ -193,13 +238,13 @@ require_once('desktop/menu.php');
                 <div class="col-sm-6">
                     <div class="form-group form-group-default">
                         <label>Latitud</label>
-                        <input id="latitud" type="text" class="form-control">
+                        <input value="<?PHP echo $row["latitud"]; ?>" id="latitud" type="text" class="form-control">
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="form-group form-group-default">
                         <label>Longitud</label>
-                        <input id="longitud" type="text" class="form-control">
+                        <input value="<?PHP echo $row["longitud"]; ?>" id="longitud" type="text" class="form-control">
                     </div>
                 </div>
             </div><!--row-->
@@ -223,7 +268,7 @@ require_once('desktop/menu.php');
             
             <div class="form-group form-group-default ">
                 <label>Escriba no más de 5 líneas para describir la vacante</label>
-                <textarea id="descripcion" style="height: 200px;" type="email" class="form-control"></textarea>
+                <textarea id="descripcion" style="height: 200px;" type="email" class="form-control"><?PHP echo $row["descripcion"]; ?></textarea>
             </div>
             
             <div class="row">
@@ -239,7 +284,7 @@ require_once('desktop/menu.php');
             
             <div class="form-group form-group-default ">
                 <label>Escriba una breve lista de requisitos necesarios para cubrir la vacante</label>
-                <textarea id="requisitos" style="height: 200px;" type="email" class="form-control"></textarea>
+                <textarea id="requisitos" style="height: 200px;" type="email" class="form-control"><?PHP echo $row["requisitos"]; ?></textarea>
             </div>
             
             <div class="row">
@@ -255,7 +300,7 @@ require_once('desktop/menu.php');
             
             <div class="form-group form-group-default ">
                 <label>Escriba una lista y/o describa brevemente las actividades a desempeñar en el empleo</label>
-                <textarea id="actividades" style="height: 200px;" type="email" class="form-control"></textarea>
+                <textarea id="actividades" style="height: 200px;" type="email" class="form-control"><?PHP echo $row["actividades"]; ?></textarea>
             </div>
             
             <div class="row">
@@ -271,7 +316,7 @@ require_once('desktop/menu.php');
             
             <div class="form-group form-group-default ">
                 <label>Escriba una lista y/o describa brevemente los incentivos que otorga la empresa</label>
-                <textarea id="incentivos" style="height: 200px;" type="email" class="form-control"></textarea>
+                <textarea id="incentivos" style="height: 200px;" type="email" class="form-control"><?PHP echo $row["incentivos"]; ?></textarea>
             </div>
             
             <div class="row">
@@ -287,7 +332,7 @@ require_once('desktop/menu.php');
             
             <div class="form-group form-group-default ">
                 <label>Escriba una lista y/o describa brevemente las prestaciones que otorga la empresa</label>
-                <textarea id="prestaciones" style="height: 200px;" type="email" class="form-control"></textarea>
+                <textarea id="prestaciones" style="height: 200px;" type="email" class="form-control"><?PHP echo $row["prestaciones"]; ?></textarea>
             </div>
             
             <div class="row">
@@ -303,7 +348,7 @@ require_once('desktop/menu.php');
             
             <div class="form-group form-group-default ">
                 <label>Escriba en un par de líneas cuál sería el tiempo de remuneración para el postulante</label>
-                <textarea id="remuneracion" style="height: 200px;" type="email" class="form-control"></textarea>
+                <textarea id="remuneracion" style="height: 200px;" type="email" class="form-control"><?PHP echo $row["remuneracion"]; ?></textarea>
             </div>
             
             <div class="row">
@@ -319,7 +364,7 @@ require_once('desktop/menu.php');
             
             <div class="form-group form-group-default ">
                 <label>Escriba los datos de con quién debe contactarse el postulante y forma de aplicar o postularse para la vacante</label>
-                <textarea id="contacto" style="height: 200px;" type="email" class="form-control"></textarea>
+                <textarea id="contacto" style="height: 200px;" type="email" class="form-control"><?PHP echo $row["contacto"]; ?></textarea>
             </div>
             
             <div class="row">
@@ -330,7 +375,17 @@ require_once('desktop/menu.php');
             
             <div class="row">
               <div class="col-md-12 text-center">
-                  <button onclick="altaVacante();" type="button" class="btn btn-success"><span class="fa fa-building-o" style="padding-right:15px; font-size: 15px;"></span>Altas de Vacantes</button>
+                <?PHP
+                  if($row['id']){
+                    ?>
+                      <button onclick="altaVacante('2','<?PHP echo $row['id']; ?>');" type="button" class="btn btn-success"><span class="fa fa-building-o" style="padding-right:15px; font-size: 15px;"></span>Modificar Vacante</button>
+                    <?PHP
+                  } else {
+                    ?>
+                      <button onclick="altaVacante('1');" type="button" class="btn btn-success"><span class="fa fa-building-o" style="padding-right:15px; font-size: 15px;"></span>Alta Vacante</button>
+                    <?PHP
+                  }
+                ?>
               </div>
             </div><!--row-->
             
