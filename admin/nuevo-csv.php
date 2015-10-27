@@ -61,45 +61,72 @@ function getCategorias(){
 </script>
 <script>
 function nuevoCV(){
-  if($("#nombreCompleto").val()){
-  } else if($("#telefono").val()){
-    
-  } else if($("#email").val()){
-  } else if($("#estado").val()){
-  } else if($("#oferta").val()){
-  } else if($("#tituloProfesional").val()){
-  } else if($("#gradoEstudios").val()){
-  } else if($("#diplomado").val()){
-  } else if($("#habilidades").val()){
-  } else if($("#competencias").val()){
-  } else if($("#ultimoEmpleador").val()){
-  } else if($("#ultimoEmpleo").val()){
-  } else if($("#datepicker").val()){
-  } else if($("#datepicker2").val()){
-  } else if($("#trabajaActualmente").val()){
-  } else if($("#descripcionAnteriores").val()){
-  } else if($("#comentarios").val()){
+  if(!$("#nombreCompleto").val()){
+    alert("Rellenar el campo Nombre Completo");
+  } else if(!$("#telefono").val()){
+    alert("Rellenar el campo Teléfono");
+  } else if(!$("#email").val()){
+    alert("Rellenar el campo Email");
+  } else if(!$("#estado").val()){
+    alert("Rellenar el campo Estado");
+  } else if(!$("#oferta").val()){
+    alert("Rellenar el campo Oferta");
+  } else if(!$("#tituloProfesional").val()){
+    alert("Rellenar el campo Titulo Profesional");
+  } else if(!$("#gradoEstudios").val()){
+    alert("Rellenar el campo de Grado de Estudios");
+  } else if(!$("#diplomado").val()){
+    alert("Rellenar el campo de Diplomado");
+  } else if(!$("#habilidades").val()){
+    alert("Rellenar el campo de Habilidades");
+  } else if(!$("#competencias").val()){
+    alert("Rellenar el campo de Competencias");
+  } else if(!$("#ultimoEmpleador").val()){
+    alert("Rellenar el campo de Último Empleados");
+  } else if(!$("#ultimoEmpleo").val()){
+    alert("Rellenar el campo de Último Empleo");
+  } else if(!$("#datepicker").val()){
+    alert("Rellenar el campo de Fecha 1");
+  } else if(!$("#datepicker2").val()){
+    alert("Rellenar el campo de Fecha 2");
+  } else if(!$("#trabajaActualmente").val()){
+    alert("Rellenar el campo de Trabaja Actualmente");
+  } else if(!$("#descripcionAnteriores").val()){
+    alert("Rellenar el campo de Descripcion Anteriores");
+  } else if(!$("#comentarios").val()){
+    alert("Rellenar el campo de Comentarios");
   } else {
-    $.ajax({data: { nombreEmpresa:$("#nombreEmpresa").val(),
-                direccionEmpresa:$("#direccionEmpresa").val(),
-                tipoTiempo:$("#tipoTiempo").val(),
-                id_cat:$("#cats").val(),
-                estado:$("#estado").val(),
-                descripcion:$("#descripcion").val(),
-                requisitos:$("#requisitos").val(),
-                latitud:$("#latitud").val(),
-                longitud:$("#longitud").val(),
-                actividades:$("#actividades").val(),
-                incentivos:$("#incentivos").val(),
-                prestaciones:$("#prestaciones").val(),
-                remuneracion:$("#remuneracion").val(),
-                contacto:$("#contacto").val(),
-                option:option,
-                id:id },
-            url:   "scripts/alta-vacantes.php",
-        type:  'POST',
+    $.ajax({data: { id_cat:$("#cats").val(),
+                    tipoTiempo:$("#tipoTiempo").val(),
+                    nombreCompleto:$("#nombreCompleto").val(),
+                    telefono:$("#telefono").val(),
+                    email:$("#email").val(),
+                    estado:$("#estado").val(),
+                    oferta:$("#oferta").val(),
+                    tituloProfesional:$("#tituloProfesional").val(),
+                    gradoEstudios:$("#gradoEstudios").val(),
+                    diplomado:$("#diplomado").val(),
+                    habilidades:$("#habilidades").val(),
+                    competencias:$("#competencias").val(),
+                    ultimoEmpleador:$("#ultimoEmpleador").val(),
+                    ultimoEmpleo:$("#ultimoEmpleo").val(),
+                    datepicker:$("#datepicker").val(),
+                    datepicker2:$("#datepicker2").val(),
+                    trabajaActualmente:$("#trabajaActualmente").val(),
+                    descripcionAnteriores:$("#descripcionAnteriores").val(),
+                    vacante1:$("#vacante1").val(),
+                    vacante2:$("#vacante2").val(),
+                    vacante3:$("#vacante3").val(),
+                    vacante4:$("#vacante4").val(),
+                    vacante5:$("#vacante5").val(),
+                    vacante6:$("#vacante6").val(),
+                    comentarios:$("#comentarios").val(),
+                    option:1,
+                    /*id:id*/ },
+            url:   "scripts/alta-cvs.php",
+            type:  'POST',
         success:  function (response) {
-          alert("Vacante Agregada");
+          alert("CV Agregado");
         }, error: function (response){
           alert("ERROR inténtelo de nuevo más tarde");
         }
