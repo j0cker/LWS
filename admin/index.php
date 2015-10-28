@@ -13,6 +13,7 @@ $( document ).ready(function() {
   contCat();
   contVaca();
   contMVaca();
+  contCvs()
 });
 function buscar(){
   if($("#palabra").val()){
@@ -85,6 +86,22 @@ function contMVaca(){
 			  if(obj.true!="false"){
           console.log(obj.TContCat);
           $("#contVacaMes").html(obj.TContCat);
+			  } else {
+			    alert("Error Contando Categorías");
+			  }
+			}, error: function (response){
+			  alert("ERROR inténtelo de nuevo más tarde");
+			}
+	});
+}
+function contCvs(){
+	$.ajax({url:   "scripts/get-cont-cvs.php",
+			type:  'GET',
+			success:  function (response) {
+			  obj = JSON.parse(response);
+			  if(obj.true!="false"){
+          console.log(obj.TContCat);
+          $("#contCvs").html(obj.TContCat);
 			  } else {
 			    alert("Error Contando Categorías");
 			  }
@@ -286,18 +303,10 @@ require_once('desktop/menu.php');
               <button style="background-color: #4527A0; border-color: #4527A0; width: 200px;" type="button" class="btn btn-success"><span style="font-size: 25px;" class="fa fa-building-o"></span><br />Vacantes Nuevas en el Mes<br /><span id="contVacaMes"></span></button>
             </div>
             <div style="" class="col-md-3">
-              <button style="background-color: #0277BD; border-color: #0277BD; width: 200px;" type="button" class="btn btn-success"><span style="font-size: 25px;" class="fa fa-briefcase"></span><br />Total de CV's<br />123</button>
+              <button style="background-color: #0277BD; border-color: #0277BD; width: 200px;" type="button" class="btn btn-success"><span style="font-size: 25px;" class="fa fa-briefcase"></span><br />Total de CV's<br /><span id="contCvs"></span></button>
             </div>
             <div style="" class="col-md-3">
               <button style="background-color: #2E7D32; border-color: #2E7D32; width: 200px;" type="button" class="btn btn-success"><span style="font-size: 25px;" class="fa fa-table"></span><br />Total de Categorías<br /><span id="contCat1"></span></button>
-            </div>
-        </div>
-    </div><!--row-->
-    
-    <div style="margin-top: 10px;" class="row">
-        <div class="col-md-12 text-center">
-            <div style="" class="col-md-12">
-              <button style="margin-top: 10px;" type="button" class="btn btn-warning">Descargar Base de Datos MYSQL</button>
             </div>
         </div>
     </div><!--row-->

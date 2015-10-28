@@ -15,7 +15,6 @@ $(document).ready(function(){
 	   changeMonth: true,
        changeYear: true,
 	   "dateFormat": 'dd-mm-yy',
-	   minDate: 0,
 	   showOn: "both",
 	   buttonImage: "../images/calendar.png",
 	   buttonImageOnly: false,
@@ -26,13 +25,14 @@ $(document).ready(function(){
 	   changeMonth: true,
        changeYear: true,
 	   "dateFormat": 'dd-mm-yy',
-	   minDate: 0,
 	   showOn: "both",
 	   buttonImage: "../images/calendar.png",
 	   buttonImageOnly: false,
        buttonText: "Select date"
 	 });
+   
   });
+  
 });  
 </script>
 <script>
