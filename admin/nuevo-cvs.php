@@ -1,5 +1,6 @@
 <?PHP 
 require_once('session.php');
+require_once('../conexioni.php');
 if($status=="OK"){
 ?>
 <!DOCTYPE html>
@@ -60,7 +61,7 @@ function getCategorias(){
 }
 </script>
 <script>
-function nuevoCV(){
+function nuevoCV(option, id){
   if(!$("#nombreCompleto").val()){
     alert("Rellenar el campo Nombre Completo");
   } else if(!$("#telefono").val()){
@@ -121,8 +122,8 @@ function nuevoCV(){
                     vacante5:$("#vacante5").val(),
                     vacante6:$("#vacante6").val(),
                     comentarios:$("#comentarios").val(),
-                    option:1,
-                    /*id:id*/ },
+                    option:option,
+                    id:id },
             url:   "scripts/alta-cvs.php",
             type:  'POST',
         success:  function (response) {
@@ -138,6 +139,22 @@ function nuevoCV(){
 <body>
 <?PHP
 require_once('desktop/menu.php');
+if($_GET["id"]){
+  $id=$_GET["id"];
+  $query = $conn->query("SELECT * FROM cvs WHERE id='".$id."'") OR die("Error: ".mysqli_error($conn));
+  if($query->num_rows>0){
+    $row=$query->fetch_assoc(); 
+    $query2 = $conn->query("SELECT nombreCategoria FROM categorias WHERE id='".$row["id_cat"]."'") OR die("Error: ".mysqli_error($conn));
+    if($query2->num_rows>0){
+      $row2 = $query2->fetch_assoc();
+      $categoria = ''.utf8_decode($row2['nombreCategoria']).'';
+    } else {
+      $categoria = 'ERROR Contacte al Admin';
+    }
+  } else {
+    $row = '';
+  }
+}
 ?>
   <main class="mdl-layout__content">
     <div class="row">
@@ -207,22 +224,29 @@ require_once('desktop/menu.php');
               <div class="col-md-12">
                 <div class="form-group form-group-default ">
                   <label>Nombre y Apellido</label>
-                  <input id="nombreCompleto" type="email" class="form-control" required>
+                  <input value="<?PHP echo $row['nombreCompleto']; ?>" id="nombreCompleto" type="email" class="form-control" required>
                 </div>
                 
                 <div class="form-group form-group-default ">
                   <label>Teléfono de Contacto</label>
-                  <input id="telefono" type="email" class="form-control" required>
+                  <input value="<?PHP echo $row['telefono']; ?>" id="telefono" type="email" class="form-control" required>
                 </div>
                 
                 <div class="form-group form-group-default ">
                   <label>Email de contacto</label>
-                  <input id="email" type="email" class="form-control" required>
+                  <input value="<?PHP echo $row['email']; ?>" id="email" type="email" class="form-control" required>
                 </div>
                 
                 <div class="form-group form-group-default ">
                   <label>Estado en el que se radica</label><br />
                   <select id="estado" class="form-control" name="estados">
+                  <?PHP
+                  if($row['estado']){
+                    ?>
+                      <option value="<?PHP echo $row['estado']; ?>" selected><?php echo $row['estado'];?></option>
+                    <?PHP
+                  }
+                  ?>
                     <option value="Todo México">Todo México</option>
                     <option value="Aguascalientes">Aguascalientes</option>
                     <option value="Baja California">Baja California</option>
@@ -273,7 +297,7 @@ require_once('desktop/menu.php');
                 <div class="col-sm-12">
                     <div class="form-group form-group-default">
                         <label>Oferta Laboral</label>
-                        <input id="oferta" type="text" class="form-control" required>
+                        <input value="<?PHP echo $row['oferta']; ?>" id="oferta" type="text" class="form-control" required>
                     </div>
                 </div>
             </div><!--row-->
@@ -300,7 +324,7 @@ require_once('desktop/menu.php');
                 <div class="col-sm-12">
                     <div class="form-group form-group-default">
                         <label>Título profesional y/o Profesión</label>
-                        <input id="tituloProfesional" type="text" class="form-control" required>
+                        <input value="<?PHP echo $row['tituloProfesional']; ?>" id="tituloProfesional" type="text" class="form-control" required>
                     </div>
                 </div>
             </div><!--row-->
@@ -309,7 +333,7 @@ require_once('desktop/menu.php');
                 <div class="col-sm-12">
                     <div class="form-group form-group-default">
                         <label>Último grado de estudios</label>
-                        <input id="gradoEstudios" type="text" class="form-control" required>
+                        <input value="<?PHP echo $row['gradoEstudios']; ?>" id="gradoEstudios" type="text" class="form-control" required>
                     </div>
                 </div>
             </div><!--row-->
@@ -318,19 +342,19 @@ require_once('desktop/menu.php');
                 <div class="col-sm-12">
                     <div class="form-group form-group-default">
                         <label>Algún otro curso y/o Diplomado</label>
-                        <input id="diplomado" type="text" class="form-control" required>
+                        <input value="<?PHP echo $row['diplomado']; ?>" id="diplomado" type="text" class="form-control" required>
                     </div>
                 </div>
             </div><!--row-->
             
             <div class="form-group form-group-default ">
                 <label>Escriba algunas de las habilidades que tiene el candidato</label>
-                <textarea id="habilidades" style="height: 200px;" type="email" class="form-control"></textarea>
+                <textarea id="habilidades" style="height: 200px;" type="email" class="form-control"><?PHP echo $row['habilidades']; ?></textarea>
             </div>
             
             <div class="form-group form-group-default ">
                 <label>Escriba algunas de las competencias laborales que tiene el candidato</label>
-                <textarea id="competencias" style="height: 200px;" type="email" class="form-control"></textarea>
+                <textarea id="competencias" style="height: 200px;" type="email" class="form-control"><?PHP echo $row['competencias']; ?></textarea>
             </div>
             
             
@@ -355,7 +379,7 @@ require_once('desktop/menu.php');
                 <div class="col-sm-12">
                     <div class="form-group form-group-default">
                         <label>Último Empleador</label>
-                        <input id="ultimoEmpleador" type="text" class="form-control" required>
+                        <input value="<?PHP echo $row['ultimoEmpleador']; ?>" id="ultimoEmpleador" type="text" class="form-control" required>
                     </div>
                 </div>
             </div><!--row-->
@@ -364,7 +388,7 @@ require_once('desktop/menu.php');
                 <div class="col-sm-12">
                     <div class="form-group form-group-default">
                         <label>Ubicación del último empleo</label>
-                        <input id="ultimoEmpleo" type="text" class="form-control" required>
+                        <input value="<?PHP echo $row['ultimoEmpleo']; ?>" id="ultimoEmpleo" type="text" class="form-control" required>
                     </div>
                 </div>
             </div><!--row-->
@@ -373,14 +397,14 @@ require_once('desktop/menu.php');
                 <div class="col-sm-6">
                     <div class="form-group form-group-default">
                         <label>Desde</label>
-                        <input id="datepicker" type="text" class="form-control" required>
+                        <input value="<?PHP echo $row['datepicker']; ?>" id="datepicker" type="text" class="form-control" required>
                     </div>
                 </div>
                 
                 <div class="col-sm-6">
                     <div class="form-group form-group-default">
                         <label>Hasta</label>
-                        <input id="datepicker2" type="text" class="form-control" required>
+                        <input value="<?PHP echo $row['datepicker2']; ?>" id="datepicker2" type="text" class="form-control" required>
                     </div>
                 </div>
             </div><!--row-->
@@ -389,7 +413,7 @@ require_once('desktop/menu.php');
                 <div class="col-sm-12">
                   <div class="checkbox">
                     <label>
-                      <input id="trabajaActualmente" type="checkbox"> ¿Actualmente trabaja ahí?
+                      <input value="<?PHP echo $row['trabajaActualmente']; ?>" id="trabajaActualmente" type="checkbox"> ¿Actualmente trabaja ahí?
                     </label>
                   </div>
                 </div>
@@ -398,7 +422,7 @@ require_once('desktop/menu.php');
             
             <div class="form-group form-group-default ">
                 <label>Escribe una breve descripción de las actividades que realizaban en su trabajo anterior y/o actual</label>
-                <textarea id="descripcionAnteriores" style="height: 200px;" type="email" class="form-control"></textarea>
+                <textarea id="descripcionAnteriores" style="height: 200px;" type="email" class="form-control"><?PHP echo $row['descripcionAnteriores']; ?></textarea>
             </div>
             
             <div class="row">
@@ -414,7 +438,6 @@ require_once('desktop/menu.php');
             
             <div class="form-group form-group-default ">
                 <label>Escriba números claves de la vacante para la cual considera que el candidato es apto.</label>
-                <textarea style="height: 200px;" type="email" class="form-control"></textarea>
             </div>
             
             <div class="row">
@@ -422,21 +445,21 @@ require_once('desktop/menu.php');
                 <div class="col-sm-4">
                     <div class="form-group form-group-default">
                         <label>Vacante 1</label>
-                        <input id="vacante1" type="text" class="form-control" required>
+                        <input value="<?PHP echo $row['vacante1']; ?>" id="vacante1" type="text" class="form-control" required>
                     </div>
                 </div>
                 
                 <div class="col-sm-4">
                     <div class="form-group form-group-default">
                         <label>Vacante 2</label>
-                        <input id="vacante2" type="text" class="form-control" required>
+                        <input value="<?PHP echo $row['vacante2']; ?>" id="vacante2" type="text" class="form-control" required>
                     </div>
                 </div>
                 
                 <div class="col-sm-4">
                     <div class="form-group form-group-default">
                         <label>Vacante 3</label>
-                        <input id="vacante3" type="text" class="form-control" required>
+                        <input value="<?PHP echo $row['vacante3']; ?>" id="vacante3" type="text" class="form-control" required>
                     </div>
                 </div>
               </div>
@@ -447,21 +470,21 @@ require_once('desktop/menu.php');
                 <div class="col-sm-4">
                     <div class="form-group form-group-default">
                         <label>Vacante 4</label>
-                        <input id="vacante4" type="text" class="form-control" required>
+                        <input value="<?PHP echo $row['vacante4']; ?>" id="vacante4" type="text" class="form-control" required>
                     </div>
                 </div>
                 
                 <div class="col-sm-4">
                     <div class="form-group form-group-default">
                         <label>Vacante 5</label>
-                        <input id="vacante5" type="text" class="form-control" required>
+                        <input value="<?PHP echo $row['vacante5']; ?>" id="vacante5" type="text" class="form-control" required>
                     </div>
                 </div>
                 
                 <div class="col-sm-4">
                     <div class="form-group form-group-default">
                         <label>Vacante 6</label>
-                        <input id="vacante6" type="text" class="form-control" required>
+                        <input value="<?PHP echo $row['vacante6']; ?>" id="vacante6" type="text" class="form-control" required>
                     </div>
                 </div>
               </div>
@@ -480,7 +503,7 @@ require_once('desktop/menu.php');
             
             <div class="form-group form-group-default ">
                 <label>Si considera necesario agregar comentarios y/o notas al reclutador</label>
-                <textarea id="comentarios" style="height: 200px;" type="email" class="form-control"></textarea>
+                <textarea id="comentarios" style="height: 200px;" type="email" class="form-control"><?PHP echo $row['comentarios']; ?></textarea>
             </div>
             
             <div class="row">
@@ -491,8 +514,17 @@ require_once('desktop/menu.php');
             
             <div class="row">
               <div class="col-md-12 text-center">
-                  <button onclick="nuevoCV();" type="button" class="btn btn-success"><span class="fa fa-plus" style="padding-right:15px; font-size: 15px;"></span>Nuevo CV</button>
-              </div>
+              <?PHP
+                  if($row['id']){
+                    ?>
+                      <button onclick="nuevoCV('2','<?PHP echo $row['id']; ?>');" type="button" class="btn btn-success"><span class="fa fa-building-o" style="padding-right:15px; font-size: 15px;"></span>Modificar Vacante</button>
+                    <?PHP
+                  } else {
+                    ?>
+                      <button onclick="nuevoCV('1');" type="button" class="btn btn-success"><span class="fa fa-building-o" style="padding-right:15px; font-size: 15px;"></span>Alta Vacante</button>
+                    <?PHP
+                  }
+                ?></div>
             </div><!--row-->
             
         </form>

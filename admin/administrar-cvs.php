@@ -36,6 +36,69 @@ $(document).ready(function() {
   contCat2();
   getCategorias(hoja);
 });
+function buscar(){
+  if($("#palabra").val()){
+    $.ajax({url:   "scripts/buscar-cvs.php",
+        data: { buscar:$("#palabra").val() },
+        type:  'GET',
+        success:  function (response) {
+          obj = JSON.parse(response);
+          if(obj.true!="false"){
+            var html = '';
+				  html+='<center>';
+					html+='<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">';
+					  html+='<thead>';
+						html+='<tr>';
+              html+='<th style="text-align: left;">ID</th>';
+              html+='<th style="text-align: left;">Talento</th>';
+              html+='<th style="text-align: left;">Categoría</th>';
+              html+='<th style="text-align: left;">Estado</th>';
+              html+='<th style="text-align: left;">Hora/Tipo</th>';
+              html+='<th style="text-align: left;">Publicación</th>';
+						  html+='<th></th>';
+						  html+='<th></th>';
+              html+='<th></th>';
+						html+='</tr>';
+					  html+='</thead>';
+					  html+='<tbody>';
+					  for(var x=0; x<obj.id.length; x++){
+						html+='<tr>';
+						  html+='<td>'+obj.id[x]+'</td>';
+              html+='<td>'+obj.nombreCompleto[x]+'</td>';
+              html+='<td>'+obj.categoria[x]+'</td>';
+              html+='<td>'+obj.estado[x]+'</td>';
+              html+='<td>'+obj.tipoTiempo[x]+'</td>';
+              html+='<td>'+obj.fecha[x]+'</td>';
+              html+='<td>';
+                html+='<div class="dropdown">';
+                  html+='<button style="margin-top: -7px;" class="glyphicon glyphicon-share btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">';
+                    html+='<span class="caret"></span>';
+                  html+='</button>';
+                  html+='<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">';
+                    html+='<li><a style="text-align: left;" href="#">Descargar PDF</a></li>';
+                    html+='<li><a style="text-align: left;" href="#">Descargar Excel</a></li>';
+                  html+='</ul>';
+                html+='</div>';
+              html+='</td>';
+						  html+='<td><button onclick="window.location='+comilla+'nuevo-cvs.php?id='+obj.id[x]+''+comilla+';" style="margin-top: -7px;" type="button" class="glyphicon glyphicon-edit btn btn-warning"></button></td>';
+						  html+='<td><button onclick="eliminarCat('+comillas+''+obj.id[x]+''+comillas+');" style="margin-top: -7px;" type="button" class="glyphicon glyphicon-remove btn btn-danger"></button></td>';
+						html+='</tr>';
+					  }
+					  html+='</tbody>';
+					html+='</table></center>';
+					$("#cats").html(html);
+          } else {
+            alert("No hay Coincidencias");
+          }
+        }, error: function (response){
+          alert("ERROR inténtelo de nuevo más tarde");
+        }
+    });
+  } else {
+    contCat2();
+    getCategorias(hoja);
+  }
+}
 function adelanteButton(){
   if(hoja<$('#contDes').html()){
     console.log("siguiente hoja");
@@ -208,7 +271,7 @@ require_once('desktop/menu.php');
           <div class="col-md-6">
             <div class="input-group">
               <span style="top: 0px;" class="input-group-addon glyphicon glyphicon-search" id="basic-addon1"></span>
-              <input style="" class="form-control" type="text" id="palabraArrayUser" onkeyup="buscar();" placeholder="Buscar: ">
+              <input style="" class="form-control" type="text" id="palabra" onkeyup="buscar();" placeholder="Buscar: ">
             </div>
           </div>
           <div class="col-md-3">
