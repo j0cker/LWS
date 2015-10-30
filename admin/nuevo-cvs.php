@@ -9,34 +9,6 @@ if($status=="OK"){
 require_once('desktop/header.php');
 ?>
 <script>
-$(document).ready(function(){
-	
-  $(function() {
-     $("#datepicker").datepicker({
-	   changeMonth: true,
-       changeYear: true,
-	   "dateFormat": 'dd-mm-yy',
-	   showOn: "both",
-	   buttonImage: "../images/calendar.png",
-	   buttonImageOnly: false,
-       buttonText: "Select date"
-	 });
-	 
-	 $("#datepicker2").datepicker({
-	   changeMonth: true,
-       changeYear: true,
-	   "dateFormat": 'dd-mm-yy',
-	   showOn: "both",
-	   buttonImage: "../images/calendar.png",
-	   buttonImageOnly: false,
-       buttonText: "Select date"
-	 });
-   
-  });
-  
-});  
-</script>
-<script>
 $( document ).ready(function() {
     getCategorias();
 });
@@ -135,8 +107,6 @@ function nuevoCV(option, id){
   }
 }
 </script>
-</head>
-<body>
 <?PHP
 require_once('desktop/menu.php');
 if($_GET["id"]){
@@ -156,6 +126,39 @@ if($_GET["id"]){
   }
 }
 ?>
+<script>
+  $(document).ready(function(){
+
+    $(function() {
+      $("#datepicker").datepicker({
+        changeMonth: true,
+          changeYear: true,
+        "dateFormat": 'dd-mm-yy',
+        showOn: "both",
+        buttonImage: "../images/calendar.png",
+        buttonImageOnly: false,
+          buttonText: "Select date"
+      });
+      
+      $("#datepicker2").datepicker({
+        changeMonth: true,
+          changeYear: true,
+        "dateFormat": 'dd-mm-yy',
+        showOn: "both",
+        buttonImage: "../images/calendar.png",
+        buttonImageOnly: false,
+          buttonText: "Select date"
+      });
+    
+    });
+    $("#datepicker").val("<?PHP echo $row["datePicker"]; ?>");
+    $("#datepicker2").val("<?PHP echo $row["datePicker2"]; ?>");
+    
+  }); 
+</script>
+
+</head>
+<body>
   <main class="mdl-layout__content">
     <div class="row">
         <div class="col-md-12 text-center page-content">
@@ -397,14 +400,14 @@ if($_GET["id"]){
                 <div class="col-sm-6">
                     <div class="form-group form-group-default">
                         <label>Desde</label>
-                        <input value="<?PHP echo $row['datepicker']; ?>" id="datepicker" type="text" class="form-control" required>
+                        <input  id="datepicker" type="text" class="form-control" required>
                     </div>
                 </div>
                 
                 <div class="col-sm-6">
                     <div class="form-group form-group-default">
                         <label>Hasta</label>
-                        <input value="<?PHP echo $row['datepicker2']; ?>" id="datepicker2" type="text" class="form-control" required>
+                        <input id="datepicker2" type="text" class="form-control" required>
                     </div>
                 </div>
             </div><!--row-->
@@ -413,7 +416,17 @@ if($_GET["id"]){
                 <div class="col-sm-12">
                   <div class="checkbox">
                     <label>
-                      <input value="<?PHP echo $row['trabajaActualmente']; ?>" id="trabajaActualmente" type="checkbox"> ¿Actualmente trabaja ahí?
+                      <?PHP
+                        if($row['trabajaActualmente']=="on"){
+                          ?>
+                          <input id="trabajaActualmente" type="checkbox" checked> ¿Actualmente trabaja ahí?
+                          <?PHP
+                        } else{
+                          ?>
+                          <input id="trabajaActualmente" type="checkbox"> ¿Actualmente trabaja ahí?
+                          <?PHP
+                        }
+                      ?>
                     </label>
                   </div>
                 </div>
