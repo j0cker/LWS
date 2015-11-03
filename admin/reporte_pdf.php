@@ -1,7 +1,12 @@
 <?php
 include '../conexioni.php';
 require_once("../dompdf/dompdf_config.inc.php");
-$query = $conn->query("SELECT * FROM cvs order by id DESC");
+$id=$_GET["id"];
+if($id){
+  $query = $conn->query("SELECT * FROM cvs WHERE id='".$id."'");
+} else {
+  $query = $conn->query("SELECT * FROM cvs order by id DESC");	
+}
 if($query->num_rows>0){
 	
 	$codigoHTML = '

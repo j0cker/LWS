@@ -2,7 +2,12 @@
 header("Content-type: application/vnd.ms-excel");
 header("Content-Disposition: attachment; filename=Reporte_Personal_usuarios.xls");
 include '../conexioni.php';
-$query = $conn->query("SELECT * FROM cvs order by id DESC");
+$id=$_GET["id"];
+if($id){
+  $query = $conn->query("SELECT * FROM cvs WHERE id='".$id."'");
+} else {
+  $query = $conn->query("SELECT * FROM cvs order by id DESC");	
+}
 if($query->num_rows>0){
 	?>
 	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
