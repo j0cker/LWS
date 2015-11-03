@@ -250,8 +250,15 @@ require_once('desktop/menu.php');
     
     <div style="margin-top: 10px;" class="row">
         <div class="col-md-12 text-center">
-            <div style="" class="col-md-12">
-              <button style="margin-top: 10px;" type="button" class="btn btn-warning">Descargar Base de CV's en Excel</button>
+            <div style="" class="col-md-6">
+              <a href="reporte_excel.php">
+                <button style="margin-top: 10px;" type="button" class="btn btn-warning">Descargar Base de CV's en Excel</button>
+              </a>
+            </div>
+            <div style="" class="col-md-6">
+              <a href="reporte_pdf.php">
+                <button style="margin-top: 10px;" type="button" class="btn btn-info">Descargar Base de CV's en PDF</button>
+              </a>
             </div>
         </div>
     </div><!--row-->
