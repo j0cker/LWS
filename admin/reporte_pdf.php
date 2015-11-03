@@ -53,7 +53,7 @@ if($query->num_rows>0){
 		} else {
 		  $categoria = 'ERROR Contacte al Admin';
 		}
-		$codigoHTML = ' 
+		$codigoHTML = ''.$codigoHTML .' 
 		<tr>
 			<td>'.$row["id"].'</td>
 			<td>'.$row["nombreCompleto"].'</td>
@@ -70,8 +70,13 @@ if($query->num_rows>0){
 			<td>'.$row["ultimoEmpleador"].'</td> 
 			<td>'.$row["ultimoEmpleo"].'</td> 
 			<td>'.$row["datePicker"].'</td> 
-			<td>'.$row["datePicker2"].'</td> 
-			<td>'.($row["trabajaActualmente"]=="on")? "SI" : "NO" .'</td> 
+			<td>'.$row["datePicker2"].'</td>';
+			if($row["trabajaActualmente"]=="on"){
+		      $codigoHTML = ''.$codigoHTML .'<td>SI</td>'; 
+			} else {
+			  $codigoHTML = ''.$codigoHTML .'<td>NO</td>'; 	
+			}
+			$codigoHTML = ''.$codigoHTML .'
 			<td>'.$row["descripcionAnteriores"].'</td> 
 			<td>'.$row["vacante1"].'</td> 
 			<td>'.$row["vacante2"].'</td>
@@ -84,11 +89,10 @@ if($query->num_rows>0){
 		</tr>';
 	}/*fin while*/
 }/*fin if*/
-  ?>
+$codigoHTML = ''.$codigoHTML.'
 </table>
 </body>
-</html>
-<?PHP
+</html>';
 $codigoHTML=utf8_encode($codigoHTML);
 $dompdf=new DOMPDF();
 $dompdf->load_html($codigoHTML);
