@@ -38,7 +38,7 @@ $(document).ready(function() {
 });
 function buscar(){
   if($("#palabra").val()){
-    $.ajax({url:   "scripts/buscar-cvs.php",
+    $.ajax({url:   "scripts/buscar-usuarios.php",
         data: { buscar:$("#palabra").val() },
         type:  'GET',
         success:  function (response) {
@@ -50,11 +50,10 @@ function buscar(){
 					  html+='<thead>';
 						html+='<tr>';
               html+='<th style="text-align: left;">ID</th>';
-              html+='<th style="text-align: left;">Talento</th>';
-              html+='<th style="text-align: left;">Categoría</th>';
-              html+='<th style="text-align: left;">Estado</th>';
-              html+='<th style="text-align: left;">Hora/Tipo</th>';
-              html+='<th style="text-align: left;">Publicación</th>';
+              html+='<th style="text-align: left;">Usuario</th>';
+              html+='<th style="text-align: left;">Privilegios</th>';
+              html+='<th style="text-align: left;">Status</th>';
+              html+='<th style="text-align: left;">Creación</th>';
 						  html+='<th></th>';
 						  html+='<th></th>';
               html+='<th></th>';
@@ -64,19 +63,18 @@ function buscar(){
 					  for(var x=0; x<obj.id.length; x++){
 						html+='<tr>';
 						  html+='<td>'+obj.id[x]+'</td>';
-              html+='<td>'+obj.nombreCompleto[x]+'</td>';
-              html+='<td>'+obj.categoria[x]+'</td>';
-              html+='<td>'+obj.estado[x]+'</td>';
-              html+='<td>'+obj.tipoTiempo[x]+'</td>';
+              html+='<td>'+obj.user[x]+'</td>';
+              html+='<td>'+obj.priv[x]+'</td>';
+              html+='<td>'+obj.status[x]+'</td>';
               html+='<td>'+obj.fecha[x]+'</td>';
               html+='<td>';
                 html+='<div class="dropdown">';
-                  html+='<button style="margin-top: -7px;" class="glyphicon glyphicon-share btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">';
+                  html+='<button style="margin-top: -7px;" class="fa fa-lock btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">';
                     html+='<span class="caret"></span>';
                   html+='</button>';
                   html+='<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">';
-                    html+='<li><a style="text-align: left;" href="reporte_pdf.php?id='+obj.id[x]+'">Descargar PDF</a></li>';
-                    html+='<li><a style="text-align: left;" href="reporte_excel.php?id='+obj.id[x]+'">Descargar Excel</a></li>';
+                    html+='<li><a style="text-align: left;" href="scripts/bloquear.php?id='+obj.id[x]+'">Bloquear</a></li>';
+                    html+='<li><a style="text-align: left;" href="scripts/activar.php?id='+obj.id[x]+'">Activar</a></li>';
                   html+='</ul>';
                 html+='</div>';
               html+='</td>';
@@ -142,7 +140,7 @@ function eliminarCat(id){
 }
 function getCategorias(hoja){
 	$.ajax({data: { hoja:hoja },
-					url:   "scripts/get-cvs.php",
+					url:   "scripts/get-usuarios.php",
 			type:  'GET',
 			success:  function (response) {
 		      obj = JSON.parse(response);
@@ -153,11 +151,10 @@ function getCategorias(hoja){
 					  html+='<thead>';
 						html+='<tr>';
               html+='<th style="text-align: left;">ID</th>';
-              html+='<th style="text-align: left;">Talento</th>';
-              html+='<th style="text-align: left;">Categoría</th>';
-              html+='<th style="text-align: left;">Estado</th>';
-              html+='<th style="text-align: left;">Hora/Tipo</th>';
-              html+='<th style="text-align: left;">Publicación</th>';
+              html+='<th style="text-align: left;">Usuario</th>';
+              html+='<th style="text-align: left;">Privilegios</th>';
+              html+='<th style="text-align: left;">Status</th>';
+              html+='<th style="text-align: left;">Creación</th>';
 						  html+='<th></th>';
 						  html+='<th></th>';
               html+='<th></th>';
@@ -167,19 +164,18 @@ function getCategorias(hoja){
 					  for(var x=0; x<obj.id.length; x++){
 						html+='<tr>';
 						  html+='<td>'+obj.id[x]+'</td>';
-              html+='<td>'+obj.nombreCompleto[x]+'</td>';
-              html+='<td>'+obj.categoria[x]+'</td>';
-              html+='<td>'+obj.estado[x]+'</td>';
-              html+='<td>'+obj.tipoTiempo[x]+'</td>';
+              html+='<td>'+obj.user[x]+'</td>';
+              html+='<td>'+obj.priv[x]+'</td>';
+              html+='<td>'+obj.status[x]+'</td>';
               html+='<td>'+obj.fecha[x]+'</td>';
               html+='<td>';
                 html+='<div class="dropdown">';
-                  html+='<button style="margin-top: -7px;" class="glyphicon glyphicon-share btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">';
+                  html+='<button style="margin-top: -7px;" class="fa fa-lock btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">';
                     html+='<span class="caret"></span>';
                   html+='</button>';
                   html+='<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">';
-                    html+='<li><a style="text-align: left;" href="reporte_pdf.php?id='+obj.id[x]+'">Descargar PDF</a></li>';
-                    html+='<li><a style="text-align: left;" href="reporte_excel.php?id='+obj.id[x]+'">Descargar Excel</a></li>';
+                    html+='<li><a style="text-align: left;" href="scripts/bloquear.php?id='+obj.id[x]+'">Bloquear</a></li>';
+                    html+='<li><a style="text-align: left;" href="scripts/activar.php?id='+obj.id[x]+'">Activar</a></li>';
                   html+='</ul>';
                 html+='</div>';
               html+='</td>';
@@ -240,28 +236,15 @@ require_once('desktop/menu.php');
             </div>
         </div>
     </div>
+    <!--
     <div style="margin-top: 10px;" class="row">
         <div class="col-md-12 text-center">
             <div style="" class="col-md-12">
               <button style="background-color: #0277BD; border-color: #0277BD; width: 200px;" type="button" class="btn btn-success"><span style="font-size: 25px;" class="fa fa-briefcase"></span><br />CV's Nuevos en el Mes<br /><span id="contMcvs"></span<</button>
             </div>
         </div>
-    </div><!--row-->
+    </div>row-->
     
-    <div style="margin-top: 10px;" class="row">
-        <div class="col-md-12 text-center">
-            <div style="" class="col-md-6">
-              <a href="reporte_excel.php">
-                <button style="margin-top: 10px;" type="button" class="btn btn-warning">Descargar Base de CV's en Excel</button>
-              </a>
-            </div>
-            <div style="" class="col-md-6">
-              <a href="reporte_pdf.php">
-                <button style="margin-top: 10px;" type="button" class="btn btn-info">Descargar Base de CV's en PDF</button>
-              </a>
-            </div>
-        </div>
-    </div><!--row-->
     
     <div style="margin-top: 20px;" class="row text-center">
       <div class="col-md-1"></div>

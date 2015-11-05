@@ -17,13 +17,13 @@ if($query->num_rows>0){
 	  $query2 = $conn->query("SELECT nombreCategoria FROM categorias WHERE id='".$row["id_cat"]."'") OR die("Error: ".mysqli_error($conn));
     if($query2->num_rows>0){
       $row2 = $query2->fetch_assoc();
-      $categoria[] = ''.utf8_decode($row2['nombreCategoria']).'';
+      $categoria[] = ''.$row2['nombreCategoria'].'';
     } else {
       $categoria[] = 'ERROR Contacte al Admin';
     }
-	  $nombreCompleto[] = utf8_decode($row["nombreCompleto"]); 
-	  $estado[] = utf8_decode($row["estado"]);
-    $tipoTiempo[] = utf8_decode($row["tipoTiempo"]);  
+	  $nombreCompleto[] = $row["nombreCompleto"]; 
+	  $estado[] = $row["estado"];
+    $tipoTiempo[] = $row["tipoTiempo"];  
     $fecha[] = $row["fecha"];  
 	  $c++;
   }
