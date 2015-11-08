@@ -9,6 +9,54 @@ require_once('desktop/header.php');
 ?>
 </head>
 <script>
+  var comillas = "'";
+  var comilla = "'";
+  var hoja = 1;
+</script>
+<script>
+function agregarUser(id, option){
+  if(!$("#username").val()){
+    alert("ERROR: escribe nombre de usuario");
+  } else if(!$("#password").val()){
+    alert("ERROR: escribe una contraseña");
+  } else if($("#password").val()!=$("#password2").val()){
+    alert("ERROR: las contraseñas no son las mismas");
+  } else {
+    $.ajax({url: "scripts/alta-usuarios.php",
+        type:  'POST',
+        data: {user:$("#username").val(), passwd:$("#password").val(), priv:$("#privilegios").val(), id:id, option:option},
+        success:  function (response) {
+          alert("Usuario nuevo dado de alta");
+        }, error: function (response){
+          alert("ERROR inténtelo de nuevo más tarde");
+        }
+    }); 
+  }
+}
+function abrirModal(title){
+  $("#editar").modal("show");
+  if(title==1){
+    $("#arrayUsersModalLabel").html("Nuevo Usuario");
+    var html = '';
+    html += '<div style="padding-top: 10px; box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12); background-color: #FFFFFF;" class="row">';
+      html += '<div class="col-xs-12">';
+      html += '<div class="form-group form-group-default ">';
+          html += '<label>Da de alta un nuevo usuario:</label>';
+          html += '<br /><br /><label style="text-align: left; float: left;">Esribe el nombre de usuario:</label><input type="text" id="username" style="" placeholder="Nombre de Usuario" type="email" class="form-control"></input>';
+          html += '<br /><br /><label style="text-align: left; float: left;">Escribe el Password:</label><input type="password" id="password" style="" placeholder="Password" type="email" class="form-control"></input>';
+          html += '<br /><br /><label style="text-align: left; float: left;">Repite el Password:</label><input type="password" id="password2" style="" placeholder="Password" type="email" class="form-control"></input>';
+          html += '<br /><br /><label style="text-align: left; float: left;">Selecciona Privilegios:</label><select class="form-control" id="privilegios"><option value="administrador">administrador</option><option value="superUsuario">superUsuario</option><option value="monitor">monitor</option></select>';
+          html += '<br /><br /><button onclick="agregarUser('+comilla+''+comilla+','+comilla+'1'+comilla+');" type="button" class="btn btn-success">Agregar</button>';
+      html += '</div>';
+      html += '</div><!--col-xs-12-->';
+    html += '</div><!--row-->';
+    $("#arrayUsers").html(html);
+  } else if(title==2){
+    $("#arrayUsersModalLabel").html("Editar Usuario");
+  }
+}
+</script>
+<script>
   /*contadores*/
   contMVaca();
   function contMVaca(){
@@ -29,9 +77,6 @@ require_once('desktop/header.php');
 }
 </script>
 <script>
-var comillas = "'";
-var comilla = "'";
-var hoja = 1;
 $(document).ready(function() {
   contCat2();
   getCategorias(hoja);
@@ -67,20 +112,24 @@ function buscar(){
               html+='<td>'+obj.priv[x]+'</td>';
               html+='<td>'+obj.status[x]+'</td>';
               html+='<td>'+obj.fecha[x]+'</td>';
-              html+='<td>';
-                html+='<div class="dropdown">';
-                  html+='<button style="margin-top: -7px;" class="fa fa-lock btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">';
-                    html+='<span class="caret"></span>';
-                  html+='</button>';
-                  html+='<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">';
-                    html+='<li><a style="text-align: left;" href="scripts/bloquear.php?id='+obj.id[x]+'">Bloquear</a></li>';
-                    html+='<li><a style="text-align: left;" href="scripts/activar.php?id='+obj.id[x]+'">Activar</a></li>';
-                  html+='</ul>';
-                html+='</div>';
-              html+='</td>';
-						  html+='<td><button onclick="window.location='+comilla+'nuevo-cvs.php?id='+obj.id[x]+''+comilla+';" style="margin-top: -7px;" type="button" class="glyphicon glyphicon-edit btn btn-warning"></button></td>';
-						  html+='<td><button onclick="eliminarCat('+comillas+''+obj.id[x]+''+comillas+');" style="margin-top: -7px;" type="button" class="glyphicon glyphicon-remove btn btn-danger"></button></td>';
-						html+='</tr>';
+              if(obj.user[x]!="manlio"){
+                html+='<td>';
+                  html+='<div class="dropdown">';
+                    html+='<button style="margin-top: -7px;" class="fa fa-lock btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">';
+                      html+='<span class="caret"></span>';
+                    html+='</button>';
+                    html+='<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">';
+                      html+='<li><a style="text-align: left;" href="scripts/bloquear.php?id='+obj.id[x]+'">Bloquear</a></li>';
+                      html+='<li><a style="text-align: left;" href="scripts/activar.php?id='+obj.id[x]+'">Activar</a></li>';
+                    html+='</ul>';
+                  html+='</div>';
+                html+='</td>';
+                html+='<td><button onclick="window.location='+comilla+'nuevo-cvs.php?id='+obj.id[x]+''+comilla+';" style="margin-top: -7px;" type="button" class="glyphicon glyphicon-edit btn btn-warning"></button></td>';
+                html+='<td><button onclick="eliminarCat('+comillas+''+obj.id[x]+''+comillas+');" style="margin-top: -7px;" type="button" class="glyphicon glyphicon-remove btn btn-danger"></button></td>';
+              } else {
+                html+='<td></td><td></td><td></td>';
+              }
+            html+='</tr>';
 					  }
 					  html+='</tbody>';
 					html+='</table></center>';
@@ -168,20 +217,24 @@ function getCategorias(hoja){
               html+='<td>'+obj.priv[x]+'</td>';
               html+='<td>'+obj.status[x]+'</td>';
               html+='<td>'+obj.fecha[x]+'</td>';
-              html+='<td>';
-                html+='<div class="dropdown">';
-                  html+='<button style="margin-top: -7px;" class="fa fa-lock btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">';
-                    html+='<span class="caret"></span>';
-                  html+='</button>';
-                  html+='<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">';
-                    html+='<li><a style="text-align: left;" href="scripts/bloquear.php?id='+obj.id[x]+'">Bloquear</a></li>';
-                    html+='<li><a style="text-align: left;" href="scripts/activar.php?id='+obj.id[x]+'">Activar</a></li>';
-                  html+='</ul>';
-                html+='</div>';
-              html+='</td>';
-						  html+='<td><button onclick="window.location='+comilla+'nuevo-cvs.php?id='+obj.id[x]+''+comilla+';" style="margin-top: -7px;" type="button" class="glyphicon glyphicon-edit btn btn-warning"></button></td>';
-						  html+='<td><button onclick="eliminarCat('+comillas+''+obj.id[x]+''+comillas+');" style="margin-top: -7px;" type="button" class="glyphicon glyphicon-remove btn btn-danger"></button></td>';
-						html+='</tr>';
+              if(obj.user[x]!="manlio"){
+                html+='<td>';
+                  html+='<div class="dropdown">';
+                    html+='<button style="margin-top: -7px;" class="fa fa-lock btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">';
+                      html+='<span class="caret"></span>';
+                    html+='</button>';
+                    html+='<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">';
+                      html+='<li><a style="text-align: left;" href="scripts/bloquear.php?id='+obj.id[x]+'">Bloquear</a></li>';
+                      html+='<li><a style="text-align: left;" href="scripts/activar.php?id='+obj.id[x]+'">Activar</a></li>';
+                    html+='</ul>';
+                  html+='</div>';
+                html+='</td>';
+                html+='<td><button onclick="window.location='+comilla+'nuevo-cvs.php?id='+obj.id[x]+''+comilla+';" style="margin-top: -7px;" type="button" class="glyphicon glyphicon-edit btn btn-warning"></button></td>';
+                html+='<td><button onclick="eliminarCat('+comillas+''+obj.id[x]+''+comillas+');" style="margin-top: -7px;" type="button" class="glyphicon glyphicon-remove btn btn-danger"></button></td>';
+              } else {
+                html+='<td></td><td></td><td></td>';
+              }
+              html+='</tr>';
 					  }
 					  html+='</tbody>';
 					html+='</table></center>';
@@ -254,7 +307,7 @@ require_once('desktop/menu.php');
       <div style="color: black; background-color: #FFF;" class="panel-body text-left">
         <div class="row">
           <div class="col-md-3">
-            <a href="nuevo-cvs.php">
+            <a onclick="abrirModal('1');">
               <button type="button" class="btn btn-success"><span style="padding-right: 10px;" class="fa fa-plus"></span>Nuevo Usuario</button>
             </a>
           </div>
@@ -305,6 +358,31 @@ require_once('desktop/menu.php');
     </div><!--row-->
   </main>
 </div>
+
+<!-- arrayUsersModal -->
+  <div class="modal modal-signup" id="editar" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                  <h5 style="text-align: center; color: red;" id="arrayUsersModalLabel" class="modal-title text-center">Editar Categoría</h5>
+                  <p></p>
+              </div>
+              <div id="modal-body" class="modal-body" style="background-color: #e9eaec; height: 450px; overflow-y: auto;">
+                <div style="text-align: center;" id="arrayUsers">
+                   
+                   
+                </div>
+                  <!--<div class="divider"><span>Or</span></div>--->
+
+              </div><!--//modal-body-->
+              <!--
+              <div class="modal-footer">
+                  <p>Already have an account? <a class="login-link" id="login-link" href="http://themes.3rdwavemedia.com/tempo/1.4/#">Log in</a></p>                    
+              </div>--><!--//modal-footer-->
+          </div><!--//modal-content-->
+      </div><!--//modal-dialog-->
+  </div><!--//modal-->
 </body>
 <html>
 <?PHP
