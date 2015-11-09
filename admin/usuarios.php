@@ -27,15 +27,17 @@ function agregarUser(id, option){
         data: {user:$("#username").val(), passwd:$("#password").val(), priv:$("#privilegios").val(), id:id, option:option},
         success:  function (response) {
           alert("Usuario nuevo dado de alta");
+          contCat2();
+          getCategorias(hoja);
         }, error: function (response){
           alert("ERROR inténtelo de nuevo más tarde");
         }
     }); 
   }
 }
-function abrirModal(title){
+function abrirModal(id, option){
   $("#editar").modal("show");
-  if(title==1){
+  if(option==1){
     $("#arrayUsersModalLabel").html("Nuevo Usuario");
     var html = '';
     html += '<div style="padding-top: 10px; box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12); background-color: #FFFFFF;" class="row">';
@@ -51,8 +53,31 @@ function abrirModal(title){
       html += '</div><!--col-xs-12-->';
     html += '</div><!--row-->';
     $("#arrayUsers").html(html);
-  } else if(title==2){
+  } else if(option==2){
     $("#arrayUsersModalLabel").html("Editar Usuario");
+    $.ajax({url: "scripts/edit-usuarios.php",
+        type:  'GET',
+        data: {id:id},
+        success:  function (response) {
+          obj = JSON.parse(response);
+          var html = '';
+              html += '<div style="padding-top: 10px; box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12); background-color: #FFFFFF;" class="row">';
+                html += '<div class="col-xs-12">';
+                html += '<div class="form-group form-group-default ">';
+                    html += '<label>Da de alta un nuevo usuario:</label>';
+                    html += '<br /><br /><label style="text-align: left; float: left;">Esribe el nombre de usuario:</label><input value="'+obj.user+'" type="text" id="username" style="" placeholder="Nombre de Usuario" type="email" class="form-control"></input>';
+                    html += '<br /><br /><label style="text-align: left; float: left;">Escribe el Password:</label><input type="password" id="password" style="" placeholder="Password" type="email" class="form-control"></input>';
+                    html += '<br /><br /><label style="text-align: left; float: left;">Repite el Password:</label><input type="password" id="password2" style="" placeholder="Password" type="email" class="form-control"></input>';
+                    html += '<br /><br /><label style="text-align: left; float: left;">Selecciona Privilegios:</label><select class="form-control" id="privilegios"><option value="'+obj.priv+'" selected>'+obj.priv+'</option><option value="administrador">administrador</option><option value="superUsuario">superUsuario</option><option value="monitor">monitor</option></select>';
+                    html += '<br /><br /><button onclick="agregarUser('+comilla+''+obj.id+''+comilla+','+comilla+'2'+comilla+');" type="button" class="btn btn-success">Agregar</button>';
+                html += '</div>';
+                html += '</div><!--col-xs-12-->';
+              html += '</div><!--row-->';
+              $("#arrayUsers").html(html);
+        }, error: function (response){
+          alert("ERROR inténtelo de nuevo más tarde");
+        }
+    }); 
   }
 }
 </script>
@@ -124,7 +149,7 @@ function buscar(){
                     html+='</ul>';
                   html+='</div>';
                 html+='</td>';
-                html+='<td><button onclick="window.location='+comilla+'nuevo-cvs.php?id='+obj.id[x]+''+comilla+';" style="margin-top: -7px;" type="button" class="glyphicon glyphicon-edit btn btn-warning"></button></td>';
+                html+='<td><button onclick="abrirModal('+comillas+''+obj.id[x]+''+comillas+', '+comillas+'2'+comillas+');" style="margin-top: -7px;" type="button" class="glyphicon glyphicon-edit btn btn-warning"></button></td>';
                 html+='<td><button onclick="eliminarCat('+comillas+''+obj.id[x]+''+comillas+');" style="margin-top: -7px;" type="button" class="glyphicon glyphicon-remove btn btn-danger"></button></td>';
               } else {
                 html+='<td></td><td></td><td></td>';
@@ -168,24 +193,24 @@ function atrasButton(){
 }
 function eliminarCat(id){
 	$.ajax({data: { id:id },
-		    url:   "scripts/del-cvs.php",
-			type:  'POST',
-			success:  function (response) {
-			  obj = JSON.parse(response);
-			  if(obj.true=="true"){
-				  getCategorias(hoja);
-			    hoja = 1;
-          contCat2();
-			    alert("CV Eliminado");
-			  } else {
-			    alert("CV No Eliminado");
-			  }
-        contCat2();
-        getCategorias(hoja);
-			}, error: function (response){
-			  alert("ERROR inténtelo de nuevo más tarde");
-			}
-	});
+          url:   "scripts/del-usuarios.php",
+          type:  'POST',
+          success:  function (response) {
+            obj = JSON.parse(response);
+            if(obj.true=="true"){
+              getCategorias(hoja);
+              hoja = 1;
+              contCat2();
+              alert("Usuario Eliminado");
+            } else {
+              alert("Usuario No Eliminado");
+            }
+            contCat2();
+            getCategorias(hoja);
+          }, error: function (response){
+            alert("ERROR inténtelo de nuevo más tarde");
+          }
+	   });
 }
 function getCategorias(hoja){
 	$.ajax({data: { hoja:hoja },
@@ -229,7 +254,7 @@ function getCategorias(hoja){
                     html+='</ul>';
                   html+='</div>';
                 html+='</td>';
-                html+='<td><button onclick="window.location='+comilla+'nuevo-cvs.php?id='+obj.id[x]+''+comilla+';" style="margin-top: -7px;" type="button" class="glyphicon glyphicon-edit btn btn-warning"></button></td>';
+                html+='<td><button onclick="abrirModal('+comillas+''+obj.id[x]+''+comillas+', '+comillas+'2'+comillas+');" style="margin-top: -7px;" type="button" class="glyphicon glyphicon-edit btn btn-warning"></button></td>';
                 html+='<td><button onclick="eliminarCat('+comillas+''+obj.id[x]+''+comillas+');" style="margin-top: -7px;" type="button" class="glyphicon glyphicon-remove btn btn-danger"></button></td>';
               } else {
                 html+='<td></td><td></td><td></td>';
@@ -307,7 +332,7 @@ require_once('desktop/menu.php');
       <div style="color: black; background-color: #FFF;" class="panel-body text-left">
         <div class="row">
           <div class="col-md-3">
-            <a onclick="abrirModal('1');">
+            <a onclick="abrirModal('','1');">
               <button type="button" class="btn btn-success"><span style="padding-right: 10px;" class="fa fa-plus"></span>Nuevo Usuario</button>
             </a>
           </div>
