@@ -14,6 +14,32 @@ require_once('desktop/header.php');
   var hoja = 1;
 </script>
 <script>
+function bloquear(id){
+   $.ajax({url: "scripts/bloquear.php",
+        type:  'POST',
+        data: { id:id },
+        success:  function (response) {
+          alert("Usuario bloqueado");
+          contCat2();
+          getCategorias(hoja);
+        }, error: function (response){
+          alert("ERROR inténtelo de nuevo más tarde");
+        }
+    }); 
+}
+function activar(id){
+   $.ajax({url: "scripts/activar.php",
+        type:  'POST',
+        data: { id:id },
+        success:  function (response) {
+          alert("Usuario activado");
+          contCat2();
+          getCategorias(hoja);
+        }, error: function (response){
+          alert("ERROR inténtelo de nuevo más tarde");
+        }
+    }); 
+}
 function agregarUser(id, option){
   if(!$("#username").val()){
     alert("ERROR: escribe nombre de usuario");
@@ -144,8 +170,8 @@ function buscar(){
                       html+='<span class="caret"></span>';
                     html+='</button>';
                     html+='<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">';
-                      html+='<li><a style="text-align: left;" href="scripts/bloquear.php?id='+obj.id[x]+'">Bloquear</a></li>';
-                      html+='<li><a style="text-align: left;" href="scripts/activar.php?id='+obj.id[x]+'">Activar</a></li>';
+                      html+='<li><a style="cursor: pointer; text-align: left;" href="scripts/bloquear.php?id='+obj.id[x]+'">Bloquear</a></li>';
+                      html+='<li><a style="cursor: pointer; text-align: left;" href="scripts/activar.php?id='+obj.id[x]+'">Activar</a></li>';
                     html+='</ul>';
                   html+='</div>';
                 html+='</td>';
@@ -249,8 +275,8 @@ function getCategorias(hoja){
                       html+='<span class="caret"></span>';
                     html+='</button>';
                     html+='<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">';
-                      html+='<li><a style="text-align: left;" href="scripts/bloquear.php?id='+obj.id[x]+'">Bloquear</a></li>';
-                      html+='<li><a style="text-align: left;" href="scripts/activar.php?id='+obj.id[x]+'">Activar</a></li>';
+                      html+='<li><a style="cursor: pointer; text-align: left;" onclick="bloquear('+obj.id[x]+');">Bloquear</a></li>';
+                      html+='<li><a style="cursor: pointer; text-align: left;" onclick="activar('+obj.id[x]+');">Activar</a></li>';
                     html+='</ul>';
                   html+='</div>';
                 html+='</td>';
