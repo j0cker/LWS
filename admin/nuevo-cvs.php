@@ -100,6 +100,7 @@ function nuevoCV(option, id){
             type:  'POST',
         success:  function (response) {
           alert("CV Agregado");
+          window.location = "administrar-cvs.php";
         }, error: function (response){
           alert("ERROR inténtelo de nuevo más tarde");
         }
@@ -530,11 +531,11 @@ if($_GET["id"]){
               <?PHP
                   if($row['id']){
                     ?>
-                      <button onclick="nuevoCV('2','<?PHP echo $row['id']; ?>');" type="button" class="btn btn-success"><span class="fa fa-building-o" style="padding-right:15px; font-size: 15px;"></span>Modificar Vacante</button>
+                      <button onclick="nuevoCV('2','<?PHP echo $row['id']; ?>');" type="button" class="btn btn-success"><span class="fa fa-building-o" style="padding-right:15px; font-size: 15px;"></span>Modificar CV</button>
                     <?PHP
                   } else {
                     ?>
-                      <button onclick="nuevoCV('1');" type="button" class="btn btn-success"><span class="fa fa-building-o" style="padding-right:15px; font-size: 15px;"></span>Alta Vacante</button>
+                      <button onclick="nuevoCV('1');" type="button" class="btn btn-success"><span class="fa fa-building-o" style="padding-right:15px; font-size: 15px;"></span>Alta CV</button>
                     <?PHP
                   }
                 ?></div>

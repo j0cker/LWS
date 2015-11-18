@@ -176,6 +176,7 @@ function editarCategoria(id){
 			  hoja = 1;
         getCategorias(hoja);
         contCat();
+        $("#editar").modal("hide");
 			}, error: function (response){
 			  alert("ERROR inténtelo de nuevo más tarde");
 			}
@@ -194,6 +195,7 @@ function altaCategoria(){
 			  hoja = 1;
         getCategorias(hoja);
         contCat();
+        $("#editar").modal("hide");
 			}, error: function (response){
 			  alert("ERROR inténtelo de nuevo más tarde");
 			}
@@ -303,6 +305,19 @@ require_once('desktop/menu.php');
                 <div style="text-align: center;" id="arrayUsers">
                   <div style="padding-top: 10px; box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12); background-color: #FFFFFF;" class="row">
                     <div class="col-xs-12">
+                      <div style="padding-top: 40px;" class="row">
+                        <div class="col-md-1">
+                        </div><!-- /.col-lg-6 -->
+                        <div class="col-md-10">
+                            <label>Modifique o Cambie el texto en el campo "Categoría" y presione Guardar para editar con éxito.</label>
+                        </div><!-- /.col-lg-6 -->
+                        <div class="col-md-1">
+                        </div><!-- /.col-lg-6 -->
+                      </div><!-- /.row -->
+                    </div><!--col-xs-12-->
+                  </div><!--row--> 
+                  <div style="box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12); background-color: #FFFFFF;" class="row">
+                    <div class="col-xs-12">
                       <div style="padding-top: 40px; padding-bottom: 40px;" class="row">
                         <div class="col-md-3">
                         </div><!-- /.col-lg-6 -->
@@ -310,7 +325,7 @@ require_once('desktop/menu.php');
                           <div class="input-group">
                             <input id="categoriaEditar2" type="text" class="form-control" placeholder="Editar categoría">
                             <span class="input-group-btn">
-                              <button id="editar345" onclick="editarCategoria();" class="btn btn-default" type="button">Editar</button>
+                              <button id="editar345" onclick="editarCategoria();" class="btn btn-default" type="button">Guardar</button>
                             </span>
                           </div><!-- /input-group -->
                         </div><!-- /.col-lg-6 -->

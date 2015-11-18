@@ -74,6 +74,7 @@ function altaVacante(option, id){
 			type:  'POST',
 			success:  function (response) {
 			  alert("Vacante Agregada");
+                          window.location = "index.php";
 			}, error: function (response){
 			  alert("ERROR inténtelo de nuevo más tarde");
 			}

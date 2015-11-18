@@ -2,8 +2,7 @@
 require_once('session.php');
 if($status=="OK"){
 ?>
-<!DOCTYPE html>
-<html class="no-js" lang="en">
+<html>
 <?PHP
 require_once('desktop/header.php');
 ?>

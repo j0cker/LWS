@@ -1,7 +1,7 @@
 <?PHP
 include '../../conexioni.php';
 $id=$_POST["id"];
-$query = $conn->query("DELETE FROM nuevasVacantes WHERE id='".$id."'") OR die("Error: ".mysqli_error($conn));
+$query = $conn->query("DELETE FROM nuevasvacantes WHERE id='".$id."'") OR die("Error: ".mysqli_error($conn));
 if($query===true){
   $obj =  new stdclass();
   $obj->true = "true";

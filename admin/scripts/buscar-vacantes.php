@@ -2,7 +2,7 @@
 include  '../../global.php';
 include '../../conexioni.php';
 $buscar = $_GET["buscar"];
-$query = $conn->query("SELECT * FROM nuevasVacantes WHERE nombreEmpresa LIKE '%".$buscar."%' OR estado LIKE '%".$buscar."%' OR tipoTiempo LIKE '%".$buscar."%' OR fecha LIKE '%".$buscar."%'") OR die("Error: ".mysqli_error($conn));
+$query = $conn->query("SELECT * FROM nuevasvacantes WHERE nombreEmpresa LIKE '%".$buscar."%' OR estado LIKE '%".$buscar."%' OR tipoTiempo LIKE '%".$buscar."%' OR fecha LIKE '%".$buscar."%'") OR die("Error: ".mysqli_error($conn));
 if($query->num_rows>0){
   $c=0;
   $array_id = array();
@@ -16,13 +16,13 @@ if($query->num_rows>0){
     $query2 = $conn->query("SELECT nombreCategoria FROM categorias WHERE id='".$row["id_cat"]."'") OR die("Error: ".mysqli_error($conn));
     if($query2->num_rows>0){
       $row2 = $query2->fetch_assoc();
-      $categoria[] = ''.$row2['nombreCategoria'].'';
+      $categoria[] = ''.utf8_decode($row2['nombreCategoria']).'';
     } else {
       $categoria[] = 'ERROR Contacte al Admin';
     }
-    $nombreEmpresa[] = $row["nombreEmpresa"]; 
-	  $estado[] = $row["estado"];
-    $tipoTiempo[] = $row["tipoTiempo"];  
+    $nombreEmpresa[] = utf8_decode($row["nombreEmpresa"]); 
+	  $estado[] = utf8_decode($row["estado"]);
+    $tipoTiempo[] = utf8_decode($row["tipoTiempo"]);  
     $fecha[] = $row["fecha"];  
 	  $c++;
   }

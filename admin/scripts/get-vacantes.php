@@ -3,7 +3,7 @@ include  '../../global.php';
 include '../../conexioni.php';
 $hoja=$_GET["hoja"];
 $hoja = $hoja * $contHojas;
-$query = $conn->query("SELECT * FROM nuevasVacantes ORDER by id DESC LIMIT ".($hoja-$contHojas).",".$hoja."") OR die("Error: ".mysqli_error($conn));
+$query = $conn->query("SELECT * FROM nuevasvacantes ORDER by id DESC LIMIT ".($hoja-$contHojas).",".$hoja."") OR die("Error: ".mysqli_error($conn));
 if($query->num_rows>0){
   $c=0;
   $array_id = array();

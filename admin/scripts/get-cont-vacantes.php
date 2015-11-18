@@ -1,7 +1,7 @@
 <?PHP
 include '../../global.php';
 include '../../conexioni.php';
-$query = $conn->query("SELECT * FROM nuevasVacantes") OR die("Error: ".mysqli_error($conn));
+$query = $conn->query("SELECT * FROM nuevasvacantes") OR die("Error: ".mysqli_error($conn));
 if($query->num_rows>0){
   $obj =  new stdclass();
   $obj->true = "true";
