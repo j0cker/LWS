@@ -12,6 +12,13 @@ require_once('desktop/header.php');
 $( document ).ready(function() {
     getCategorias();
 });
+function changeFunc(){
+  var selectBox = document.getElementById("cats");
+  var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+  if(selectedValue=="Crear Nueva Categoría"){
+    window.location = "categorias.php";
+  }
+}
 function getCategorias(){
 	$.ajax({url:   "scripts/get-categoriasTodas.php",
 			type:  'GET',
@@ -22,6 +29,7 @@ function getCategorias(){
 					  for(var x=0; x<obj.cat.length; x++){
 						  html+='<option value="'+obj.id[x]+'">'+obj.cat[x]+'</option>';
 					  }
+            html+='<option value="Crear Nueva Categoría">Crear Nueva Categoría</option>';
 					$("#cats").html($("#cats").html() + html);
 			  } else {
 				$("#cats").html('ERROR');
@@ -175,7 +183,7 @@ if($_GET["id"]){
       <div class="col-md-1"></div>
       <div style="background-color: #AD1457; color: white;" class="col-md-10 panel">
       <!-- Default panel contents -->
-      <div class="panel-heading"><span style="font-size: 20px; padding-right: 10px;" class="fa fa-plus"></span> Nuevo CV's</div>
+      <div class="panel-heading"><a href="administrar-cvs.php" style="color: white; text-decoration: none; text-align: center;"><span style="color: white; text-decoration: none; font-size: 20px; padding-right: 10px; float: left;" class="fa fa-chevron-left">Atrás</span><span style="text-decoration: none; text-align: right; font-size: 20px; padding-right: 10px; color: white;" class="fa fa-plus"></span> Nuevo CV's<span style="font-size: 20px; padding-right: 10px; float: right; color: white;" class="fa fa-chevron-left">Atrás</span></a></div>
       <div style="color: black; background-color: #FFF;" class="panel-body text-left">
         <form role="form">            
             <div class="form-group form-group-default ">

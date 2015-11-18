@@ -2,7 +2,7 @@
 include  '../../global.php';
 include '../../conexioni.php';
 $buscar = $_GET["buscar"];
-$query = $conn->query("SELECT * FROM users WHERE user LIKE '%".$buscar."%' OR priv LIKE '%".$buscar."%' OR status LIKE '%".$buscar."%' OR fecha LIKE '%".$buscar."%'") OR die("Error: ".mysqli_error($conn));
+$query = $conn->query("SELECT * FROM users WHERE id LIKE '%".$buscar."%' OR user LIKE '%".$buscar."%' OR priv LIKE '%".$buscar."%' OR status LIKE '%".$buscar."%' OR fecha LIKE '%".$buscar."%'") OR die("Error: ".mysqli_error($conn));
 if($query->num_rows>0){
   $c=0;
   $array_id = array();

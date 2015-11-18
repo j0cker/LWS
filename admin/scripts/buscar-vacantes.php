@@ -2,7 +2,7 @@
 include  '../../global.php';
 include '../../conexioni.php';
 $buscar = $_GET["buscar"];
-$query = $conn->query("SELECT * FROM nuevasvacantes WHERE nombreEmpresa LIKE '%".$buscar."%' OR estado LIKE '%".$buscar."%' OR tipoTiempo LIKE '%".$buscar."%' OR fecha LIKE '%".$buscar."%'") OR die("Error: ".mysqli_error($conn));
+$query = $conn->query("SELECT * FROM nuevasvacantes WHERE id LIKE '%".$buscar."%' OR nombreEmpresa LIKE '%".$buscar."%' OR estado LIKE '%".$buscar."%' OR tipoTiempo LIKE '%".$buscar."%' OR fecha LIKE '%".$buscar."%'") OR die("Error: ".mysqli_error($conn));
 if($query->num_rows>0){
   $c=0;
   $array_id = array();
