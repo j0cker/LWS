@@ -60,8 +60,11 @@ function buscar(){
                 html+='</div>';
               html+='</td>';
 						  html+='<td><button onclick="window.location='+comilla+'alta-vacantes.php?id='+obj.id[x]+''+comilla+';" style="margin-top: -7px;" type="button" class="glyphicon glyphicon-edit btn btn-warning"></button></td>';
-						  html+='<td><button onclick="eliminarCat('+comillas+''+obj.id[x]+''+comillas+');" style="margin-top: -7px;" type="button" class="glyphicon glyphicon-remove btn btn-danger"></button></td>';
-						html+='</tr>';
+						  if(priv=="superUsuario" || priv=="soporte")
+                html+='<td><button onclick="eliminarCat('+comillas+''+obj.id[x]+''+comillas+');" style="margin-top: -7px;" type="button" class="glyphicon glyphicon-remove btn btn-danger"></button></td>';
+						  else
+                html+='<td></td>';
+            html+='</tr>';
 					  }
 					  html+='</tbody>';
 					html+='</table></center>';
@@ -241,8 +244,11 @@ function getCategorias(hoja){
                 html+='</div>';
               html+='</td>';
 						  html+='<td><button onclick="window.location='+comilla+'alta-vacantes.php?id='+obj.id[x]+''+comilla+';" style="margin-top: -7px;" type="button" class="glyphicon glyphicon-edit btn btn-warning"></button></td>';
-						  html+='<td><button onclick="eliminarCat('+comillas+''+obj.id[x]+''+comillas+');" style="margin-top: -7px;" type="button" class="glyphicon glyphicon-remove btn btn-danger"></button></td>';
-						html+='</tr>';
+						  if(priv=="superUsuario" || priv=="soporte")
+                html+='<td><button onclick="eliminarCat('+comillas+''+obj.id[x]+''+comillas+');" style="margin-top: -7px;" type="button" class="glyphicon glyphicon-remove btn btn-danger"></button></td>';
+						  else
+                html+='<td></td>';
+            html+='</tr>';
 					  }
 					  html+='</tbody>';
 					html+='</table></center>';
