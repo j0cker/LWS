@@ -26,7 +26,13 @@
       <a class="mdl-navigation__link" href="alta-vacantes.php"><span style="font-size: 15px; padding-right: 10px;" class="fa fa-building-o"></span> Altas de Vacantes</a>
       <a class="mdl-navigation__link" href="administrar-cvs.php"><span style="font-size: 15px; padding-right: 10px;" class="fa fa-briefcase"></span> Administrar CV's</a>
       <a class="mdl-navigation__link" href="categorias.php"><span style="font-size: 15px; padding-right: 10px;" class="fa fa-table"></span> Categorías</a>
-      <a class="mdl-navigation__link" href="usuarios.php"><span style="font-size: 15px; padding-right: 10px;" class="fa fa-user"></span> Usuarios</a>
+      <?PHP
+      if($_SESSION['priv']=="superUsuario" || $_SESSION['priv']=="soporte"){
+        ?>
+          <a class="mdl-navigation__link" href="usuarios.php"><span style="font-size: 15px; padding-right: 10px;" class="fa fa-user"></span> Usuarios</a>
+        <?PHP
+      }
+      ?>
       <a class="mdl-navigation__link" href="salir.php"><span style="font-size: 15px; padding-right: 10px;" class="fa fa-sign-out"></span> Salir</a>
     </nav>
   </div>

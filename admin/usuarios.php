@@ -12,6 +12,7 @@ require_once('desktop/header.php');
   var comillas = "'";
   var comilla = "'";
   var hoja = 1;
+  var priv = "<?PHP echo $_SESSION['priv']; ?>";
 </script>
 <script>
 function bloquear(id){
@@ -59,6 +60,7 @@ function agregarUser(id, option){
           alert("ERROR inténtelo de nuevo más tarde");
         }
     }); 
+    $("#editar").modal("hide");
   }
 }
 function abrirModal(id, option){

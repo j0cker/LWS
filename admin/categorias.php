@@ -12,6 +12,7 @@ require_once('desktop/header.php');
 <script>
 var comillas = "'";
 var hoja = 1;
+var priv = "<?PHP echo $_SESSION['priv']; ?>";
 contCat();
 getCategorias(hoja);
 function adelanteButton(){

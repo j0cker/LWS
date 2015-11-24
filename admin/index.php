@@ -7,6 +7,7 @@ if($status=="OK"){
 require_once('desktop/header.php');
 ?>
 <script>
+var priv = "<?PHP echo $_SESSION['priv']; ?>";
   /*Contadores*/
 $( document ).ready(function() {
   contCat();

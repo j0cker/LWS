@@ -32,6 +32,7 @@ require_once('desktop/header.php');
 var comillas = "'";
 var comilla = "'";
 var hoja = 1;
+var priv = "<?PHP echo $_SESSION['priv']; ?>";
 $(document).ready(function() {
   contCat2();
   getCategorias(hoja);
