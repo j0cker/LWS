@@ -172,25 +172,29 @@ function atrasButton(){
   }
 }
 function eliminarCat(id){
-	$.ajax({data: { id:id },
-		    url:   "scripts/del-vacantes.php",
-			type:  'POST',
-			success:  function (response) {
-			  obj = JSON.parse(response);
-			  if(obj.true=="true"){
-				  getCategorias(hoja);
-			    hoja = 1;
+  confirmar=confirm("¿Deseas Eliminar?"); 
+  if (confirmar){
+  
+    $.ajax({data: { id:id },
+          url:   "scripts/del-vacantes.php",
+        type:  'POST',
+        success:  function (response) {
+          obj = JSON.parse(response);
+          if(obj.true=="true"){
+            getCategorias(hoja);
+            hoja = 1;
+            contCat2();
+            alert("Categoría Eliminada");
+          } else {
+            alert("Categoría No Eliminada");
+          }
           contCat2();
-			    alert("Categoría Eliminada");
-			  } else {
-			    alert("Categoría No Eliminada");
-			  }
-        contCat2();
-        getCategorias(hoja);
-			}, error: function (response){
-			  alert("ERROR inténtelo de nuevo más tarde");
-			}
-	});
+          getCategorias(hoja);
+        }, error: function (response){
+          alert("ERROR inténtelo de nuevo más tarde");
+        }
+    });
+  }
 }
 function getCategorias(hoja){
 	$.ajax({data: { hoja:hoja },
@@ -302,10 +306,14 @@ require_once('desktop/menu.php');
               <button style="background-color: #4527A0; border-color: #4527A0; width: 200px;" type="button" class="btn btn-success"><span style="font-size: 25px;" class="fa fa-building-o"></span><br />Vacantes Nuevas en el Mes<br /><span id="contVacaMes"></span></button>
             </div>
             <div style="" class="col-md-3">
-              <button style="background-color: #0277BD; border-color: #0277BD; width: 200px;" type="button" class="btn btn-success"><span style="font-size: 25px;" class="fa fa-briefcase"></span><br />Total de CV's<br /><span id="contCvs"></span></button>
+              <a href="administrar-cvs.php">
+                <button style="background-color: #0277BD; border-color: #0277BD; width: 200px;" type="button" class="btn btn-success"><span style="font-size: 25px;" class="fa fa-briefcase"></span><br />Total de CV's<br /><span id="contCvs"></span></button>
+              </a>
             </div>
             <div style="" class="col-md-3">
-              <button style="background-color: #2E7D32; border-color: #2E7D32; width: 200px;" type="button" class="btn btn-success"><span style="font-size: 25px;" class="fa fa-table"></span><br />Total de Categorías<br /><span id="contCat1"></span></button>
+              <a href="categorias.php">
+                <button style="background-color: #2E7D32; border-color: #2E7D32; width: 200px;" type="button" class="btn btn-success"><span style="font-size: 25px;" class="fa fa-table"></span><br />Total de Categorías<br /><span id="contCat1"></span></button>
+              </a>
             </div>
         </div>
     </div><!--row-->

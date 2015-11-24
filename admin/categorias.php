@@ -108,25 +108,28 @@ function modCat(id, nombre){
   $("#editar345").attr("onclick","editarCategoria("+id+");");
 }
 function eliminarCat(id){
-	$.ajax({data: { id:id },
-		    url:   "scripts/del-categoria.php",
-			type:  'POST',
-			success:  function (response) {
-			  obj = JSON.parse(response);
-			  if(obj.true=="true"){
-				  getCategorias(hoja);
-			    hoja = 1;
+  confirmar=confirm("¿Deseas Eliminar?"); 
+  if (confirmar){
+    $.ajax({data: { id:id },
+          url:   "scripts/del-categoria.php",
+        type:  'POST',
+        success:  function (response) {
+          obj = JSON.parse(response);
+          if(obj.true=="true"){
+            getCategorias(hoja);
+            hoja = 1;
+            contCat();
+            alert("Categoría Eliminada");
+          } else {
+            alert("Categoría No Eliminada");
+          }
           contCat();
-			    alert("Categoría Eliminada");
-			  } else {
-			    alert("Categoría No Eliminada");
-			  }
-        contCat();
-        getCategorias(hoja);
-			}, error: function (response){
-			  alert("ERROR inténtelo de nuevo más tarde");
-			}
-	});
+          getCategorias(hoja);
+        }, error: function (response){
+          alert("ERROR inténtelo de nuevo más tarde");
+        }
+    });
+  }
 }
 function getCategorias(hoja){
 	$.ajax({      data: { hoja:hoja },

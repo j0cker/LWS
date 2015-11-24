@@ -218,25 +218,29 @@ function atrasButton(){
   }
 }
 function eliminarCat(id){
-	$.ajax({data: { id:id },
-          url:   "scripts/del-usuarios.php",
-          type:  'POST',
-          success:  function (response) {
-            obj = JSON.parse(response);
-            if(obj.true=="true"){
-              getCategorias(hoja);
-              hoja = 1;
+  confirmar=confirm("¿Deseas Eliminar?"); 
+  if (confirmar){
+    
+    $.ajax({data: { id:id },
+            url:   "scripts/del-usuarios.php",
+            type:  'POST',
+            success:  function (response) {
+              obj = JSON.parse(response);
+              if(obj.true=="true"){
+                getCategorias(hoja);
+                hoja = 1;
+                contCat2();
+                alert("Usuario Eliminado");
+              } else {
+                alert("Usuario No Eliminado");
+              }
               contCat2();
-              alert("Usuario Eliminado");
-            } else {
-              alert("Usuario No Eliminado");
+              getCategorias(hoja);
+            }, error: function (response){
+              alert("ERROR inténtelo de nuevo más tarde");
             }
-            contCat2();
-            getCategorias(hoja);
-          }, error: function (response){
-            alert("ERROR inténtelo de nuevo más tarde");
-          }
-	   });
+      });
+  }
 }
 function getCategorias(hoja){
 	$.ajax({data: { hoja:hoja },

@@ -120,25 +120,29 @@ function atrasButton(){
   }
 }
 function eliminarCat(id){
-	$.ajax({data: { id:id },
-		    url:   "scripts/del-cvs.php",
-			type:  'POST',
-			success:  function (response) {
-			  obj = JSON.parse(response);
-			  if(obj.true=="true"){
-				  getCategorias(hoja);
-			    hoja = 1;
+  confirmar=confirm("¿Deseas Eliminar?"); 
+  if (confirmar){
+    
+    $.ajax({data: { id:id },
+          url:   "scripts/del-cvs.php",
+        type:  'POST',
+        success:  function (response) {
+          obj = JSON.parse(response);
+          if(obj.true=="true"){
+            getCategorias(hoja);
+            hoja = 1;
+            contCat2();
+            alert("CV Eliminado");
+          } else {
+            alert("CV No Eliminado");
+          }
           contCat2();
-			    alert("CV Eliminado");
-			  } else {
-			    alert("CV No Eliminado");
-			  }
-        contCat2();
-        getCategorias(hoja);
-			}, error: function (response){
-			  alert("ERROR inténtelo de nuevo más tarde");
-			}
-	});
+          getCategorias(hoja);
+        }, error: function (response){
+          alert("ERROR inténtelo de nuevo más tarde");
+        }
+    });
+  }
 }
 function getCategorias(hoja){
 	$.ajax({data: { hoja:hoja },
