@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="../css/estilos_lws_hijos.css">
+
+
+<meta charset="UTF-8">
+<title>Documento sin título</title>
+</head>
+
+<body>
+<div style="width:380px; height:460px; background-color:#B5C4CC;">
+
+<div class="txt_general" style="margin:10px; line-height:16px; padding-top:0px;">Conocer su opinión es fundamental para seguir creciendo, tenemos distintos medios por los cuales usted podrá contactarnos y mantenerse comunicado con nuestro equipo.</div>
+
+<div class="txt_general" style="margin:10px; line-height:16px;">
+
+<span class="bold">Por favor llene los espacios del formulario sin dejar espacios vacíos, al recibir sus comentarios y datos nos pondremos inmediatamente en contacto con usted.</span> </div>
+
+
+<div class="txt_general" style="margin:10px;">
+<form action="pg_enviamail1.php" method="post">
+  <table width="360" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="100" bgcolor="#A192CF" class="txt_form1_12px">NOMBRE</td>
+      <td><label class="space_form1_12px" >
+        <input style="width:230px; height:20px;
+" type="text" name="nombre" id="nombre">
+      </label></td>
+    </tr>
+    <tr>
+      <td width="100" bgcolor="#A192CF" class="txt_form1_12px">EMPRESA</td>
+      <td><label class="space_form1_12px">
+        <input style="width:230px; height:20px;
+" type="text" name="empresa" id="empresa">
+      </label></td>
+    </tr>
+    <tr>
+      <td width="100" bgcolor="#A192CF" class="txt_form1_12px">TELÉFONO</td>
+      <td><label class="space_form1_12px">
+        <input style="width:230px; height:20px;"
+ type="text" name="tel" id="tel">
+      </label></td>
+    </tr>
+    <tr>
+      <td width="100" bgcolor="#A192CF" class="txt_form1_12px">EMAIL*</td>
+      <td><label class="space_form1_12px">
+        <input style="width:230px; height:20px;
+"type="text" name="mail" id="mail">
+      </label></td>
+    </tr>
+    <tr>
+      <td width="100" bgcolor="#A192CF" class="txt_form1_12px">ASUNTO</td>
+      <td><label class="space_form1_12px">
+        <select name="asunto" id="asunto">
+          <option value="Recibir información del servicio">Recibir información del servicio</option>
+          <option value="Solicitar inforfación">Solicitar inforfación</option>
+          <option value="Buscar Empleo">Buscar Empleo</option>
+          <option value="Otros">Otros</option>
+        </select>
+      </label></td>
+    </tr>
+    <tr>
+      <td width="100" bgcolor="#A192CF" class="txt_form1_12px">MENSAJE</td>
+      <td><label class="space_form1_12px">
+        <textarea style="width:230px; height:80px;
+name="mensaje" id="mensaje" cols="30" rows="5"></textarea>
+      </label></td>
+    </tr>
+    <tr>
+      <td class="txt_form1_12px">&nbsp;</td>
+      <td align="center" valign="middle"><input name="Restablece" type="reset" id="Restablece" value="Borrar" />
+        <input type="submit" name="ENviar" id="ENviar" value="Enviar"></td>
+    </tr>
+  </table>
+</form>
+</div>
+
+
+
+</div>
+</body>
+</html>

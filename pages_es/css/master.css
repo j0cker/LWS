@@ -1,0 +1,32 @@
+
+iframe
+{
+	margin: 0 10px 20px;
+}
+
+.photo
+{
+	width: 940px;
+	height:100%;
+	overflow-x: hidden;
+	overflow-y:auto;
+	overflow:auto;
+}
+
+
+.centralframe
+{
+	width: 849px;
+	height:100%;
+	overflow-x: hidden;
+	overflow-y:yes;
+}
+
+
+.clear
+{
+	clear: both;
+	overflow: hidden;
+	width: 0;
+	height: 0;
+}
