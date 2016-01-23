@@ -76,7 +76,7 @@ function buscar(){
                     html+='<span class="caret"></span>';
                   html+='</button>';
                   html+='<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">';
-                    html+='<li><a style="text-align: left;" href="reporte_pdf.php?id='+obj.id[x]+'">Descargar PDF</a></li>';
+                    html+='<li><a style="text-align: left;" href="reporte_pdf2.php?id='+obj.id[x]+'">Descargar PDF</a></li>';
                     html+='<li><a style="text-align: left;" href="reporte_excel.php?id='+obj.id[x]+'">Descargar Excel</a></li>';
                   html+='</ul>';
                 html+='</div>';
@@ -186,7 +186,7 @@ function getCategorias(hoja){
                     html+='<span class="caret"></span>';
                   html+='</button>';
                   html+='<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">';
-                    html+='<li><a style="text-align: left;" href="reporte_pdf.php?id='+obj.id[x]+'">Descargar PDF</a></li>';
+                    html+='<li><a style="text-align: left;" href="reporte_pdf2.php?id='+obj.id[x]+'">Descargar PDF</a></li>';
                     html+='<li><a style="text-align: left;" href="reporte_excel.php?id='+obj.id[x]+'">Descargar Excel</a></li>';
                   html+='</ul>';
                 html+='</div>';
