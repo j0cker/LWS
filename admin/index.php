@@ -56,6 +56,7 @@ function buscar(){
                   html+='<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">';
                     html+='<li><a style="text-align: left;" href="#">Facebook</a></li>';
                     html+='<li><a style="text-align: left;" href="#">Twitter</a></li>';
+                    html+='<li><a style="text-align: left;" href="#">Linkedin</a></li>';
                   html+='</ul>';
                 html+='</div>';
               html+='</td>';
@@ -240,6 +241,7 @@ function getCategorias(hoja){
                   html+='<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">';
                     html+='<li><a style="text-align: left;" href="#">Facebook</a></li>';
                     html+='<li><a style="text-align: left;" href="#">Twitter</a></li>';
+                    html+='<li><a style="text-align: left;" href="#">Linkedin</a></li>';
                   html+='</ul>';
                 html+='</div>';
               html+='</td>';
