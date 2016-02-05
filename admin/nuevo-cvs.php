@@ -505,7 +505,7 @@ if($_GET["id"]){
                   <span style="font-size: 25px; padding-right: 15px;" class="fa fa-file-o"></span>
                 </div>
                 <div class="col-md-11">
-                  <p style="font-size: 20px; font-weight: bold;">No. clave de la vacane para la que aplica</p>
+                  <p style="font-size: 20px; font-weight: bold;">No. clave de la vacante para la que aplica</p>
                 </div>
               </div>
             </div><!--row-->
