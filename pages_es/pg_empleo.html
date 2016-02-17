@@ -214,6 +214,7 @@
           <div class="col-md-3" style="padding-top:7px; padding-left:40px;">
              <select style="display: block; width: 200px;" onchange="" id="">
                 <option value="Todas las categorías">Todas las categorías</option>
+                <option ng-repeat="(key,x) in todasCategorias.cat" value="{{x}}">{{x}}</option>
              </select>
           </div>
           <div class="col-md-3" style="padding-top:5px; padding-left:40px;">
@@ -251,43 +252,21 @@
             
             <div class="row" style="margin-bottom: 2px;">
               
-              <div class="col-md-12">
+              <div ng-repeat="(key,x) in todasVacantes.id" class="col-md-12">
                 <div class="col-md-1" style="background-color: #fff; height: 70px; padding:0; text-align:center;">
                   <img style="width:50px; padding-top: 10px;" src="img/jobs.png"></img>
                 </div> 
                 <div class="col-md-4" style="background-color: #fff; height: 70px; padding:0;">
-                  <p style="font-family: oswaldregular; color: #000; font-size: 15px; padding-top: 22px; padding-left: 5px;">Desarrollador JAVA Jr.</p>
+                  <p style="font-family: oswaldregular; color: #000; font-size: 15px; padding-top: 22px; padding-left: 5px;">{{todasVacantes.categoria[key]}}</p>
                 </div> 
                 <div class="col-md-1" style="background-color: #fff; height: 70px; padding-left:35px;">
                   <img style="width:35px; padding-top:15px;" src="img/ubicacion.png"></img>
                 </div> 
                 <div class="col-md-3" style="background-color: #fff; height: 70px; padding:0;">
-                  <p style="font-family: oswaldregular; color: #787878; font-size: 15px; padding-top:22px;">Distrito Federal</p>
+                  <p style="font-family: oswaldregular; color: #787878; font-size: 15px; padding-top:22px;">{{todasVacantes.estado[key]}}</p>
                 </div> 
                 <div class="col-md-3" style="background-color: #fff; height: 70px; padding:15px;">
-                  <button type="submit" style="background-color:#DA57AD; height: 35px; width:175px; color:#fff; font-family: oswaldregular; cursor:pointer;" onclick="">TIEMPO COMPLETO</button>
-                </div> 
-              </div>
-              
-            </div>
-            
-            <div class="row" style="margin-bottom: 2px;">
-              
-              <div class="col-md-12">
-                <div class="col-md-1" style="background-color: #fff; height: 70px; padding:0; text-align:center;">
-                  <img style="width:50px; padding-top: 10px;" src="img/jobs.png"></img>
-                </div> 
-                <div class="col-md-4" style="background-color: #fff; height: 70px; padding:0;">
-                  <p style="font-family: oswaldregular; color: #000; font-size: 15px; padding-top: 22px; padding-left: 5px;">Diseñador Web</p>
-                </div> 
-                <div class="col-md-1" style="background-color: #fff; height: 70px; padding-left:35px;">
-                  <img style="width:35px; padding-top:15px;" src="img/ubicacion.png"></img>
-                </div> 
-                <div class="col-md-3" style="background-color: #fff; height: 70px; padding:0;">
-                  <p style="font-family: oswaldregular; color: #787878; font-size: 15px; padding-top:22px;">Distrito Federal</p>
-                </div> 
-                <div class="col-md-3" style="background-color: #fff; height: 70px; padding:15px;">
-                  <button type="submit" style="background-color:#DA57AD; height: 35px; width:175px; color:#fff; font-family: oswaldregular; cursor:pointer;" onclick="">TIEMPO COMPLETO</button>
+                  <button type="submit" style="background-color:#DA57AD; height: 35px; width:175px; color:#fff; font-family: oswaldregular; cursor:pointer;" onclick="">{{todasVacantes.tipoTiempo[key]}}</button>
                 </div> 
               </div>
               
