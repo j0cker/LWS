@@ -217,6 +217,8 @@ if($_GET["id"]){
                   <option value="Tiempo Completo">Tiempo Completo</option>
                   <option value="Temporal">Temporal</option>
                   <option value="Freelance">Freelance</option>
+                  <option value="Internado">Internado</option>
+                  <option value="Rol de Turnos">Rol de Turnos</option>
                 </select>
             </div>
         
