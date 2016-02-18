@@ -119,11 +119,11 @@
       <div class="txt_oswald_r" style=" width:893px; background-color:#CC0099; font-style:normal; color:#FFF; text-align:center; padding-top:15px; padding-bottom:5px; height:70px; alignment-adjust:central">
         <div class="col-md-12">
           <div class="col-md-3" style="padding-top:5px;">
-             <input style="font-size: 13px; height: 30px; width: 220px;" type="text" class="form-control" placeholder="Palabras clave" aria-describedby="sizing-addon1" id="">
+             <input style="font-size: 13px; height: 30px; width: 220px;" type="text" class="form-control" placeholder="Palabras clave" aria-describedby="sizing-addon1" id="texto123">
           </div>
           <div class="col-md-3" style="padding-top:7px; padding-left:40px;">
-             <select style="display: block; width: 200px;" onchange="" id="estado" name="estados">
-                <option value="Todas las zonas">Todas las zonas</option>
+             <select style="display: block; width: 200px;" onchange="" id="estados123" name="estados">
+                <option value="Todas">Todas las zonas</option>
                 <option value="Todo México">Todo México</option>
                 <option value="Aguascalientes">Aguascalientes</option>
                 <option value="Baja California">Baja California</option>
@@ -212,13 +212,13 @@
              </select>
           </div>
           <div class="col-md-3" style="padding-top:7px; padding-left:40px;">
-             <select style="display: block; width: 200px;" onchange="" id="">
-                <option value="Todas las categorías">Todas las categorías</option>
+             <select style="display: block; width: 200px;" onchange="" id="categorias123">
+                <option value="Todas">Todas las categorías</option>
                 <option ng-repeat="(key,x) in todasCategorias.cat" value="{{x}}">{{x}}</option>
              </select>
           </div>
           <div class="col-md-3" style="padding-top:5px; padding-left:40px;">
-              <button type="submit" style="background-color:#60BFDB; height: 30px; width:150px; color:#fff; font-family: oswaldregular; cursor:pointer;" onclick="">ENVIAR</button>
+              <button type="submit" style="background-color:#60BFDB; height: 30px; width:150px; color:#fff; font-family: oswaldregular; cursor:pointer;"  ng-click="buscar();">ENVIAR</button>
           </div>
         </div>
       </div>
@@ -226,22 +226,22 @@
             <div class="txt_oswald_r" style="font-size:14px; width:893px; background-color:#B7DBF0; font-style:normal; color:#000; text-align:center; padding-top:15px; padding-bottom:5px; height:50px; alignment-adjust:central">
               <div class="col-md-12">
                 <div class="col-md-2" style="padding:0;">
-                  <input type="checkbox" name="" value="" checked> FREELANCE
+                  <input type="checkbox" id="opcion1" name="1" checked> FREELANCE
                 </div>
                 <div class="col-md-2" style="padding:0;">
-                  <input type="checkbox" name="" value="" checked> INTERNADO
+                  <input type="checkbox" id="opcion2" value="2" checked> INTERNADO
                 </div>
                 <div class="col-md-2" style="padding:0;">
-                  <input type="checkbox" name="" value="" checked> MEDIO TIEMPO
+                  <input type="checkbox" id="opcion3" value="3" checked> MEDIO TIEMPO
                 </div>
                 <div class="col-md-2" style="padding:0;">
-                  <input type="checkbox" name="" value="" checked> ROL DE TURNOS
+                  <input type="checkbox" id="opcion4" value="4" checked> ROL DE TURNOS
                 </div>
                 <div class="col-md-2" style="padding:0;">
-                  <input type="checkbox" name="" value="" checked> TEMPORAL
+                  <input type="checkbox" id="opcion5" value="5" checked> TEMPORAL
                 </div>
                 <div class="col-md-2" style="padding:0;">
-                  <input type="checkbox" name="" value="" checked> TIEMPO COMPLETO
+                  <input type="checkbox" id="opcion6" value="6" checked> TIEMPO COMPLETO
                 </div>
               </div>
             </div>
@@ -266,7 +266,7 @@
                   <p style="font-family: oswaldregular; color: #787878; font-size: 15px; padding-top:22px;">{{todasVacantes.estado[key]}}</p>
                 </div> 
                 <div class="col-md-3" style="background-color: #fff; height: 70px; padding:15px;">
-                  <button type="submit" style="background-color:#DA57AD; height: 35px; width:175px; color:#fff; font-family: oswaldregular; cursor:pointer;" onclick="">{{todasVacantes.tipoTiempo[key]}}</button>
+                  <button type="submit" style="background-color:#DA57AD; height: 35px; width:175px; color:#fff; font-family: oswaldregular; cursor:pointer;" ng-click="">{{todasVacantes.tipoTiempo[key]}}</button>
                 </div> 
               </div>
               
@@ -275,7 +275,7 @@
        <br>     
             
        <div style="text-align: center;">
-         <button type="submit" style="background-color:#60BFDB; height: 35px; width:150px; color:#fff; font-family: oswaldregular; cursor:pointer;" ng-click="incrementarHoja();" class="glyphicon glyphicon-plus">VER MÁS</button>
+         <button type="submit" style="background-color:#60BFDB; height: 35px; width:150px; color:#fff; font-family: oswaldregular; cursor:pointer;" id="vermas" ng-click="incrementarHoja();" class="glyphicon glyphicon-plus">VER MÁS</button>
        </div>
     
         <!--TERMINA TABLA DE SERVICIOS

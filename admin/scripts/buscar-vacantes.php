@@ -2,7 +2,7 @@
 include  '../../global.php';
 include '../../conexioni.php';
 $buscar = $_GET["buscar"];
-$query = $conn->query("SELECT * FROM nuevasvacantes WHERE id LIKE '%".$buscar."%' OR nombreEmpresa LIKE '%".$buscar."%' OR estado LIKE '%".$buscar."%' OR tipoTiempo LIKE '%".$buscar."%' OR fecha LIKE '%".$buscar."%'") OR die("Error: ".mysqli_error($conn));
+$query = $conn->query("SELECT nv.*, cat.nombreCategoria FROM nuevasvacantes as nv INNER JOIN categorias as cat ON nv.id_cat=cat.id WHERE nv.id LIKE '%".$buscar."%' OR nv.nombreEmpresa LIKE '%".$buscar."%' OR nv.estado LIKE '%".$buscar."%' OR nv.tipoTiempo LIKE '%".$buscar."%' OR nv.fecha LIKE '%".$buscar."%' OR cat.nombreCategoria LIKE '%".$buscar."%'") OR die("Error: ".mysqli_error($conn));
 if($query->num_rows>0){
   $c=0;
   $array_id = array();

@@ -8,7 +8,6 @@ app.controller('empleoCtrl', function($scope, evt){
     $scope.todasCategorias = response.data;
   }, function (response) {
     /*ERROR*/
-    alert("ERROR");
   });
   
   evt.getVacantes(hojaGlobal).then(function (response) {
@@ -17,8 +16,31 @@ app.controller('empleoCtrl', function($scope, evt){
     $scope.todasVacantes = response.data;
   }, function (response) {
     /*ERROR*/
-    alert("ERROR");
   });
+  
+  $scope.buscar = function(){
+    console.log("Buscar");
+    $("#vermas").css("display","none");
+    var tipoTiempo1 = document.getElementById("opcion1").checked;
+    var tipoTiempo2 = document.getElementById("opcion2").checked;
+    var tipoTiempo3 = document.getElementById("opcion3").checked;
+    var tipoTiempo4 = document.getElementById("opcion4").checked;
+    var tipoTiempo5 = document.getElementById("opcion5").checked;
+    var tipoTiempo6 = document.getElementById("opcion6").checked;
+    var categorias123 = $("#categorias123").val();
+    var estados123 = $("#estados123").val();
+    var texto123 = $("#texto123").val();
+    evt.buscarVacantesUser(tipoTiempo1,tipoTiempo2,tipoTiempo3,tipoTiempo4,tipoTiempo5,tipoTiempo6,categorias123, estados123, texto123).then(function (response) {
+      console.log(response.data);
+      if(response.data.true=="false"){
+        alert("No encontré nada");  
+      } else {
+        $scope.todasVacantes = response.data;  
+      }
+    }, function (response) {
+        /*ERROR*/
+    });
+  };
   
   $scope.incrementarHoja = function(){
     console.log("Incrementar Hoja");
@@ -42,7 +64,6 @@ app.controller('empleoCtrl', function($scope, evt){
         }
     }, function (response) {
         /*ERROR*/
-        alert("ERROR");
     });
   };
   
