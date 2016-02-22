@@ -361,7 +361,7 @@ require_once('desktop/menu.php');
       <div style="background-color: #AD1457; color: white;" class="col-md-10 panel">
       <!-- Default panel contents -->
       <div class="panel-heading"><span style="font-size: 20px; padding-right: 10px;" class="fa fa-list-ul"></span> Lista de Usuarios</div>
-      <div style="color: black; background-color: #FFF;" class="panel-body text-left">
+      <div style="width: 100%; overflow-x: scroll; color: black; background-color: #FFF;" class="panel-body text-left">
         <div class="row">
           <div class="col-md-3">
             <a onclick="abrirModal('','1');">
