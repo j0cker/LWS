@@ -43,19 +43,18 @@ function MM_swapImage() { //v3.0
 
 
 <script language="JavaScript">
-<!--
 function calcHeight()
 {
-//find the height of the internal page
-var the_height=
-document.getElementById('the_iframe').contentWindow.
-document.body.scrollHeight;
+    setTimeout(function(){
+        //find the height of the internal page
+        var the_height= document.getElementById('the_iframe').contentWindow.
+        document.body.scrollHeight;
 
-//change the height of the iframe
-document.getElementById('the_iframe').height=
-the_height;
+        //change the height of the iframe
+        document.getElementById('the_iframe').height=the_height;
+        console.log("entro");
+    }, 3000);
 }
-//-->
 </script>
 
 
@@ -142,7 +141,7 @@ onLoad="calcHeight();"
 src="pages_es/pg_home.html"
 scrolling="NO"
 frameborder="0"
-height="5000px"> Lo siento, Necesitas un navegador con soporte de IFRAMES.</iframe>
+height="500px"> Lo siento, Necesitas un navegador con soporte de IFRAMES.</iframe>
 
 
 </div>
