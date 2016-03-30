@@ -18,6 +18,11 @@ app.controller('empleoCtrl', function($scope, evt){
     /*ERROR*/
   });
   
+  $scope.abrirVacante = function(x){
+      console.log(x);
+      window.location = "pg_empleo_desc.php?id="+x+"";
+  }
+  
   $scope.buscar = function(){
     console.log("Buscar");
     $("#vermas").css("display","none");

@@ -250,9 +250,9 @@
               <p style="font-family: oswaldregular; color: #CC0099; padding-top: 5px; margin:0;">MOSTRANDO TODOS LOS EMPLEOS</p>
             </div>
             
-            <div class="row" style="margin-bottom: 2px;">
+            <div class="row" style="cursor: pointer; margin-bottom: 2px;">
               
-              <div ng-repeat="(key,x) in todasVacantes.id" class="col-md-12">
+              <div ng-click="abrirVacante(x);"  ng-repeat="(key,x) in todasVacantes.id" class="col-md-12">
                 <div class="col-md-1" style="background-color: #fff; height: 70px; padding:0; text-align:center;">
                   <img style="width:50px; padding-top: 10px;" src="img/jobs.png"></img>
                 </div> 

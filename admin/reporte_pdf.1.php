@@ -19,7 +19,7 @@ if($query->num_rows>0){
 	<body style="font-size: 10px;">
 	<table width="100%" border="1" cellspacing="0" cellpadding="0">
 	<tr>
-		<td colspan="10" bgcolor="skyblue"><CENTER><strong>REPORTE</strong></CENTER></td>
+		<td colspan="26" bgcolor="skyblue"><CENTER><strong>REPORTE</strong></CENTER></td>
 	</tr>
 	<tr bgcolor="red">
 		<td><strong>ID</strong></td>
@@ -28,9 +28,25 @@ if($query->num_rows>0){
 		<td><strong>EMAIL</strong></td>
 		<td><strong>ESTADO</strong></td>
 		<td><strong>CATEGORIA</strong></td>
-		<td width="50"><strong>TRABAJA ACTUALMENTE</strong></td>
-		<td width="50"><strong>VACANTE 1</strong></td>
-		<td width="50"><strong>VACANTE 2</strong></td>
+		<td><strong>TIPO DE TIEMPO</strong></td>
+		<td><strong>TITULO PROFESIONAL</strong></td>
+		<td><strong>GRADO ESTUDIOS</strong></td>
+		<td><strong>DIPLOMADO</strong></td>
+		<td><strong>HABILIDADES</strong></td>
+		<td><strong>COMPETENCIAS</strong></td>
+		<td><strong>ULTIMO EMPLEADOR</strong></td>
+		<td><strong>ULTIMO EMPLEO</strong></td>
+		<td><strong>INICIO EMPLEO</strong></td>
+		<td><strong>FIN EMPLEO</strong></td>
+		<td><strong>TRABAJA ACTUALMENTE</strong></td>
+		<td><strong>DESCRIPCION</strong></td>
+		<td><strong>VACANTE 1</strong></td>
+		<td><strong>VACANTE 2</strong></td>
+		<td><strong>VACANTE 3</strong></td>
+		<td><strong>VACANTE 4</strong></td>
+		<td><strong>VACANTE 5</strong></td>
+		<td><strong>VACANTE 6</strong></td>
+		<td><strong>COMENTARIOS</strong></td>
 		<td><strong>FECHA</strong></td>
 	</tr>';
 		
@@ -45,19 +61,35 @@ if($query->num_rows>0){
 		$codigoHTML = ''.$codigoHTML .' 
 		<tr>
 			<td>'.$row["id"].'</td>
-			<td>'.utf8_decode($row['nombreCompleto']).'</td>
+			<td>'.$row["nombreCompleto"].'</td>
 			<td>'.$row["telefono"].'</td>
 			<td>'.$row["email"].'</td>
-			<td>'.utf8_decode($row['estado']).'</td>
-			<td>'.$categoria.'</td>';
+			<td>'.$row["estado"].'</td>
+			<td>'.$categoria.'</td>
+			<td>'.$row["tipoTiempo"].'</td>
+			<td>'.$row["tituloProfesional"].'</td>
+			<td>'.$row["gradoEstudios"].'</td>
+			<td>'.$row["diplomado"].'</td>  
+			<td>'.$row["habilidades"].'</td>    
+			<td>'.$row["competencias"].'</td> 
+			<td>'.$row["ultimoEmpleador"].'</td> 
+			<td>'.$row["ultimoEmpleo"].'</td> 
+			<td>'.$row["datePicker"].'</td> 
+			<td>'.$row["datePicker2"].'</td>';
 			if($row["trabajaActualmente"]=="on"){
 		      $codigoHTML = ''.$codigoHTML .'<td>SI</td>'; 
 			} else {
 			  $codigoHTML = ''.$codigoHTML .'<td>NO</td>'; 	
 			}
 			$codigoHTML = ''.$codigoHTML .'
-			<td>'.utf8_decode($row['vacante1']).'</td> 
-			<td>'.utf8_decode($row['vacante2']).'</td>
+			<td>'.$row["descripcionAnteriores"].'</td> 
+			<td>'.$row["vacante1"].'</td> 
+			<td>'.$row["vacante2"].'</td>
+			<td>'.$row["vacante3"].'</td> 
+			<td>'.$row["vacante4"].'</td> 
+			<td>'.$row["vacante5"].'</td> 
+			<td>'.$row["vacante6"].'</td> 
+			<td>'.$row["comentarios"].'</td> 
 			<td>'.$row["fecha"].'</td>               
 		</tr>';
 	}/*fin while*/
