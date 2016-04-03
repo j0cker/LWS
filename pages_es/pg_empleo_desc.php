@@ -37,8 +37,8 @@
     <script src="../angular/angular.min.js"></script>
     <script src="../angular/angular-sanitize.js"></script>
     <script src="../angular/lib/title.js"></script>
-    <script src="../angular/lib/vacante.js"></script>
     <script src="../angular/lib/factory.js"></script>
+    <script src="../angular/lib/vacante.js"></script>
 
     <script type="text/javascript">
     function MM_swapImgRestore() { //v3.0
@@ -234,9 +234,9 @@
         <p style="color:#b2b2b2; font-family: oswaldregular; font-size: 24px; padding-top: 8px;">DIRECCIÓN</p>
         <hr style="border-width: 2px; margin:0; border-color: #666666;">
         <p style="color:#808080; font-family: oswaldregular; font-size: 16px; padding-top: 8px;">{{vacanteId.direccionEmpresa}}</p>
-
+        
         <iframe ng-if="vacanteId.latitud" width="635" height="450" style="padding-bottom:40px;" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" ng-src="{{vacanteId.urlMaps}}"></iframe>
-
+        
 <br> 
 
       </div>
