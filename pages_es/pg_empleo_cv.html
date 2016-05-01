@@ -19,6 +19,8 @@
     <script src="../angular/lib/title.js"></script>
     <script src="../angular/lib/empleo.js"></script>
     <script src="../angular/lib/factory.js"></script>
+    
+    <script src="../js/escribir.js"></script>
 
     <script type="text/javascript">
     function MM_swapImgRestore() { //v3.0
@@ -44,69 +46,27 @@
     }
     </script>
     <script>
+      
        function enviarForm1232() {
          console.log("Form2");
          
-          if(!$("#nombreCompleto").val()){
+          if(!$("#nombreCompleto2").val()){
             alert("Rellenar el campo Nombre Completo");
-          } else if(!$("#telefono").val()){
+          } else if(!$("#telefono2").val()){
             alert("Rellenar el campo Teléfono");
-          } else if(!$("#email").val()){
+          } else if(!$("#email2").val()){
             alert("Rellenar el campo Email");
-          } else if(!$("#estado").val()){
-            alert("Rellenar el campo Estado");
-          } else if(!$("#oferta").val()){
-            alert("Rellenar el campo Oferta");
-          } else if(!$("#tituloProfesional").val()){
+          } else if(!$("#tituloProfesional2").val()){
             alert("Rellenar el campo Titulo Profesional");
-          } else if(!$("#gradoEstudios").val()){
-            alert("Rellenar el campo de Grado de Estudios");
-          } else if(!$("#diplomado").val()){
-            alert("Rellenar el campo de Diplomado");
-          } else if(!$("#habilidades").val()){
-            alert("Rellenar el campo de Habilidades");
-          } else if(!$("#competencias").val()){
-            alert("Rellenar el campo de Competencias");
-          } else if(!$("#ultimoEmpleador").val()){
-            alert("Rellenar el campo de Último Empleados");
-          } else if(!$("#ultimoEmpleo").val()){
-            alert("Rellenar el campo de Último Empleo");
-          } else if(!$("#mes1").val()){
-            alert("Rellenar el campo mes");
-          } else if(!$("#ano1").val()){
-            alert("Rellenar el campo año");
-          } else if(!$("#mes2").val()){
-            alert("Rellenar el campo mes");
-          } else if(!$("#ano2").val()){
-            alert("Rellenar el campo año");
-          } else if(!$("#descripcionAnteriores").val()){
-            alert("Rellenar el campo de Descripcion Anteriores");
+          } else if(!$("#oferta2").val()){
+            alert("Rellenar el campo Oferta");
           } else {
-            $.ajax({data: { id_cat:$("#cats").val(),
-                            tipoTiempo:$("#tipoTiempo").val(),
-                            nombreCompleto:$("#nombreCompleto").val(),
-                            telefono:$("#telefono").val(),
-                            email:$("#email").val(),
-                            estado:$("#estado").val(),
-                            oferta:$("#oferta").val(),
-                            tituloProfesional:$("#tituloProfesional").val(),
-                            gradoEstudios:$("#gradoEstudios").val(),
-                            diplomado:$("#diplomado").val(),
-                            habilidades:$("#habilidades").val(),
-                            competencias:$("#competencias").val(),
-                            ultimoEmpleador:$("#ultimoEmpleador").val(),
-                            ultimoEmpleo:$("#ultimoEmpleo").val(),
-                            datepicker:"1-"+ $("#mes1").val() + "-" + $("#ano1").val(),
-                            datepicker2:"1-"+ $("#mes2").val() + "-" + $("#ano2").val(),
-                            trabajaActualmente:$("#trabajaActualmente").val(),
-                            descripcionAnteriores:$("#descripcionAnteriores").val(),
-                            vacante1:$("#vacante1").val(),
-                            vacante2:$("#vacante2").val(),
-                            vacante3:$("#vacante3").val(),
-                            vacante4:$("#vacante4").val(),
-                            vacante5:$("#vacante5").val(),
-                            vacante6:$("#vacante6").val(),
-                            comentarios:$("#comentarios").val(),
+            $.ajax({data: { nombreCompleto:$("#nombreCompleto2").val(),
+                            telefono:$("#telefono2").val(),
+                            email:$("#email2").val(),
+                            oferta:$("#oferta2").val(),
+                            tituloProfesional:$("#tituloProfesional2").val(),
+                            comentarios:$("#comentarios2").val(),
                             option:1
                           },
                     url:   "../admin/scripts/alta-cvs.php",
@@ -333,11 +293,8 @@
                 <a style="color:#940452; font-family: oswaldregular; font-size: 10px; padding-left: 10px; padding-top: 5px; text-decoration: none">ADJUNTAR C.V.</a>
               </div>
            </div>
-           <div style="padding-right: 0px;" class="col-md-3">
-             <input class="form-control" type="text" placeholder="" style="font-size: 13px; height: 30px; width: 150px;">
-           </div>
-           <div style="padding-left: 0px;" class="col-md-2">
-             <input onclick="" type="file" style="background-color:#87c3e7; height: 30px; width: 140px; color:#940452; font-family: oswaldregular; cursor:pointer;" >
+           <div class="col-md-6">
+             <input onclick="" id="fileImage" type="file" onchange="subirImage();" name="file" style="background-color:#87c3e7; height: 30px; width: 100%; color:#940452; font-family: oswaldregular; cursor:pointer;" >
            </div>
            <div class="col-md-2" style="padding-right: 60px; margin-top: -5px;">
              <a style="color:#9d005d; font-family: oswaldregular; font-size: 22px; text-decoration: none">*</a>
