@@ -19,6 +19,7 @@ $datepicker=$_POST["datepicker"];
 $datepicker2=$_POST["datepicker2"];
 $trabajaActualmente=$_POST["trabajaActualmente"];
 $descripcionAnteriores=$_POST["descripcionAnteriores"];
+$fileImage=$_POST["fileImage"];
 $vacante1=$_POST["vacante1"];
 $vacante2=$_POST["vacante2"];
 $vacante3=$_POST["vacante3"];
@@ -27,7 +28,7 @@ $vacante5=$_POST["vacante5"];
 $vacante6=$_POST["vacante6"];
 $comentarios=$_POST["comentarios"];
 if($_POST["option"]==1){
-  $query = $conn->query("INSERT INTO cvs (tipoTiempo,id_cat,nombreCompleto,telefono,email,estado,oferta,tituloProfesional,gradoEstudios,diplomado,habilidades,competencias,ultimoEmpleador,ultimoEmpleo,datepicker,datepicker2,trabajaActualmente,descripcionAnteriores,vacante1,vacante2,vacante3,vacante4,vacante5,vacante6,comentarios,fecha) VALUES ('".$tipoTiempo."','".$id_cat."','".$nombreCompleto."','".$telefono."','".$email."','".$estado."','".$oferta."','".$tituloProfesional."','".$gradoEstudios."','".$diplomado."','".$habilidades."','".$competencias."','".$ultimoEmpleador."','".$ultimoEmpleo."','".$datepicker."','".$datepicker2."','".$trabajaActualmente."','".$descripcionAnteriores."','".$vacante1."','".$vacante2."','".$vacante3."','".$vacante4."','".$vacante5."','".$vacante6."','".$comentarios."','".date('d-m-Y')."')") OR die("Error: ".mysqli_error($conn));
+  $query = $conn->query("INSERT INTO cvs (tipoTiempo,id_cat,nombreCompleto,telefono,email,estado,oferta,tituloProfesional,gradoEstudios,diplomado,habilidades,competencias,ultimoEmpleador,ultimoEmpleo,datepicker,datepicker2,trabajaActualmente,descripcionAnteriores,vacante1,vacante2,vacante3,vacante4,vacante5,vacante6,comentarios,fecha,adjunto) VALUES ('".$tipoTiempo."','".$id_cat."','".$nombreCompleto."','".$telefono."','".$email."','".$estado."','".$oferta."','".$tituloProfesional."','".$gradoEstudios."','".$diplomado."','".$habilidades."','".$competencias."','".$ultimoEmpleador."','".$ultimoEmpleo."','".$datepicker."','".$datepicker2."','".$trabajaActualmente."','".$descripcionAnteriores."','".$vacante1."','".$vacante2."','".$vacante3."','".$vacante4."','".$vacante5."','".$vacante6."','".$comentarios."','".date('d-m-Y')."','".$fileImage."')") OR die("Error: ".mysqli_error($conn));
   if($query===true){
     echo 'Insertado';
   } else {

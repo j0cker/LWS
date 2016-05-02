@@ -10,6 +10,9 @@ if($_GET["url"]){
   if(substr($local,-5)==".jpeg"){
     $subir=2;
   }
+  if(substr($local,-5)==".docx" || substr($local,-4)==".doc" || substr($local,-5)==".xlsx" || substr($local,-4)==".pdf"){
+    $subir=2;
+  }
 } else if($_POST["base"]){
   $rand123 = rand(0,9999999999);
   url_to_phpFiles("fileImage", 'http://'.getDirUrl(1).'/bibliotecaImages/'.base64_to_jpeg($_POST["base"],"".$rand123.".jpeg").'');
@@ -19,6 +22,9 @@ if($_GET["url"]){
     $subir=2;
   }
   if(substr($local,-5)==".jpeg"){
+    $subir=2;
+  }
+  if(substr($local,-5)==".docx" || substr($local,-4)==".doc" || substr($local,-5)==".xlsx" || substr($local,-4)==".pdf"){
     $subir=2;
   }
 } else {
@@ -49,6 +55,9 @@ if($_GET["url"]){
   if(substr($local,-5)==".jpeg"){
     $subir=1;
   }
+  if(substr($local,-5)==".docx" || substr($local,-4)==".doc" || substr($local,-5)==".xlsx" || substr($local,-4)==".pdf"){
+    $subir=2;
+  }
 }
 $remoto = $_FILES["fileImage"]["tmp_name"];
 $tama = $_FILES["fileImage"]["size"];  
@@ -58,12 +67,15 @@ $tama = $_FILES["fileImage"]["size"];
 if ($tama>=5000000){
   echo "ERROR";
 } else if($subir=="1") {
+  
+ 
 	//comprueba si fue subido el archivo en temporal (método POST)
 	if(!is_uploaded_file($_FILES["fileImage"]["tmp_name"])){
 		echo "ERROR Archivo Temporal No existente";
 	}
+  
 	//movemos del servidor original tmp to a carpeta (método POST)
-
+  //hay que crear la carpeta bibliotecaImages
 	if(move_uploaded_file($remoto, ''.getcwd().'/bibliotecaImages/'.$local_name.'')){
 	  echo 'http://'.getDirUrl(1).'/bibliotecaImages/'.$local_name.'';
 	} else {
@@ -71,7 +83,6 @@ if ($tama>=5000000){
 	}
 } else if($subir=="2") { 
 	//movemos del servidor original tmp to a carpeta
-  
 	if(file_exists($remoto) && rename($remoto, ''.getcwd().'/bibliotecaImages/'.$local_name.'')){
       if(chmod('bibliotecaImages/'.$local_name.'', 0644)){
         echo 'http://'.getDirUrl(1).'/bibliotecaImages/'.$local_name.'';

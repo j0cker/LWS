@@ -12,7 +12,7 @@
 
     <!--Bootstrap-->
     <script src="bootstrap/js/bootstrap.min.js"></script>
-
+    <script>var urlUpload = "";</script>
     <!--Angular-->
     <script src="../angular/angular.min.js"></script>
     <script src="../angular/angular-sanitize.js"></script>
@@ -47,7 +47,7 @@
     </script>
     <script>
       
-       function enviarForm1232() {
+       function enviar123() {
          console.log("Form2");
          
           if(!$("#nombreCompleto2").val()){
@@ -60,14 +60,19 @@
             alert("Rellenar el campo Titulo Profesional");
           } else if(!$("#oferta2").val()){
             alert("Rellenar el campo Oferta");
+          } else if(!$("#fileImage").val()){
+            alert("Rellenar el campo File");
           } else {
-            $.ajax({data: { nombreCompleto:$("#nombreCompleto2").val(),
+            alert(urlUpload);
+            $.ajax({data: { id_cat:'Sin Categoria',
+                            nombreCompleto:$("#nombreCompleto2").val(),
                             telefono:$("#telefono2").val(),
                             email:$("#email2").val(),
                             oferta:$("#oferta2").val(),
                             tituloProfesional:$("#tituloProfesional2").val(),
                             comentarios:$("#comentarios2").val(),
-                            option:1
+                            option:1,
+                            fileImage:urlUpload
                           },
                     url:   "../admin/scripts/alta-cvs.php",
                     type:  'POST',
@@ -116,7 +121,7 @@
           } else if(!$("#descripcionAnteriores").val()){
             alert("Rellenar el campo de Descripcion Anteriores");
           } else {
-            $.ajax({data: { id_cat:$("#cats").val(),
+            $.ajax({data: { id_cat:'Sin Categoria',
                             tipoTiempo:$("#tipoTiempo").val(),
                             nombreCompleto:$("#nombreCompleto").val(),
                             telefono:$("#telefono").val(),
@@ -318,7 +323,7 @@
            <div class="col-md-5">
            </div>
            <div class="col-md-7" style="padding-left: 50px; padding-top: 10px;">
-           <button  onclick="enviarForm1232();" type="submit" style="background-color:#60bfdb; height: 35px; width:150px; color:#940452; font-family: oswaldregular; cursor:pointer;">ENVIAR C.V.</button>
+           <button  onclick="enviar123();" type="submit" style="background-color:#60bfdb; height: 35px; width:150px; color:#940452; font-family: oswaldregular; cursor:pointer;">ENVIAR C.V.</button>
            </div>
          </div>
 

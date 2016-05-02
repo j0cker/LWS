@@ -19,7 +19,7 @@ if($query->num_rows>0){
       $row2 = $query2->fetch_assoc();
       $categoria[] = ''.$row2['nombreCategoria'].'';
     } else {
-      $categoria[] = 'ERROR Contacte al Admin';
+      $categoria[] = 'Sin Categoria';
     }
 	  $nombreCompleto[] = $row["nombreCompleto"]; 
 	  $estado[] = $row["estado"];

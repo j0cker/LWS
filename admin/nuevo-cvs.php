@@ -128,7 +128,7 @@ if($_GET["id"]){
       $row2 = $query2->fetch_assoc();
       $categoria = ''.utf8_decode($row2['nombreCategoria']).'';
     } else {
-      $categoria = 'ERROR Contacte al Admin';
+      $categoria = 'Sin Categoria';
     }
   } else {
     $row = '';
@@ -581,6 +581,15 @@ if($_GET["id"]){
                 <label>Si considera necesario agregar comentarios y/o notas al reclutador</label>
                 <textarea id="comentarios" style="height: 200px;" type="email" class="form-control"><?PHP echo $row['comentarios']; ?></textarea>
             </div>
+            
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group form-group-default">
+                        <label>Archivo Adjunto</label>
+                        <input value="<?PHP echo $row['adjunto']; ?>" id="adjunto" type="text" class="form-control" required>
+                    </div>
+                </div>
+            </div><!--row-->
             
             <div class="row">
               <div class="col-md-12">

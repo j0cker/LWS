@@ -995,18 +995,9 @@ function saveWatermark(image){
   });
 }
 function subirImage(){
-  $('#fileImageMas').css("display","none");
-  $('#cargandoFileImage').css("display","table");
   var rFilter = /^(?:image\/bmp|image\/cis\-cod|image\/gif|image\/ief|image\/jpeg|image\/jpeg|image\/jpeg|image\/pipeg|image\/png|image\/svg\+xml|image\/tiff|image\/x\-cmu\-raster|image\/x\-cmx|image\/x\-icon|image\/x\-portable\-anymap|image\/x\-portable\-bitmap|image\/x\-portable\-graymap|image\/x\-portable\-pixmap|image\/x\-rgb|image\/x\-xbitmap|image\/x\-xpixmap|image\/x\-xwindowdump)$/i;
   if (document.getElementById("fileImage").files.length === 0) { return; }
   var oFile = document.getElementById("fileImage").files[0];
-  if (!rFilter.test(oFile.type)) 
-  { alert(txt125);
-	$('#cargandoFileImage').css("display","none");
-	$('#fileImageMas').css("display","inline-block");
-	$('#fileImage').val("");
-	return; 
-  }
   var fd = new FormData();
   fd.append("fileImage", oFile);
   console.log(fd);
@@ -1017,20 +1008,15 @@ function subirImage(){
 			contentType: false,
 			success:  function (response) {
 				if(response.indexOf("ERROR")=="-1"){
-				  $('#cargandoFileImage').css("display","none");
-				  $('#fileImageMas').css("display","inline-block");
-				  $('#ImagesUploaded').css("display","inline-block");
                   imageS++;
-                  $('#fileImage').val("");
-				  imagenesAgregadas = imagenesAgregadas + ''+response+',';
-				  contadorTeclasCalc();
+                  urlUpload = response;
+                  console.log(urlUpload);
+                  
 				} else {
 				  //toastr["warning"](txt126);
                   alert("Error");
+                  $('#fileImage').val("");
                 }
-				 $('#cargandoFileImage').css("display","none");
-				 $('#fileImageMas').css("display","inline-block");
-				 $('#fileImage').val("");
 			}
   });
 }
