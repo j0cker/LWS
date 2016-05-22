@@ -38,12 +38,134 @@
     <script src="../angular/angular-sanitize.js"></script>
     <script src="../angular/lib/title.js"></script>
     <script src="../angular/lib/factory.js"></script>
+    <script src="../angular/lib/empleo.js"></script>
     <script src="../angular/lib/vacante.js"></script>
+    
+    <script src="../js/escribir.js"></script>
+    
     <script>
        function abrirSubirVacante(){
          $("#notificacionesAbrir").modal("show");
        }
     </script>
+    
+    
+    <script>
+      
+       function enviar123() {
+         console.log("Form2");
+         
+          if(!$("#nombreCompleto2").val()){
+            alert("Rellenar el campo Nombre Completo");
+          } else if(!$("#telefono2").val()){
+            alert("Rellenar el campo Teléfono");
+          } else if(!$("#email2").val()){
+            alert("Rellenar el campo Email");
+          } else if(!$("#tituloProfesional2").val()){
+            alert("Rellenar el campo Titulo Profesional");
+          } else if(!$("#oferta2").val()){
+            alert("Rellenar el campo Oferta");
+          } else if(!$("#fileImage").val()){
+            alert("Rellenar el campo File");
+          } else {
+            alert(urlUpload);
+            $.ajax({data: { id_cat:'Sin Categoria',
+                            nombreCompleto:$("#nombreCompleto2").val(),
+                            telefono:$("#telefono2").val(),
+                            email:$("#email2").val(),
+                            oferta:$("#oferta2").val(),
+                            tituloProfesional:$("#tituloProfesional2").val(),
+                            comentarios:$("#comentarios2").val(),
+                            option:1,
+                            fileImage:urlUpload
+                          },
+                    url:   "../admin/scripts/alta-cvs.php",
+                    type:  'POST',
+                success:  function (response) {
+                  alert("CV Agregado");
+                }, error: function (response){
+                  alert("ERROR inténtelo de nuevo más tarde");
+                }
+            });
+          }
+       }
+       function enviarForm123() {
+         console.log("Form");
+          if(!$("#nombreCompleto").val()){
+            alert("Rellenar el campo Nombre Completo");
+          } else if(!$("#telefono").val()){
+            alert("Rellenar el campo Teléfono");
+          } else if(!$("#email").val()){
+            alert("Rellenar el campo Email");
+          } else if(!$("#estado").val()){
+            alert("Rellenar el campo Estado");
+          } else if(!$("#oferta").val()){
+            alert("Rellenar el campo Oferta");
+          } else if(!$("#tituloProfesional").val()){
+            alert("Rellenar el campo Titulo Profesional");
+          } else if(!$("#gradoEstudios").val()){
+            alert("Rellenar el campo de Grado de Estudios");
+          } else if(!$("#diplomado").val()){
+            alert("Rellenar el campo de Diplomado");
+          } else if(!$("#habilidades").val()){
+            alert("Rellenar el campo de Habilidades");
+          } else if(!$("#competencias").val()){
+            alert("Rellenar el campo de Competencias");
+          } else if(!$("#ultimoEmpleador").val()){
+            alert("Rellenar el campo de Último Empleados");
+          } else if(!$("#ultimoEmpleo").val()){
+            alert("Rellenar el campo de Último Empleo");
+          } else if(!$("#mes1").val()){
+            alert("Rellenar el campo mes");
+          } else if(!$("#ano1").val()){
+            alert("Rellenar el campo año");
+          } else if(!$("#mes2").val()){
+            alert("Rellenar el campo mes");
+          } else if(!$("#ano2").val()){
+            alert("Rellenar el campo año");
+          } else if(!$("#descripcionAnteriores").val()){
+            alert("Rellenar el campo de Descripcion Anteriores");
+          } else {
+            $.ajax({data: { id_cat:'Sin Categoria',
+                            tipoTiempo:$("#tipoTiempo").val(),
+                            nombreCompleto:$("#nombreCompleto").val(),
+                            telefono:$("#telefono").val(),
+                            email:$("#email").val(),
+                            estado:$("#estado").val(),
+                            oferta:$("#oferta").val(),
+                            tituloProfesional:$("#tituloProfesional").val(),
+                            gradoEstudios:$("#gradoEstudios").val(),
+                            diplomado:$("#diplomado").val(),
+                            habilidades:$("#habilidades").val(),
+                            competencias:$("#competencias").val(),
+                            ultimoEmpleador:$("#ultimoEmpleador").val(),
+                            ultimoEmpleo:$("#ultimoEmpleo").val(),
+                            datepicker:"1-"+ $("#mes1").val() + "-" + $("#ano1").val(),
+                            datepicker2:"1-"+ $("#mes2").val() + "-" + $("#ano2").val(),
+                            trabajaActualmente:$("#trabajaActualmente").val(),
+                            descripcionAnteriores:$("#descripcionAnteriores").val(),
+                            vacante1:$("#vacante1").val(),
+                            vacante2:$("#vacante2").val(),
+                            vacante3:$("#vacante3").val(),
+                            vacante4:$("#vacante4").val(),
+                            vacante5:$("#vacante5").val(),
+                            vacante6:$("#vacante6").val(),
+                            comentarios:$("#comentarios").val(),
+                            option:1
+                          },
+                    url:   "../admin/scripts/alta-cvs.php",
+                    type:  'POST',
+                success:  function (response) {
+                  alert("CV Agregado");
+                }, error: function (response){
+                  alert("ERROR inténtelo de nuevo más tarde");
+                }
+            });
+          }
+       }
+    </script>
+    
+    
     <script type="text/javascript">
     function MM_swapImgRestore() { //v3.0
     var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
@@ -82,7 +204,8 @@
     <div style="width:1022px; height:48px; background-image:url(img/header_bckg_04.jpg)">
     
     
-     <div style="padding-top:12px;">
+     <div style="padding-top:12p
+     x;">
       <!-- ImageReady Slices (sub-menu_serv_y_sol.ai) -->
       <table width="892" height="31" border="0" align="center" cellpadding="0" cellspacing="0" id="Tabla_01">
         <tr>
@@ -339,7 +462,7 @@
                   <div clas="row">
                     <div class="text-center col-md-12">                        
                         <div class="social-login text-center">    
-<div class="col-md-12">
+<div ng-controller="empleoCtrl" class="col-md-12">
 
   <div class="col-md-12">
 
@@ -348,7 +471,7 @@
       <div id="menu" style="height:250px; background:#87c3e7;">
         <div style="z-index:11; padding-top:12px;">
           <div class="col-md-2">
-            <a href="pg_empleo.html">
+            <a href="pg_empleo_desc.php">
               <img style="width:120px; cursor:pointer;" src="img/back.png"></img>
             </a>
           </div>
@@ -402,94 +525,91 @@
               </div>
            </div>
            <div class="col-md-6">
-             <input class="form-control" type="text" placeholder="Escriba su(s) nombre(s) completo con apellidos" style="font-size: 13px; height: 30px; width: 300px;">
+             <input id="nombreCompleto2" class="form-control" type="text" placeholder="Escriba su(s) nombre(s) completo con apellidos" style="font-size: 13px; height: 30px; width: 300px;">
            </div>
            <div class="col-md-2" style="padding-right: 60px; margin-top: -5px;">
              <a style="color:#9d005d; font-family: oswaldregular; font-size: 22px; text-decoration: none">*</a>
            </div>
         </div>
 
-        <div class="col-md-12" style="padding-top: 32px;">
+        <div class="col-md-12" style="margin-top: 32px;">
            <div class="col-md-4">
               <div style="height:32px; background:#a691d0; margin-left: 50px; width: 140px; padding-top: 5px; text-align: left;">
                 <a style="color:#940452; font-family: oswaldregular; font-size: 10px; padding-left: 10px; padding-top: 5px; text-decoration: none">PUESTO Y PROFESIÓN/OFICIO</a>
               </div>
            </div>
            <div class="col-md-6">
-             <input class="form-control" type="text" placeholder="Escriba su puesto y profesión u oficio" style="font-size: 13px; height: 30px; width: 300px;">
+             <input id="tituloProfesional2" class="form-control" type="text" placeholder="Escriba su puesto y profesión u oficio" style="font-size: 13px; height: 30px; width: 300px;">
            </div>
            <div class="col-md-2" style="padding-right: 60px; margin-top: -5px;">
              <a style="color:#9d005d; font-family: oswaldregular; font-size: 22px; text-decoration: none">*</a>
            </div>
         </div>
        
-        <div class="col-md-12" style="padding-top: 32px;">
+        <div class="col-md-12" style="margin-top: 32px;">
            <div class="col-md-4">
               <div style="height:32px; background:#a691d0; margin-left: 50px; width: 140px; padding-top: 5px; text-align: left;">
                 <a style="color:#940452; font-family: oswaldregular; font-size: 10px; padding-left: 10px; padding-top: 5px; text-decoration: none">TELÉFONO</a>
               </div>
            </div>
            <div class="col-md-6">
-             <input class="form-control" type="text" placeholder="Escriba su teléfono para contactarle" style="font-size: 13px; height: 30px; width: 300px;">
+             <input id="telefono2" class="form-control" type="text" placeholder="Escriba su teléfono para contactarle" style="font-size: 13px; height: 30px; width: 300px;">
            </div>
            <div class="col-md-2" style="padding-right: 60px; margin-top: -5px;">
              <a style="color:#9d005d; font-family: oswaldregular; font-size: 22px; text-decoration: none">*</a>
            </div>
         </div>
         
-        <div class="col-md-12" style="padding-top: 32px;">
+        <div class="col-md-12" style="margin-top: 32px;">
            <div class="col-md-4">
               <div style="height:32px; background:#a691d0; margin-left: 50px; width: 140px; padding-top: 5px; text-align: left;">
                 <a style="color:#940452; font-family: oswaldregular; font-size: 10px; padding-left: 10px; padding-top: 5px; text-decoration: none">EMAIL</a>
               </div>
            </div>
            <div class="col-md-6">
-             <input class="form-control" type="text" placeholder="Escriba su email de contacto" style="font-size: 13px; height: 30px; width: 300px;">
+             <input id="email2" class="form-control" type="text" placeholder="Escriba su email de contacto" style="font-size: 13px; height: 30px; width: 300px;">
            </div>
            <div class="col-md-2" style="padding-right: 60px; margin-top: -5px;">
              <a style="color:#9d005d; font-family: oswaldregular; font-size: 22px; text-decoration: none">*</a>
            </div>
         </div>
 
-        <div class="col-md-12" style="padding-top: 32px;">
+        <div class="col-md-12" style="margin-top: 32px;">
            <div class="col-md-4">
               <div style="height:32px; background:#a691d0; margin-left: 50px; width: 140px; padding-top: 5px; text-align: left;">
                 <a style="color:#940452; font-family: oswaldregular; font-size: 10px; padding-left: 10px; padding-top: 5px; text-decoration: none">OFERTA LABORAL</a>
               </div>
            </div>
            <div class="col-md-6">
-             <input class="form-control" type="text" placeholder="Oferta y/o vacante para la que se postula" style="font-size: 13px; height: 30px; width: 300px;">
+             <input id="oferta2" class="form-control" type="text" placeholder="Oferta y/o vacante para la que se postula" style="font-size: 13px; height: 30px; width: 300px;">
            </div>
            <div class="col-md-2" style="padding-right: 60px; margin-top: -5px;">
              <a style="color:#9d005d; font-family: oswaldregular; font-size: 22px; text-decoration: none">*</a>
            </div>
         </div>
 
-        <div class="col-md-12" style="padding-top: 32px;">
+        <div class="col-md-12" style="margin-top: 32px;">
            <div class="col-md-4">
               <div style="height:32px; background:#a691d0; margin-left: 50px; width: 140px; padding-top: 5px; text-align: left;">
                 <a style="color:#940452; font-family: oswaldregular; font-size: 10px; padding-left: 10px; padding-top: 5px; text-decoration: none">ADJUNTAR C.V.</a>
               </div>
            </div>
-           <div class="col-md-4">
-             <input class="form-control" type="text" placeholder="" style="font-size: 13px; height: 30px; width: 300px;">
-           </div>
-           <div class="col-md-2">
-             <button onclick="" type="submit" style="background-color:#87c3e7; height: 30px; width:103px; color:#940452; font-family: oswaldregular; cursor:pointer;">EXAMINAR</button>
+           <div class="col-md-6">
+             <input onclick="" id="fileImage" type="file" onchange="subirImage();" name="file" style="background-color:#87c3e7; height: 30px; width: 100%; color:#940452; font-family: oswaldregular; cursor:pointer;" >
            </div>
            <div class="col-md-2" style="padding-right: 60px; margin-top: -5px;">
              <a style="color:#9d005d; font-family: oswaldregular; font-size: 22px; text-decoration: none">*</a>
            </div>
         </div>
 
-        <div class="col-md-12" style="padding-top: 32px;">
+        <div class="col-md-12" style="margin-top: 32px;">
            <div class="col-md-4">
               <div style="height:32px; background:#a691d0; margin-left: 50px; width: 140px; padding-top: 5px; text-align: left;">
                 <a style="color:#940452; font-family: oswaldregular; font-size: 10px; padding-left: 10px; padding-top: 5px; text-decoration: none">MENSAJE</a>
               </div>
            </div>
            <div class="col-md-6">
-             <input class="form-control" type="text" placeholder="Escriba un mensaje" style="font-size: 13px; height: 90px; width: 300px; padding-bottom: 60px;">
+             <input id="comentarios2" class="form-control" type="text" placeholder="Escriba un mensaje" style="font-size: 13px; height: 90px; width: 300px; padding-bottom: 60px;">
            </div>
            <div class="col-md-2" style="padding-right: 60px; margin-top: -5px;">
            </div>
@@ -499,7 +619,7 @@
            <div class="col-md-5">
            </div>
            <div class="col-md-7" style="padding-left: 50px; padding-top: 10px;">
-           <button onclick="" type="submit" style="background-color:#60bfdb; height: 35px; width:150px; color:#940452; font-family: oswaldregular; cursor:pointer;">ENVIAR C.V.</button>
+           <button  onclick="enviar123();" type="submit" style="background-color:#60bfdb; height: 35px; width:150px; color:#940452; font-family: oswaldregular; cursor:pointer;">ENVIAR C.V.</button>
            </div>
          </div>
 
@@ -533,48 +653,48 @@
               </div>
            </div>
            <div class="col-md-6">
-             <input class="form-control" type="text" placeholder="Escriba su(s) nombre(s) completo con apellidos" style="font-size: 13px; height: 30px; width: 300px;">
+             <input id="nombreCompleto" class="form-control" type="text" placeholder="Escriba su(s) nombre(s) completo con apellidos" style="font-size: 13px; height: 30px; width: 300px;">
            </div>
            <div class="col-md-2" style="padding-right: 60px; margin-top: -5px;">
              <a style="color:#9d005d; font-family: oswaldregular; font-size: 22px; text-decoration: none">*</a>
            </div>
         </div>
        
-        <div class="col-md-12" style="padding-top: 32px;">
+        <div class="col-md-12" style="margin-top: 32px;">
            <div class="col-md-4">
               <div style="height:32px; background:#a691d0; margin-left: 50px; width: 140px; padding-top: 5px; text-align: left;">
                 <a style="color:#940452; font-family: oswaldregular; font-size: 10px; padding-left: 10px; padding-top: 5px; text-decoration: none">TELÉFONO</a>
               </div>
            </div>
            <div class="col-md-6">
-             <input class="form-control" type="text" placeholder="Escriba su teléfono para contactarle" style="font-size: 13px; height: 30px; width: 300px;">
+             <input id="telefono" class="form-control" type="text" placeholder="Escriba su teléfono para contactarle" style="font-size: 13px; height: 30px; width: 300px;">
            </div>
            <div class="col-md-2" style="padding-right: 60px; margin-top: -5px;">
              <a style="color:#9d005d; font-family: oswaldregular; font-size: 22px; text-decoration: none">*</a>
            </div>
         </div>
         
-        <div class="col-md-12" style="padding-top: 32px;">
+        <div class="col-md-12" style="margin-top: 32px;">
            <div class="col-md-4">
               <div style="height:32px; background:#a691d0; margin-left: 50px; width: 140px; padding-top: 5px; text-align: left;">
                 <a style="color:#940452; font-family: oswaldregular; font-size: 10px; padding-left: 10px; padding-top: 5px; text-decoration: none">EMAIL</a>
               </div>
            </div>
            <div class="col-md-6">
-             <input class="form-control" type="text" placeholder="Escriba su email de contacto" style="font-size: 13px; height: 30px; width: 300px;">
+             <input id="email" class="form-control" type="text" placeholder="Escriba su email de contacto" style="font-size: 13px; height: 30px; width: 300px;">
            </div>
            <div class="col-md-2" style="padding-right: 60px; margin-top: -5px;">
            </div>
         </div>
 
-        <div class="col-md-12" style="padding-top: 32px;">
+        <div class="col-md-12" style="margin-top: 32px;">
            <div class="col-md-4">
               <div style="height:32px; background:#a691d0; margin-left: 50px; width: 140px; padding-top: 5px; text-align: left;">
                 <a style="color:#940452; font-family: oswaldregular; font-size: 10px; padding-left: 10px; padding-top: 5px; text-decoration: none">ESTADO EN EL QUE RADICA</a>
               </div>
            </div>
            <div class="col-md-6">
-             <select name="estados" onchange="" style="display: block; width: 250px; height: 30px;">
+             <select id="estado" name="estados" onchange="" style="display: block; width: 250px; height: 30px;">
 <option value="" disabled selected>Seleccione un Estado</option>
 <option value="Todas">Todas las zonas</option>
 <option value="Todo México">Todo México</option>
@@ -668,8 +788,8 @@
            </div>
         </div>
 
-        <div class="col-md-12" style="padding-top: 32px;">
-           <div class="col-md-4">
+        <!--<div class="col-md-12" style="margin-top: 32px;">
+          <div class="col-md-4">
               <div style="height:32px; background:#a691d0; margin-left: 50px; width: 140px; padding-top: 5px; text-align: left;">
                 <a style="color:#940452; font-family: oswaldregular; font-size: 10px; padding-left: 10px; padding-top: 5px; text-decoration: none">¿PUEDE VIAJAR?</a>
               </div>
@@ -683,16 +803,16 @@
            </div>
            <div class="col-md-2" style="padding-right: 60px; margin-top: -5px;">
            </div>
-        </div>
+        </div>-->
 
-        <div class="col-md-12" style="padding-top: 32px;">
+        <div class="col-md-12" style="margin-top: 32px;">
            <div class="col-md-4">
               <div style="height:32px; background:#a691d0; margin-left: 50px; width: 140px; padding-top: 5px; text-align: left;">
                 <a style="color:#940452; font-family: oswaldregular; font-size: 10px; padding-left: 10px; padding-top: 5px; text-decoration: none">OFERTA LABORAL</a>
               </div>
            </div>
            <div class="col-md-6">
-             <input class="form-control" type="text" placeholder="Oferta y/o vacante para la que se postula" style="font-size: 13px; height: 30px; width: 300px;">
+             <input id="oferta" class="form-control" type="text" placeholder="Oferta y/o vacante para la que se postula" style="font-size: 13px; height: 30px; width: 300px;">
            </div>
            <div class="col-md-2" style="padding-right: 60px; margin-top: -5px;">
              <a style="color:#9d005d; font-family: oswaldregular; font-size: 22px; text-decoration: none">*</a>
@@ -710,61 +830,61 @@
               </div>
            </div>
            <div class="col-md-6">
-             <input class="form-control" type="text" placeholder="Escriba su título profesional y/o profesión u oficio a la que se dedica" style="font-size: 13px; height: 50px; width: 300px;">
+             <input id="tituloProfesional" class="form-control" type="text" placeholder="Escriba su título profesional y/o profesión u oficio a la que se dedica" style="font-size: 13px; height: 50px; width: 300px;">
            </div>
            <div class="col-md-2" style="padding-right: 60px; margin-top: -5px;">
              <a style="color:#9d005d; font-family: oswaldregular; font-size: 22px; text-decoration: none">*</a>
            </div>
         </div>
        
-        <div class="col-md-12" style="padding-top: 32px;">
+        <div class="col-md-12" style="margin-top: 32px;">
            <div class="col-md-4">
               <div style="height:30px; background:#a691d0; margin-left: 50px; width: 140px; padding-top: 5px; text-align: left;">
                 <a style="color:#940452; font-family: oswaldregular; font-size: 10px; padding-left: 10px; padding-top: 5px; text-decoration: none">ÚLTIMO GRADO DE ESTUDIOS</a>
               </div>
            </div>
            <div class="col-md-6">
-             <input class="form-control" type="text" placeholder="Escriba su último grado de estudio" style="font-size: 13px; height: 30px; width: 300px;">
+             <input id="gradoEstudios" class="form-control" type="text" placeholder="Escriba su último grado de estudio" style="font-size: 13px; height: 30px; width: 300px;">
            </div>
            <div class="col-md-2" style="padding-right: 60px; margin-top: -5px;">
              <a style="color:#9d005d; font-family: oswaldregular; font-size: 22px; text-decoration: none">*</a>
            </div>
         </div>
         
-        <div class="col-md-12" style="padding-top: 32px;">
+        <div class="col-md-12" style="margin-top: 32px;">
            <div class="col-md-4">
               <div style="height:60px; background:#a691d0; margin-left: 50px; width: 140px; padding-top: 5px; text-align: left;">
                 <a style="color:#940452; font-family: oswaldregular; font-size: 10px; padding-left: 10px; padding-top: 5px; text-decoration: none">ALGÚN OTRO CURSO Y/O DIPLOMADO</a>
               </div>
            </div>
            <div class="col-md-6">
-             <input class="form-control" type="text" placeholder="Escriba separado por comas, si cuenta con algún curso y/o dimplomado" style="font-size: 13px; height: 60px; width: 300px;">
+             <input id="diplomado" class="form-control" type="text" placeholder="Escriba separado por comas, si cuenta con algún curso y/o dimplomado" style="font-size: 13px; height: 60px; width: 300px;">
            </div>
            <div class="col-md-2" style="padding-right: 60px; margin-top: -5px;">
            </div>
         </div>
 
-        <div class="col-md-12" style="padding-top: 32px;">
+        <div class="col-md-12" style="margin-top: 32px;">
            <div class="col-md-4">
               <div style="height:60px; background:#a691d0; margin-left: 50px; width: 140px; padding-top: 5px; text-align: left;">
                 <a style="color:#940452; font-family: oswaldregular; font-size: 10px; padding-left: 10px; padding-top: 5px; text-decoration: none">HABILIDADES</a>
               </div>
            </div>
            <div class="col-md-6">
-             <input class="form-control" type="text" placeholder="Escriba sobre sus habilidades y aptitudes" style="font-size: 13px; height: 60px; width: 300px;">
+             <input id="habilidades" class="form-control" type="text" placeholder="Escriba sobre sus habilidades y aptitudes" style="font-size: 13px; height: 60px; width: 300px;">
            </div>
            <div class="col-md-2" style="padding-right: 60px; margin-top: -5px;">
            </div>
         </div>
 
-        <div class="col-md-12" style="padding-top: 32px;">
+        <div class="col-md-12" style="margin-top: 32px;">
            <div class="col-md-4">
               <div style="height:90px; background:#a691d0; margin-left: 50px; width: 140px; padding-top: 5px; text-align: left;">
                 <a style="color:#940452; font-family: oswaldregular; font-size: 10px; padding-left: 10px; padding-top: 5px; text-decoration: none">COMPETENCIAS LABORALES</a>
               </div>
            </div>
            <div class="col-md-6">
-             <input class="form-control" type="text" placeholder="Escriba sobre sus competencias laborales" style="font-size: 13px; height: 90px; width: 300px;">
+             <input id="competencias" class="form-control" type="text" placeholder="Escriba sobre sus competencias laborales" style="font-size: 13px; height: 90px; width: 300px;">
            </div>
            <div class="col-md-2" style="padding-right: 60px; margin-top: -5px;">
              <a style="color:#9d005d; font-family: oswaldregular; font-size: 22px; text-decoration: none">*</a>
@@ -782,26 +902,26 @@
               </div>
            </div>
            <div class="col-md-6">
-             <input class="form-control" type="text" placeholder="Escriba el nombre de la última empresa/persona para quien trabajó" style="font-size: 13px; height: 30px; width: 300px;">
+             <input id="ultimoEmpleador" class="form-control" type="text" placeholder="Escriba el nombre de la última empresa/persona para quien trabajó" style="font-size: 13px; height: 30px; width: 300px;">
            </div>
            <div class="col-md-2" style="padding-right: 60px; margin-top: -5px;">
            </div>
         </div>
        
-        <div class="col-md-12" style="padding-top: 32px;">
+        <div class="col-md-12" style="margin-top: 32px;">
            <div class="col-md-4">
               <div style="height:50px; background:#a691d0; margin-left: 50px; width: 140px; padding-top: 5px; text-align: left;">
                 <a style="color:#940452; font-family: oswaldregular; font-size: 10px; padding-left: 10px; padding-top: 5px; text-decoration: none">UBICACIÓN DE SU ÚLTIMO EMPLEADOR</a>
               </div>
            </div>
            <div class="col-md-6">
-             <input class="form-control" type="text" placeholder="Escriba la dirección de la última empresa/persona para quien trabajó" style="font-size: 13px; height: 50px; width: 300px;">
+             <input id="ultimoEmpleo" class="form-control" type="text" placeholder="Escriba la dirección de la última empresa/persona para quien trabajó" style="font-size: 13px; height: 50px; width: 300px;">
            </div>
            <div class="col-md-2" style="padding-right: 60px; margin-top: -5px;">
            </div>
         </div>
         
-        <div class="col-md-12" style="padding-top: 32px;">
+        <div class="col-md-12" style="height: 59px; margin-top: 32px;">
            <div class="col-md-4">
               <div style="height:72px; background:#a691d0; margin-left: 50px; width: 140px; padding-top: 5px; text-align: left;">
                 <a style="color:#940452; font-family: oswaldregular; font-size: 10px; padding-left: 10px; padding-top: 5px; text-decoration: none">DESDE CUÁNDO Y HASTA CUÁNDO LABORÓ ALLÍ</a>
@@ -815,51 +935,85 @@
                <a style="color:#940452; font-family: oswaldregular; font-size: 10px; padding-left: 10px; padding-top: 5px; text-decoration: none">HASTA</a>
              </div>
              <div class="col-md-3" style="padding-left: 0px;">
-             <select name="" onchange="" style="display: block; width: 200px; width: 65px; height: 30px;">
+             <select id="mes1" name="" onchange="" style="display: block; width: 200px; width: 65px; height: 30px;">
               <option value="" disabled selected>MES</option>
-              <option value="Enero">Enero</option>
-              <option value="Febrero">Febrero</option>
-              <option value="Marzo">Marzo</option>
-              <option value="Abril">Abril</option>
-              <option value="Mayo">Mayo</option>
-              <option value="Junio">Junio</option>
-              <option value="Julio">Julio</option>
-              <option value="Agosto">Agosto</option>
-              <option value="Septiembre">Septiembre</option>
-              <option value="Octubre">Octubre</option>
-              <option value="Noviembre">Noviembre</option>
-              <option value="Diciembre">Diciembre</option>
+              <option value="01">01</option>
+              <option value="02">02</option>
+              <option value="03">03</option>
+              <option value="04">04</option>
+              <option value="05">05</option>
+              <option value="06">06</option>
+              <option value="07">07</option>
+              <option value="08">08</option>
+              <option value="09">09</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
              </select>
              </div>
              <div class="col-md-3" style="padding-left: 5px;">
-             <select name="" onchange="" style="display: block; width: 200px; width: 65px; height: 30px;">
+             <select id="ano1" name="" onchange="" style="display: block; width: 200px; width: 65px; height: 30px;">
               <option value="" disabled selected>AÑO</option>
               <option value="2016">2016</option>
               <option value="2015">2015</option>
+              <option value="2014">2014</option>
+              <option value="2013">2013</option>
+              <option value="2012">2012</option>
+              <option value="2011">2011</option>
+              <option value="2010">2010</option>
+              <option value="2009">2009</option>
+              <option value="2008">2008</option>
+              <option value="2007">2007</option>
+              <option value="2006">2006</option>
+              <option value="2005">2005</option>
+              <option value="2004">2004</option>
+              <option value="2003">2003</option>
+              <option value="2002">2002</option>
+              <option value="2001">2001</option>
+              <option value="2000">2000</option>
+              <option value="1999">1999</option>
+              <option value="1998">1998</option>
              </select>
              </div>
              <div class="col-md-3" style="padding-left: 10px;">
-             <select name="" onchange="" style="display: block; width: 200px; width: 65px; height: 30px;">
+             <select id="mes2" name="" onchange="" style="display: block; width: 200px; width: 65px; height: 30px;">
               <option value="" disabled selected>MES</option>
-              <option value="Enero">Enero</option>
-              <option value="Febrero">Febrero</option>
-              <option value="Marzo">Marzo</option>
-              <option value="Abril">Abril</option>
-              <option value="Mayo">Mayo</option>
-              <option value="Junio">Junio</option>
-              <option value="Julio">Julio</option>
-              <option value="Agosto">Agosto</option>
-              <option value="Septiembre">Septiembre</option>
-              <option value="Octubre">Octubre</option>
-              <option value="Noviembre">Noviembre</option>
-              <option value="Diciembre">Diciembre</option>
+              <option value="01">01</option>
+              <option value="02">02</option>
+              <option value="03">03</option>
+              <option value="04">04</option>
+              <option value="05">05</option>
+              <option value="06">06</option>
+              <option value="07">07</option>
+              <option value="08">08</option>
+              <option value="09">09</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
              </select>
              </div>
              <div class="col-md-3" style="padding-left: 15px;">
-             <select name="" onchange="" style="display: block; width: 200px; width: 65px; height: 30px;">
+             <select id="ano2" name="" onchange="" style="display: block; width: 200px; width: 65px; height: 30px;">
               <option value="" disabled selected>AÑO</option>
               <option value="2016">2016</option>
               <option value="2015">2015</option>
+              <option value="2014">2014</option>
+              <option value="2013">2013</option>
+              <option value="2012">2012</option>
+              <option value="2011">2011</option>
+              <option value="2010">2010</option>
+              <option value="2009">2009</option>
+              <option value="2008">2008</option>
+              <option value="2007">2007</option>
+              <option value="2006">2006</option>
+              <option value="2005">2005</option>
+              <option value="2004">2004</option>
+              <option value="2003">2003</option>
+              <option value="2002">2002</option>
+              <option value="2001">2001</option>
+              <option value="2000">2000</option>
+              <option value="1999">1999</option>
+              <option value="1998">1998</option>
              </select>
              </div>
            </div>
@@ -867,18 +1021,18 @@
              <a style="color:#9d005d; font-family: oswaldregular; font-size: 22px; text-decoration: none">*</a>
            </div>
            <div class="col-md-6">
-               <input id="" type="checkbox" checked="" value="" style="color:#940452; font-family: oswaldregular; font-size: 10px;">ACTUALMENTE TRABAJO ALLÍ
+               <input id="trabajaActualmente" type="checkbox" checked="" value="" style="color:#940452; font-family: oswaldregular; font-size: 10px;">ACTUALMENTE TRABAJO ALLÍ
            </div>
         </div>
 
-        <div class="col-md-12" style="padding-top: 32px;">
+        <div class="col-md-12" style="margin-top: 32px;">
            <div class="col-md-4">
               <div style="height:90px; background:#a691d0; margin-left: 50px; width: 140px; padding-top: 5px; text-align: left;">
                 <a style="color:#940452; font-family: oswaldregular; font-size: 10px; padding-left: 10px; padding-top: 5px; text-decoration: none">BREVE DESCRIPCIÓN DE LAS ACTIVIDADES QUE DESEMPEÑABA EN SU PUESTO</a>
               </div>
            </div>
            <div class="col-md-6">
-             <input class="form-control" type="text" placeholder="Escriba una breve descripción de las actividades que realizaba en su trabajo anterior y/o actualEscriba una breve descripción de las actividades que realizaba en su trabajo anterior y/o actual" style="font-size: 13px; height: 90px; width: 300px;">
+             <input id="descripcionAnteriores" class="form-control" type="text" placeholder="Escriba una breve descripción de las actividades que realizaba en su trabajo anterior y/o actualEscriba una breve descripción de las actividades que realizaba en su trabajo anterior y/o actual" style="font-size: 13px; height: 90px; width: 300px;">
            </div>
            <div class="col-md-2" style="padding-right: 60px; margin-top: -5px;">
            </div>
@@ -888,7 +1042,7 @@
            <div class="col-md-5">
            </div>
            <div class="col-md-7" style="padding-left: 0px; padding-top: 10px;">
-           <button onclick="" type="submit" style="background-color:#60bfdb; height: 35px; width:200px; color:#940452; font-family: oswaldregular; cursor:pointer;">ENVIAR PRE-SOLICITUD</button>
+           <button onclick="enviarForm123();" type="submit" style="background-color:#60bfdb; height: 35px; width:200px; color:#940452; font-family: oswaldregular; cursor:pointer;">ENVIAR PRE-SOLICITUD</button>
            </div>
          </div>
 
@@ -898,9 +1052,7 @@
    </div>
 
   </div>
-</div>
-                        </div>   
-                    </div>
+</div><!--fin col-12-->
                     
                     <!--<div class="divider"><span>Or</span></div>--->
                   </div> <!--fin row-->
