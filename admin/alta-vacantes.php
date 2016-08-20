@@ -49,18 +49,22 @@ function altaVacante(option, id){
 	alert("Seleccionar Estado");
   } else if(!$("#descripcion").val()){
 	alert("Llenar Descripción");
+  } else if(!$("#nombreVacante").val()){
+	alert("Llenar Nombre de la Vacante");
   } else if(!$("#requisitos").val()){
 	alert("Llenar Requisitos");
   } else if(!$("#actividades").val()){
 	alert("Llenar Actividades");
-  } else if(!$("#incentivos").val()){
+  } /*else if(!$("#incentivos").val()){
 	alert("Llenar Incentivos");
-  } else if(!$("#prestaciones").val()){
+  } */else if(!$("#prestaciones").val()){
 	alert("Llenar prestaciones");
   } else if(!$("#remuneracion").val()){
 	alert("Llenar Remuneración");
   } else if(!$("#contacto").val()){
 	alert("Llenar Contacto");
+  } else if(!$("#imagen").val()){
+	alert("Agrega una imágen a a vacante");
   } else {
 	console.log($("#latitud").val() + " " + $("#longitud").val());
 	$.ajax({      data: { nombreEmpresa:$("#nombreEmpresa").val(),
@@ -73,17 +77,19 @@ function altaVacante(option, id){
 						  latitud:$("#latitud").val(),
 						  longitud:$("#longitud").val(),
 						  actividades:$("#actividades").val(),
-						  incentivos:$("#incentivos").val(),
+						  //incentivos:$("#incentivos").val(),
+              nombreVacante:$("#nombreVacante").val(),
 						  prestaciones:$("#prestaciones").val(),
 						  remuneracion:$("#remuneracion").val(),
 						  contacto:$("#contacto").val(),
+              imagen:$("#imagen").val(),
               option:option,
               id:id },
 					url:   "scripts/alta-vacantes.php",
 			type:  'POST',
 			success:  function (response) {
 			  alert("Vacante Agregada");
-                          window.location = "index.php";
+        window.location = "index.php";
 			}, error: function (response){
 			  alert("ERROR inténtelo de nuevo más tarde");
 			}
@@ -184,6 +190,11 @@ if($_GET["id"]){
                   <option value="Internado">Internado</option>
                   <option value="Rol de Turnos">Rol de Turnos</option>
                 </select>
+            </div>
+           
+            <div class="form-group form-group-default ">
+                <label>Escriba el nombre de la vacante</label>
+                <input value="<?PHP echo $row['nombreVacante']; ?>" id="nombreVacante" type="text" class="form-control" required>
             </div>
             
             <div class="row">
@@ -385,12 +396,12 @@ if($_GET["id"]){
                 </div>
               </div>
             </div><!--row-->
-            
+            <!--
             <div class="form-group form-group-default ">
                 <label>Escriba una lista y/o describa brevemente los incentivos que otorga la empresa</label>
                 <textarea id="incentivos" style="height: 200px;" type="email" class="form-control"><?PHP echo $row["incentivos"]; ?></textarea>
             </div>
-            
+            -->
             <div class="row">
               <div class="col-md-12">
                 <div class="col-md-1">
@@ -437,6 +448,11 @@ if($_GET["id"]){
             <div class="form-group form-group-default ">
                 <label>Escriba los datos de con quién debe contactarse el postulante y forma de aplicar o postularse para la vacante</label>
                 <textarea id="contacto" style="height: 200px;" type="email" class="form-control"><?PHP echo $row["contacto"]; ?></textarea>
+            </div>
+
+            <div class="form-group form-group-default ">
+                <label>Escriba la dirección de la imágen de la vacante para visualizarse en redes sociales</label>
+                <input value="<?PHP echo $row['imagen']; ?>" id="imagen" type="text" class="form-control" required>
             </div>
             
             <div class="row">
