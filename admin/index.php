@@ -54,9 +54,9 @@ function buscar(){
                                     html+='<span class="caret"></span>';
                                 html+='</button>';
                                 html+='<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">';
-                                    html+='<li><a style="text-align: left;" href="https://www.facebook.com/sharer.php?u=https://www.facebook.com/sharer.php?u=http://boogapp.com/webs/LWS/pages_es/pg_empleo_desc.php?id='+obj.id[x]+'">Facebook</a></li>';
-                                    html+='<li><a style="text-align: left;" href="https://twitter.com/intent/tweet?text=Texto&url=https://www.facebook.com/sharer.php?u=http://boogapp.com/webs/LWS/pages_es/pg_empleo_desc.php?id='+obj.id[x]+'">Twitter</a></li>';
-                                    html+='<li><a style="text-align: left;" href="https://www.linkedin.com/shareArticle?mini=true&url=https://www.facebook.com/sharer.php?u=http://boogapp.com/webs/LWS/pages_es/pg_empleo_desc.php?id='+obj.id[x]+'&title=How%20to%20make%20custom%20linkedin%20share%20button&summary=some%20summary%20if%20you%20want&source=stackoverflow.com">Linkedin</a></li>';
+                                    html+='<li><a target="_blank" style="text-align: left;" href="https://www.facebook.com/sharer.php?u=http://boogapp.com/webs/LWS/pages_es/pg_empleo_desc.php?id='+obj.id[x]+'">Facebook</a></li>';
+                                    html+='<li><a target="_blank" style="text-align: left;" href="https://twitter.com/intent/tweet?text=Texto&url=http://boogapp.com/webs/LWS/pages_es/pg_empleo_desc.php?id='+obj.id[x]+'">Twitter</a></li>';
+                                    html+='<li><a target="_blank" style="text-align: left;" href="https://www.linkedin.com/shareArticle?mini=true&url=http://boogapp.com/webs/LWS/pages_es/pg_empleo_desc.php?id='+obj.id[x]+'&title=How%20to%20make%20custom%20linkedin%20share%20button&summary=some%20summary%20if%20you%20want&source=stackoverflow.com">Linkedin</a></li>';
                                 html+='</ul>';
                                 html+='</div>';
                             html+='</td>';
@@ -239,9 +239,9 @@ function getCategorias(hoja){
                                     html+='<span class="caret"></span>';
                                 html+='</button>';
                                 html+='<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">';
-                                    html+='<li><a style="text-align: left;" href="https://www.facebook.com/sharer.php?u=https://www.facebook.com/sharer.php?u=http://boogapp.com/webs/LWS/pages_es/pg_empleo_desc.php?id='+obj.id[x]+'">Facebook</a></li>';
-                                    html+='<li><a style="text-align: left;" href="https://twitter.com/intent/tweet?text=Texto&url=https://www.facebook.com/sharer.php?u=http://boogapp.com/webs/LWS/pages_es/pg_empleo_desc.php?id='+obj.id[x]+'">Twitter</a></li>';
-                                    html+='<li><a style="text-align: left;" href="https://www.linkedin.com/shareArticle?mini=true&url=https://www.facebook.com/sharer.php?u=http://boogapp.com/webs/LWS/pages_es/pg_empleo_desc.php?id='+obj.id[x]+'&title=How%20to%20make%20custom%20linkedin%20share%20button&summary=some%20summary%20if%20you%20want&source=stackoverflow.com">Linkedin</a></li>';
+                                    html+='<li><a target="_blank" style="text-align: left;" href="https://www.facebook.com/sharer.php?u=http://boogapp.com/webs/LWS/pages_es/pg_empleo_desc.php?id='+obj.id[x]+'">Facebook</a></li>';
+                                    html+='<li><a target="_blank" style="text-align: left;" href="https://twitter.com/intent/tweet?text=Texto&url=http://boogapp.com/webs/LWS/pages_es/pg_empleo_desc.php?id='+obj.id[x]+'">Twitter</a></li>';
+                                    html+='<li><a target="_blank" style="text-align: left;" href="https://www.linkedin.com/shareArticle?mini=true&url=http://boogapp.com/webs/LWS/pages_es/pg_empleo_desc.php?id='+obj.id[x]+'&title=How%20to%20make%20custom%20linkedin%20share%20button&summary=some%20summary%20if%20you%20want&source=stackoverflow.com">Linkedin</a></li>';
                                 html+='</ul>';
                                 html+='</div>';
                             html+='</td>';
