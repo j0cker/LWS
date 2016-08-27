@@ -385,7 +385,7 @@ if($_GET["id"]){
                 <label>Escriba una lista y/o describa brevemente las actividades a desempeñar en el empleo</label>
                 <textarea id="actividades" style="height: 200px;" type="email" class="form-control"><?PHP echo $row["actividades"]; ?></textarea>
             </div>
-            
+            <!--
             <div class="row">
               <div class="col-md-12">
                 <div class="col-md-1">
@@ -395,7 +395,9 @@ if($_GET["id"]){
                   <p style="font-size: 20px; font-weight: bold;">Escriba los incentivos que brinda la empresa a sus colaboradores</p>
                 </div>
               </div>
-            </div><!--row-->
+            </div>
+            -->
+            <!--row-->
             <!--
             <div class="form-group form-group-default ">
                 <label>Escriba una lista y/o describa brevemente los incentivos que otorga la empresa</label>

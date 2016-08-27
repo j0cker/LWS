@@ -10,7 +10,8 @@ $version_bamboostr = "V 2.182";
 //$direccion_principal_config = "localhost:8000";
 //$direccion_principal_config = "bam.boogapp.com";
 //$direccion_principal_config = "bamboostr.com";
-$direccion_principal_config = "localhost/LWS";
+//$direccion_principal_config = "localhost/LWS";
+$direccion_principal_config = "boogapp.com/webs/LWS";
 /*Fin Dirección Principal*/
 
 

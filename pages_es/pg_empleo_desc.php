@@ -380,9 +380,9 @@
         <br><br>
         <hr style="border-width: 2px; margin:0; border-color: #666666;">
         <br>
-        <img style="width:190px; padding-bottom:8px; cursor:pointer;" src="img/facebook.png"></img>
-        <img style="width:190px; padding-bottom:8px; cursor:pointer;" src="img/twitter.png"></img>
-        <img style="width:190px; padding-bottom:25px; cursor:pointer;" src="img/linkedin.png"></img>
+        <a href="https://www.facebook.com/sharer.php?u=http://boogapp.com/webs/LWS/pages_es/pg_empleo_desc.php?id={{vacanteId.id}}"><img style="width:190px; padding-bottom:8px; cursor:pointer;" src="img/facebook.png"></img></a>
+        <a href="https://twitter.com/intent/tweet?text=Texto&url=http://boogapp.com/webs/LWS/pages_es/pg_empleo_desc.php?id={{vacanteId.id}}"><img style="width:190px; padding-bottom:8px; cursor:pointer;" src="img/twitter.png"></img></a>
+        <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://boogapp.com/webs/LWS/pages_es/pg_empleo_desc.php?id={{vacanteId.id}}&title={{vacanteId.nombreEmpresa}}&summary=some%20summary%20if%20you%20want&source=stackoverflow.com"><img style="width:190px; padding-bottom:25px; cursor:pointer;" src="img/linkedin.png"></img></a>
       </div>
 
     </div>
