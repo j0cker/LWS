@@ -2,9 +2,9 @@
 $servername = "localhost";
 //$username = "scrapell_112372";
 //$password = "ASD0374lajdfg";
-$username = "root";
-$password = "";
-$mydb = "lws";
+$username = "lwsmx_system";
+$password = "weigr32b8q74";
+$mydb = "lwsmx_system";
 //$mydb = "scrapell_lws";
 
 // Create connection

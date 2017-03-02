@@ -1,0 +1,465 @@
+@charset "UTF-8";
+/* CSS Document */
+
+body {
+font: 100%/1.4 Verdana, Arial, Helvetica, sans-serif;
+	
+	margin: 0;
+	top:0px;
+	left:0px;
+	
+    font-family: 'Oswald', sans-serif;
+
+}
+
+footer {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	height: 85px;
+	width: 100%;
+	text-align: center;
+    }
+	
+header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	margin: 0;
+	height: 209px;
+	width: 100%;
+	background-color:#FFFFFF;
+    }
+	
+section {
+	height:100%;
+	width:100%;
+	position: fixed;
+}
+	
+.back {
+	background-image:url("../img/body_bckg-02.png");
+	background-repeat:repeat-y;
+	top: 50%;
+    left: 50%;
+}
+
+a {color:#fff;}
+
+a:hover {text-decoration:none; color:#fff;}
+
+a:link {
+	color: #FFFFFF;
+}
+
+a:visited {
+	color: #FFCCFF;
+}
+
+a:active {
+	color: #FFFFFF;
+}
+
+
+
+
+.centrar {
+	top: 50%;
+	left: 50%;
+}
+	
+	
+@font-face {
+    font-family: 'oswaldregular';
+    src: url('font-oswald-r/oswald-regular-webfont.eot');
+    src: url('font-oswald-r/oswald-regular-webfont-.eot#iefix') format('embedded-opentype'),
+         url('font-oswald-r/oswald-regular-webfont.woff2') format('woff2'),
+         url('font-oswald-r/oswald-regular-webfont.woff') format('woff'),
+         url('font-oswald-r/oswald-regular-webfont.ttf') format('truetype'),
+         url('font-oswald-r/oswald-regular-webfont.svg#oswaldregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+.txt_oswald_r {
+	font-family: 'oswaldregular';
+	font-size: 1em;
+	
+}
+
+.txt_oswald_12px {
+	font-family: 'oswaldregular';
+	font-size:12px;
+	
+}
+
+.txt_oswald_r_submenu {
+	font-family: 'oswaldregular';
+	font-size:0.78em;
+	color:#4D1641;
+	text-align:center;
+}
+
+.txt_oswald_r_bienvenido {
+	font-family: 'oswaldregular';
+	font-size:12pt;
+	color:#FFFFFF;
+	text-align:center;
+}	
+
+.txt_oswald_r_bienvenido2 {
+	font-family: 'oswaldregular';
+	font-size:12pt;
+	color:#000000
+	text-align:center;
+}
+
+.txt_oswald_redes {
+	font-family: 'oswaldregular';
+	font-size:12px;
+	color:#392556;
+	text-align:center;
+	line-height:12px;
+}
+
+.txt_oswald_r_inide-lws_tl {
+	font-family: 'oswaldregular';
+	font-size:12pt;
+	color:#8BE5FF;
+	text-align:center;
+}
+
+.txt_general {
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#000;
+	text-align:justify;
+}
+
+.txt_general_al_izq {
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#000;
+	text-align:left;
+}
+
+.txt_general_redes_home {
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#392556;
+	text-align:central;
+	line-height:12px;
+	
+}
+
+.txt_general_leyenda {
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:10px;
+	color:#000;
+	text-align:right;
+	font-weight: bold;
+}
+
+
+.txt_mision_tl {
+	font-family: 'oswaldregular';
+	font-size:1.5em;
+	color:#800951;
+	text-align:center;
+}
+
+
+
+.txt_vision_tl {
+	font-family: 'oswaldregular';
+	font-size:1.5em;
+	color:#392556;
+	text-align:center;
+}
+
+.txt_mision_p {
+	font-family: 'oswaldregular';
+	font-size:16px;
+	color:#000000;
+	text-align:center;
+	padding-top:15px;
+}
+
+.txt_mision_tl {
+	font-family: 'oswaldregular';
+	font-size:1.5em;
+	color:#392556;
+	text-align:center;
+	
+}
+
+.txt_valores_tl {
+	font-family: 'oswaldregular';
+	font-size:1.8em;
+	color:#392556;
+	text-align:center;
+	padding:0;
+	margin:0;
+
+}
+
+
+.txt_valores_sbtl_rosa {
+	font-family: 'oswaldregular';
+	font-size:16px;
+	color:#C7609B;
+	text-align:center;
+	padding:0;
+	margin:0;
+
+}
+
+.txt_valores_sbtl_negro {
+	font-family: 'oswaldregular';
+	font-size:16px;
+	color:#000000;
+	text-align:center;
+	
+
+}
+
+.txt_map_tl_azul {
+	font-family: 'oswaldregular';
+	font-size:16px;
+	color:#98D3F7;
+	text-align:center;
+
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.shadow{
+	
+	-moz-box-shadow: 0 0 20px black;
+	-webkit-box-shadow: 0 0 20px black;
+	box-shadow: 0 0 20px black;
+}	
+
+.shadow10{
+	
+	-moz-box-shadow: 0 0 11px black;
+	-webkit-box-shadow: 0 0 11px black;
+	box-shadow: 0 0 11px black;
+}
+
+iframe {
+	padding:0;
+	margin:0;
+	top:0;
+	left:0;
+}
+
+.tb_bckgnd_contenedor {
+	background-image:url("../img/body_bckg-02.png");
+	background-repeat:repeat-y;
+	width:1024px;
+	vertical-align:central;
+	
+}
+
+.ss_indx_izq {
+	text-align:right;
+	font-size:16px;
+}
+
+.ss_indx_der {
+	text-align:left;
+	font-size:16px;
+}
+
+.ss_comillas {
+	font-size:60px;
+	font-family: 'oswaldregular';
+	font-weight:bold;
+	
+	
+}	
+
+
+.ss_servprf-1_tl {
+	font-size:36px;
+	font-family: 'oswaldregular';
+	color:#392556;
+	line-height:0px;
+	
+	
+}
+
+
+.ss_servprf-2_tl {
+	font-size:22px;
+	font-family: 'oswaldregular';
+	color:#F61F92;
+	line-height:37px;
+	
+	
+}
+
+
+
+.ss_servprf-1_sbtl {
+	font-size:26px;
+	font-family: 'oswaldregular';
+	color:#392556;
+	line-height:0px;
+	
+	
+}
+
+
+.ss_servprf-2_sbtl {
+	font-size:14px;
+	font-family: 'oswaldregular';
+	color:#F61F92;
+	line-height:5px;
+	
+	
+}
+
+.ss_serv-txt_r {
+	font-size:12px;
+	font-family: 'oswaldregular';
+	color:#392556;
+	line-height:24px;
+	
+	
+}
+
+
+.ss_serv-subtl_rosa {
+	font-size:20px;
+	font-family: 'oswaldregular';
+	color:#C7609B;
+	line-height:0px;
+	
+	
+}
+
+.ss_solxp-1_tl {
+	font-size:36px;
+	font-family: 'oswaldregular';
+	color:#F61F92;
+	line-height:0px;
+	
+	
+}
+
+
+
+.ss_solxp-2_tl {
+	font-size:22px;
+	font-family: 'oswaldregular';
+	color:#392556;
+	line-height:37px;
+	
+	
+}
+
+.ss_solxp-1_sbtl {
+	font-size:26px;
+	font-family: 'oswaldregular';
+	color:#F61F92;
+	line-height:0px;
+	
+	
+}
+
+
+.ss_solxp-2_sbtl {
+	font-size:14px;
+	font-family: 'oswaldregular';
+	color:#392556;
+	line-height:5px;
+	
+	
+}
+
+
+.ss_solxp-3_sbtl {
+	font-size:26px;
+	font-family: 'oswaldregular';
+	color:#392556;
+}
+
+
+
+.ss_folleto_tl {
+	font-size:18px;
+	font-family: 'oswaldregular';
+	color:#A192CF;
+	text-align:center;
+	line-height:37px;
+	
+	
+}
+
+.ss_folleto_tl2 {
+	font-size:18px;
+	font-family: 'oswaldregular';
+	color:#97D2F6;
+	text-align:center;
+	line-height:37px;
+	
+	
+}
+
+
+
+.ss_txt_vermas {
+	font-size:10px;
+	font-family: 'oswaldregular';
+	color:#A03288;
+	text-align:center;
+	
+	
+	
+}
+
+.ss_txt_linehigth {
+	line-height:6px;;	
+	
+	
+}
+
+.txt_align_left {
+	text-align: left;
+}
+
+	
+.txt_form1_12px {
+	font-family: 'oswaldregular';
+	font-size:18px;
+	color:#800951;
+	padding-left:8px;
+	padding-top:8px;
+	padding-bottom:8px;
+	text-align:left;
+	
+}
+
+
+.space_form1_12px {
+	padding-left:8px;
+	padding-top:8px;
+	padding-bottom:8px;
+	text-align:left;
+	
+}
+
+
+.centradito_1{
+	position:absolute;
+	top:170px;
+	left: 584px;
+	margin-top: -100px;
+	margin-left: -100px;
+}
+

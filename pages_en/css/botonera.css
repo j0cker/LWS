@@ -1,0 +1,436 @@
+@charset "UTF-8";
+/* CSS Document */
+
+.bt-linkenid {
+	width: 33px !important;
+	height: 63px !important;
+	float:left;
+	background-image:url(../../pages_es/img/header_bckg_bts-top-nm_02.png)
+	}
+	
+	
+.bt-linkenid:hover {
+	background-image:url(../../pages_es/img/header_bckg_bts-top-ovr_02.png)
+	}	
+	
+	
+.bt-twitter {
+	width: 33px !important;
+	height: 63px !important;
+	float:left;
+	background-image:url(../../pages_es/img/header_bckg_bts-top-nm_04.png)
+	}
+	
+	
+.bt-twitter:hover {
+	background-image:url(../../pages_es/img/header_bckg_bts-top-ovr_04.png)
+	}
+	
+	
+.bt-facebook {
+	width: 33px !important;
+	height: 63px !important;
+	float:left;
+	background-image:url(../../pages_es/img/header_bckg_bts-top-nm_06.png)
+	}
+	
+	
+.bt-facebook:hover {
+	background-image:url(../../pages_es/img/header_bckg_bts-top-ovr_06.png)
+	}		
+	
+	
+.bt-home {
+	width: 78px !important;
+	height: 55px !important;
+	float:left;
+	background-image:url(../img/header_menu_en-nm_01.png)
+	
+	}
+	
+.bt-home:hover {
+	width: 78px !important;
+	height: 55px !important;
+	float:left;
+	background-image:
+	url(../img/header_menu_en-ovr_01.png)
+	
+	}
+.bt-separador1 {
+	width: 50px;
+	height: 55px; 
+	float:left;
+	background-image:url(../img/header_menu_en-nm_02.png);
+	}	
+
+.bt-sobre{
+	width:125px;
+	height: 55px;
+	float:left;
+	background-image:url(../img/header_menu_en-nm_03.png);
+	
+	
+	}
+	
+	.bt-sobre:hover{
+	width:125px;
+	height: 55px;
+	float:left;
+
+	background-image:url(../img/header_menu_en-ovr_03.png);
+	}
+	
+	.bt-separador2 {
+	width: 37px;
+	height: 55px; 
+	float:left;
+	background-image:url(../img/header_menu_en-nm_04.png);
+	}
+	
+	.bt-ss {
+	width: 224px;
+	height: 55px; 
+	float:left;
+	background-image:url(../img/header_menu_en-nm_05.png);
+	}
+	
+	.bt-ss:hover {
+	width: 224px;
+	height: 55px; 
+	float:left;
+	background-image:url(../img/header_menu_en-ovr_05.png);
+	}
+	
+	
+	.bt-separador3 {
+	width: 48px;
+	height: 55px; 
+	float:left;
+	background-image:url(../img/header_menu_en-nm_06.png);
+	}	
+	
+	.bt-clientes {
+	width: 111px;
+	height: 55px; 
+	float:left;
+	background-image:url(../img/header_menu_en-nm_07.png);
+	}
+	
+	.bt-clientes:hover {
+	width: 111px;
+	height: 55px; 
+	float:left;
+	background-image:url(../img/header_menu_en-ovr_07.png);
+	}		
+	
+	.bt-separador4 {
+	width: 30px;
+	height: 55px; 
+	float:left;
+	background-image:url(../img/header_menu_en-nm_08.png);
+	}
+	
+	
+	.bt-contacto {
+	width: 129px;
+	height: 55px; 
+	float:left;
+	background-image:url(../img/header_menu_en-nm_09.png);
+	}
+	
+	.bt-contacto:hover {
+	width: 129px;
+	height: 55px; 
+	float:left;
+	background-image:url(../img/header_menu_en-ovr_09.png);
+	}
+	
+	.bt-en {
+		width:68px;
+		height:32px;
+		float:right;
+		
+		background:url(../../pages_es/img/header_bckg_bts-top-nm_12.png)
+		}
+		
+	
+	.bt-en:hover {
+		width:68px;
+		height:32px;
+		float:right;
+		background-image:url(../../pages_es/img/header_bckg_bts-top-ovr_12.png);
+		}
+		
+		.bt-es {
+		width:68px;
+		height:29px;
+		float:right;
+		background-image:url(../../pages_es/img/header_bckg_bts-top-nm_14.png);
+		}	
+		
+		.bt-es:hover {
+		width:68px;
+		height:29px;
+		float:right;
+		background-image:url(../../pages_es/img/header_bckg_bts-top-ovr_14.png);
+		}
+		
+		
+		.bt-foot-idioma {
+		width:68px;
+		height:29px;
+		float:right;
+		background-image:url(../../pages_es/img/header_bckg_bts-top-nm_15.png);
+		}
+			
+	
+	/**** BOTON ***/
+
+
+#bt-empleo { 
+
+color:fff;
+text-decoration: none;
+ }
+
+#bt-empleo a.hover, #bt-empleo a:visited, #bt-empleo a:link  { 
+
+color:fff !important;
+    text-decoration: none;
+
+ }
+
+.position-bt-empleo {
+	
+	position: relative;
+    z-index: 60;
+    top: 137px;
+    left: 60px;
+	
+	}
+
+/*** BTN VERDE ***/
+.btn-fresh {
+color: #fff;
+background-color: #51bf87;
+border-bottom:2px solid #41996c !important;
+}
+
+.btn-fresh:hover, .btn-sky.active:focus, .btn-fresh:focus, .open>.dropdown-toggle.btn-fresh {
+color: #fff;
+background-color: #66c796;
+border-bottom:2px solid #529f78;
+outline: none;
+}
+
+
+.btn-fresh:active, .btn-fresh.active {
+color: #fff;
+background-color: #47a877;
+border-top:2px solid #39865f;
+outline: none;
+outline-offset: none;
+margin-top: 2px;
+}
+
+
+/*** BTN MORADO ***/
+
+.btn-lws-rosa {
+color: #fff !important;
+background-color: #e25e9e;
+border-bottom:2px solid #b74b7f !important;
+}
+
+.btn-lws-rosa:hover, .btn-sky.active:focus, .btn-lws-rosa:focus, .open>.dropdown-toggle.btn-lws-rosa {
+color: #fff;
+background-color: #ec94bf !important;
+border-bottom:2px solid #b74b7f;
+outline: none;
+}
+
+
+.btn-fresh:active, .btn-lws-rosa {
+color: #fff;
+background-color: #d8679e;
+border-top:2px solid #b74b7f;
+outline: none;
+outline-offset: none;
+margin-top: 2px;
+}
+
+
+.btn-lg, .btn-group-lg>.btn {
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.33;
+    border-radius: 6px;
+}
+
+
+
+.btn-xs{
+    font-weight: 300;
+}
+
+.btn {
+    display: inline-block;
+    padding: 6px 12px;
+    /*margin-bottom: 0;*/
+	margin: 4px;
+    box-shadow: 1px 1px 5px #888888;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    /*user-select: none;*/
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+input[type="button" i], input[type="submit" i], input[type="reset" i], input[type="file" i]::-webkit-file-upload-button, button {
+    align-items: flex-start;
+    text-align: center;
+    cursor: default;
+    color: buttontext;
+    background-color: buttonface;
+    box-sizing: border-box;
+    padding: 2px 6px 3px;
+    border-width: 2px;
+    border-style: outset;
+    border-color: buttonface;
+    border-image: initial;
+}
+user agent stylesheet
+input, textarea, keygen, select, button {
+    text-rendering: auto;
+    color: initial;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    margin: 0em 0em 0em 0em;
+    font: 11px BlinkMacSystemFont;
+}
+user agent stylesheet
+input, textarea, keygen, select, button, meter, progress {
+    -webkit-writing-mode: horizontal-tb;
+}
+user agent stylesheet
+button {
+    -webkit-appearance: button;
+}
+
+.text-uppercase {
+    text-transform: uppercase;
+}
+
+input, button, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+button {
+    overflow: visible;
+}
+
+/****** OTROS ESTILOS DE BOTON ****/
+
+.btn-hot {
+color: #fff;
+background-color: #db5566;
+border-bottom:2px solid #af4451;
+}
+
+.btn-hot:hover, .btn-sky.active:focus, .btn-hot:focus, .open>.dropdown-toggle.btn-hot {
+color: #fff;
+background-color: #df6a78;
+border-bottom:2px solid #b25560;
+outline: none;}
+
+
+.btn-hot:active, .btn-hot.active {
+color: #fff;
+background-color: #c04b59;
+border-top:2px solid #9a3c47;
+margin-top: 2px;
+}
+
+.btn-sunny {
+color: #fff;
+background-color: #f4ad49;
+border-bottom:2px solid #c38a3a;
+}
+
+.btn-sunny:hover, .btn-sky.active:focus, .btn-sunny:focus, .open>.dropdown-toggle.btn-sunny {
+color: #fff;
+background-color: #f5b75f;
+border-bottom:2px solid #c4924c;
+outline: none;
+}
+
+
+.btn-sunny:active, .btn-sunny.active {
+color: #fff;
+background-color: #d69840;
+border-top:2px solid #ab7a33;
+margin-top: 2px;
+}
+
+
+.btn-sky {
+color: #fff;
+background-color: #0bacd3;
+border-bottom:2px solid #098aa9;
+}
+
+.btn-sky:hover,.btn-sky.active:focus, .btn-sky:focus, .open>.dropdown-toggle.btn-sky {
+color: #fff;
+background-color: #29b6d8;
+border-bottom:2px solid #2192ad;
+outline: none;
+}
+
+.btn-sky:active, .btn-sky.active {
+color: #fff;
+background-color: #0a97b9;
+border-top:2px solid #087994;
+outline-offset: none;
+margin-top: 2px;
+}
+
+.btn:focus,
+.btn:active:focus,
+.btn.active:focus {
+    outline: none;
+    outline-offset: 0px;
+}
+
+a {color:#fff;}
+a:hover {text-decoration:none; color:#fff;}
+
+
+/**** BOTON ***/
+
+/***** BOTONE SVACANTE _ ENVIA CV ********/
+
+#bt-empleo a:hover,#bt-envia-cv a:hover {
+    color:#9f217e !important;
+    text-decoration: none; }
+
+   #bt-empleo a:focus, #bt-envia-cv a:focus  {
+    color:#000;
+    text-decoration: none; }

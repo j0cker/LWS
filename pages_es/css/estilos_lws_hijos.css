@@ -8,6 +8,8 @@ font: 100%/1.4 Verdana, Arial, Helvetica, sans-serif;
 	top:0px;
 	left:0px;
 	
+    font-family: 'Oswald', sans-serif;
+
 }
 
 footer {
@@ -36,22 +38,29 @@ section {
 }
 	
 .back {
-	background-image:url(../img/body_bckg-02.png);
+	background-image:url("../img/body_bckg-02.png");
 	background-repeat:repeat-y;
 	top: 50%;
     left: 50%;
 }
 
+a {color:#fff;}
+
+a:hover {text-decoration:none; color:#fff;}
 
 a:link {
 	color: #FFFFFF;
 }
-a:visited {
+
+/*a:visited {
 	color: #FFCCFF;
-}
+}*/
+
 a:active {
 	color: #FFFFFF;
 }
+
+
 
 
 .centrar {
@@ -63,7 +72,7 @@ a:active {
 @font-face {
     font-family: 'oswaldregular';
     src: url('font-oswald-r/oswald-regular-webfont.eot');
-    src: url('font-oswald-r/oswald-regular-webfont.eot?#iefix') format('embedded-opentype'),
+    src: url('font-oswald-r/oswald-regular-webfont-.eot#iefix') format('embedded-opentype'),
          url('font-oswald-r/oswald-regular-webfont.woff2') format('woff2'),
          url('font-oswald-r/oswald-regular-webfont.woff') format('woff'),
          url('font-oswald-r/oswald-regular-webfont.ttf') format('truetype'),
@@ -249,7 +258,7 @@ iframe {
 }
 
 .tb_bckgnd_contenedor {
-	background-image:url(../img/body_bckg-02.png);
+	background-image:url("../img/body_bckg-02.png");
 	background-repeat:repeat-y;
 	width:1024px;
 	vertical-align:central;
@@ -407,12 +416,47 @@ iframe {
 .ss_txt_vermas {
 	font-size:10px;
 	font-family: 'oswaldregular';
-	color:#A03288;
-	text-align:center;
+	color:#392556 !important;
+	/*color:#A03288;*/
+	text-align:center; }
 	
+.ss_txt_vermas:hover {
+	color:#97D2F6 !important; }
+
+
+a.ss_txt_vermas	 {
+	font-size:10px;
+	font-family: 'oswaldregular';
+	color:#392556 !important;
+	/*color:#A03288;*/
+	text-align:center; }
 	
+	a.ss_txt_vermas:hover {
+	color:#97D2F6 !important; }	
 	
+
+a#ss_txt_seeMore {
+}	 {
+	font-size:10px;
+	font-family: 'oswaldregular';
+	color:#392556 !important;
+	/*color:#A03288;*/
+	text-align:center; }
+	
+a#ss_txt_seeMore:hover {
+	color:#97D2F6 !important; }	
+		
+p.ss_txt_vermas {
+		
+		color:#392556 !important;
 }
+
+p.ss_txt_vermas:hover{
+		
+		color:#97D2F6 !important;
+}
+	
+
 
 .ss_txt_linehigth {
 	line-height:6px;;	
@@ -453,3 +497,92 @@ iframe {
 	margin-top: -100px;
 	margin-left: -100px;
 }
+
+
+/***** ESTILOS BT REDES  PG  CONTACTO *******/
+
+
+.div-tw { width:107px; height:30px; color:#B5C4CC; margin:0 auto; font-size:12px; font-weight:100; padding-bottom:10px; text-decoration:none;
+  }
+ 
+.div-tw a:link, .div-in a:link, .div-fb a:link {
+	text-decoration:none;
+}  
+
+.div-tw a:visited,  .div-in a:visited, .div-fb a:visited {
+    color: #B5C4CC;
+	text-decoration:none;
+}  
+
+.div-tw a:hover, .div-in a:hover, .div-fb a:hover {
+    color: #FFF;
+	text-decoration:none;
+}  
+
+.div-in { width:180px; height:30px; color:#B5C4CC; margin:0 auto; font-size:12px; font-weight:100; padding-bottom:10px; text-decoration:none;
+  }
+  
+.div-fb { width:134px; height:30px; color:#B5C4CC; margin:0 auto; font-size:12px; font-weight:100; padding-bottom:10px; text-decoration:none;
+  }  
+  
+
+.bt-ico-redes {
+	color: #B5C4CC;}
+
+.bt-ico-redes:hover { color: #FFF;}
+
+.bt-ico-fb {
+	width: 32px !important;
+	height: 32px !important;
+	float:left;
+	font-size: smaller !important;
+	font-family: 'Oswald', sans-serif !important;
+	background-image:url(../img/fb-nm.png)
+	}
+
+.bt-ico-fb:hover {
+	background-image:url(../img/fb-ovr.png)
+	}
+
+.bt-ico-tw {
+	width: 32px !important;
+	height: 32px !important;
+	float:left;
+	font-size: smaller !important;
+	font-family: 'Oswald', sans-serif !important;
+	background-image:url(../img/tw-nm.png)
+	}
+
+.bt-ico-tw:hover {	background-image:url(../img/tw-ovr.png)
+}
+
+.bt-ico-in {
+	width: 32px !important;
+	height: 32px !important;
+	float:left;
+	font-size: smaller !important;
+	font-family: 'Oswald', sans-serif !important;
+	background-image:url(../img/in-nm.png)
+	}
+
+.bt-ico-in:hover {background-image:url(../img/in-ovr.png)}
+
+span.txt-bt-redes  {
+    font-family: 'Oswald', sans-serif !important;
+    font-size: smaller !important;
+	margin-left:5px !important;
+	padding-left: 5px !important;
+}
+
+.txt-bt-redes {
+    font-family: 'Oswald', sans-serif !important;
+    font-size: smaller !important;
+	margin-left:5px !important;
+	padding-left: 5px !important;
+}
+
+
+
+a#bt-aviso { color:#fff !important; text-decoration:underline; }
+
+a#bt-aviso:hover { /*color:#FFCCFF !important;*/ color:#FFF !important; text-decoration:none;}
