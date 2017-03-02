@@ -382,7 +382,7 @@
         <br>
         <a target="_blank" href="https://www.facebook.com/sharer.php?u=http://lws.mx/pages_es/pg_empleo_desc.php?id={{vacanteId.id}}"><img style="width:190px; padding-bottom:8px; cursor:pointer;" src="img/facebook.png"></img></a>
         <a target="_blank" href="https://twitter.com/intent/tweet?text={{vacanteId.nombreEmpresa}}&url=http://lws.mx/pages_es/pg_empleo_desc.php?id={{vacanteId.id}}"><img style="width:190px; padding-bottom:8px; cursor:pointer;" src="img/twitter.png"></img></a>
-        <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=lws.mx/pages_es/pg_empleo_desc.php?id={{vacanteId.id}}&title={{vacanteId.nombreEmpresa}}&summary=some%20summary%20if%20you%20want&source=stackoverflow.com"><img style="width:190px; padding-bottom:25px; cursor:pointer;" src="img/linkedin.png"></img></a>
+        <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=lws.mx/pages_es/pg_empleo_desc.php?id={{vacanteId.id}}&title={{vacanteId.nombreEmpresa}}&summary={{vacanteId.categoria}}&source=http://lws.mx"><img style="width:190px; padding-bottom:25px; cursor:pointer;" src="img/linkedin.png"></img></a>
       </div>
 
     </div>

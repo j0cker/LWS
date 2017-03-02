@@ -56,7 +56,7 @@ function buscar(){
                                 html+='<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">';
                                     html+='<li><a target="_blank" style="text-align: left;" href="https://www.facebook.com/sharer.php?u=http://lws.mx/pages_es/pg_empleo_desc.php?id='+obj.id[x]+'">Facebook</a></li>';
                                     html+='<li><a target="_blank" style="text-align: left;" href="https://twitter.com/intent/tweet?text='+obj.nombreEmpresa[x]+'&url=http://lws.mx/pages_es/pg_empleo_desc.php?id='+obj.id[x]+'">Twitter</a></li>';
-                                    html+='<li><a target="_blank" style="text-align: left;" href="https://www.linkedin.com/shareArticle?mini=true&url=lws.mx/pages_es/pg_empleo_desc.php?id='+obj.id[x]+'&title=How%20to%20make%20custom%20linkedin%20share%20button&summary=some%20summary%20if%20you%20want&source=stackoverflow.com">Linkedin</a></li>';
+                                    html+='<li><a target="_blank" style="text-align: left;" href="https://www.linkedin.com/shareArticle?mini=true&url=lws.mx/pages_es/pg_empleo_desc.php?id='+obj.id[x]+'&title='+obj.nombreEmpresa[x]+'&summary='+obj.categoria[x]+'&source=http://lws.mx">Linkedin</a></li>';
                                 html+='</ul>';
                                 html+='</div>';
                             html+='</td>';
@@ -241,7 +241,7 @@ function getCategorias(hoja){
                                 html+='<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">';
                                     html+='<li><a target="_blank" style="text-align: left;" href="https://www.facebook.com/sharer.php?u=http://lws.mx/pages_es/pg_empleo_desc.php?id='+obj.id[x]+'">Facebook</a></li>';
                                     html+='<li><a target="_blank" style="text-align: left;" href="https://twitter.com/intent/tweet?text='+obj.nombreEmpresa[x]+'&url=http://lws.mx/pages_es/pg_empleo_desc.php?id='+obj.id[x]+'">Twitter</a></li>';
-                                    html+='<li><a target="_blank" style="text-align: left;" href="https://www.linkedin.com/shareArticle?mini=true&url=lws.mx/pages_es/pg_empleo_desc.php?id='+obj.id[x]+'&title=How%20to%20make%20custom%20linkedin%20share%20button&summary=some%20summary%20if%20you%20want&source=stackoverflow.com">Linkedin</a></li>';
+                                    html+='<li><a target="_blank" style="text-align: left;" href="https://www.linkedin.com/shareArticle?mini=true&url=lws.mx/pages_es/pg_empleo_desc.php?id='+obj.id[x]+'&title='+obj.nombreEmpresa[x]+'&summary='+obj.categoria[x]+'&source=http://lws.mx">Linkedin</a></li>';
                                 html+='</ul>';
                                 html+='</div>';
                             html+='</td>';
