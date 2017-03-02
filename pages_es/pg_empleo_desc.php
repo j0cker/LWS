@@ -369,7 +369,7 @@
       </div>
 
       <div class="col-md-3" style="border: 2px solid #b2b2b2; background-color: #fff; text-align:center; -webkit-border-radius: 10px; -khtml-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px;">
-        <img style="width:190px; padding-top:25px;" src="img/schering.gif"></img>
+        <img style="width:190px; padding-top:25px;" src="img/lws_logo.png"></img>
         <p style="color:#b2b2b2; font-family: oswaldregular; font-size: 22px; padding-top: 15px;">{{vacanteId.nombreEmpresa}}</p>
         <a class="fa fa-user" style="color:#000000; font-size: 14px; padding-top:20px;"></a>
         <a style="color:#000000; font-family: oswaldregular; font-size: 14px; padding-top: 8px;">{{vacanteId.categoria}}</a>
@@ -380,9 +380,9 @@
         <br><br>
         <hr style="border-width: 2px; margin:0; border-color: #666666;">
         <br>
-        <a target="_blank" href="https://www.facebook.com/sharer.php?u=http://boogapp.com/webs/LWS/pages_es/pg_empleo_desc.php?id={{vacanteId.id}}"><img style="width:190px; padding-bottom:8px; cursor:pointer;" src="img/facebook.png"></img></a>
-        <a target="_blank" href="https://twitter.com/intent/tweet?text=Texto&url=http://boogapp.com/webs/LWS/pages_es/pg_empleo_desc.php?id={{vacanteId.id}}"><img style="width:190px; padding-bottom:8px; cursor:pointer;" src="img/twitter.png"></img></a>
-        <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http://boogapp.com/webs/LWS/pages_es/pg_empleo_desc.php?id={{vacanteId.id}}&title={{vacanteId.nombreEmpresa}}&summary=some%20summary%20if%20you%20want&source=stackoverflow.com"><img style="width:190px; padding-bottom:25px; cursor:pointer;" src="img/linkedin.png"></img></a>
+        <a target="_blank" href="https://www.facebook.com/sharer.php?u=http://lws.mx/pages_es/pg_empleo_desc.php?id={{vacanteId.id}}"><img style="width:190px; padding-bottom:8px; cursor:pointer;" src="img/facebook.png"></img></a>
+        <a target="_blank" href="https://twitter.com/intent/tweet?text={{vacanteId.nombreEmpresa}}&url=http://lws.mx/pages_es/pg_empleo_desc.php?id={{vacanteId.id}}"><img style="width:190px; padding-bottom:8px; cursor:pointer;" src="img/twitter.png"></img></a>
+        <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=lws.mx/pages_es/pg_empleo_desc.php?id={{vacanteId.id}}&title={{vacanteId.nombreEmpresa}}&summary=some%20summary%20if%20you%20want&source=stackoverflow.com"><img style="width:190px; padding-bottom:25px; cursor:pointer;" src="img/linkedin.png"></img></a>
       </div>
 
     </div>
@@ -1056,7 +1056,7 @@
   </div>
 </div><!--fin col-12-->
                     
-                    <!--<div class="divider"><span>Or</span></div>--->
+                    <!--<div class="divider"><span>Or</span></div>-->
                   </div> <!--fin row-->
                 </div><!--//modal-body-->
                 <!--

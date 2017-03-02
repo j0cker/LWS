@@ -1,11 +1,20 @@
 <?php
 $servername = "localhost";
+
+/*BLUEHOST*/
 //$username = "scrapell_112372";
 //$password = "ASD0374lajdfg";
-$username = "lwsmx_system";
-$password = "weigr32b8q74";
-$mydb = "lwsmx_system";
 //$mydb = "scrapell_lws";
+
+/*LWS HOST*/
+//$username = "lwsmx_system";
+//$password = "weigr32b8q74";
+//$mydb = "lwsmx_system";
+
+/*LOCALHOST*/
+$username = "root";
+$password = "";
+$mydb = "lws";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $mydb);
