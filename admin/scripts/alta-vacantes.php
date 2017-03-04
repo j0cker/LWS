@@ -25,8 +25,9 @@ if($_POST["option"]==1){
     echo 'No Insertado';
   }
 } else {
-  $query = $conn->query("DELETE FROM nuevasvacantes WHERE id='".$id."'");
-  $query = $conn->query("INSERT INTO nuevasvacantes (nombreVacante,imagen,tipoTiempo,id_cat,nombreEmpresa,direccionEmpresa,estado,descripcion,requisitos,latitud,longitud,actividades,incentivos,prestaciones,remuneracion,contacto,fecha) VALUES ('".$nombreVacante."','".$imagen."','".$tipoTiempo."','".$id_cat."','".$nombreEmpresa."','".$direccionEmpresa."','".$estado."','".$descripcion."','".$requisitos."','".$latitud."','".$longitud."','".$actividades."','".$incentivos."','".$prestaciones."','".$remuneracion."','".$contacto."','".date('d-m-Y')."')") OR die("Error: ".mysqli_error($conn));
+
+  $query = $conn->query("UPDATE nuevasvacantes SET nombreVacante='".$nombreVacante."', imagen='".$imagen."', tipoTiempo='".$tipoTiempo."', id_cat='".$id_cat."', nombreEmpresa='".$nombreEmpresa."', direccionEmpresa='".$direccionEmpresa."', estado='".$estado."', descripcion='".$descripcion."', requisitos='".$requisitos."', latitud='".$latitud."', longitud='".$longitud."', actividades='".$actividades."', incentivos='".$incentivos."', prestaciones='".$prestaciones."', remuneracion='".$remuneracion."', contacto='".$contacto."', fecha='".date('d-m-Y')."' WHERE id='".$id."'") OR die("Error: ".mysqli_error($conn));
+
   if($query===true){
     echo 'Modificado';
   } else {
