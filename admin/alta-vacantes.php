@@ -453,7 +453,7 @@ if($_GET["id"]){
             </div>
 
             <div class="form-group form-group-default ">
-                <label>Escriba la dirección de la imágen de la vacante para visualizarse en redes sociales</label>
+                <label>Escriba la dirección de la imágen de la vacante para visualizarse en redes sociales y Portal LWS</label>
                 <input value="<?PHP echo $row['imagen']; ?>" id="imagen" type="text" class="form-control" required>
             </div>
             

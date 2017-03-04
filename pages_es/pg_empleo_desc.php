@@ -48,6 +48,8 @@
          $("#notificacionesAbrir").modal("show");
        }
     </script>
+
+    <meta property='og:image' content='{{vacanteId.imagen}}'/>
     
     
     <script>
@@ -369,7 +371,7 @@
       </div>
 
       <div class="col-md-3" style="border: 2px solid #b2b2b2; background-color: #fff; text-align:center; -webkit-border-radius: 10px; -khtml-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px;">
-        <img style="width:190px; padding-top:25px;" src="img/lws_logo.png"></img>
+        <img style="width:190px; padding-top:25px;" src="{{vacanteId.imagen}}" onerror="this.src='img/lws_logo.png'"></img>
         <p style="color:#b2b2b2; font-family: oswaldregular; font-size: 22px; padding-top: 15px;">{{vacanteId.nombreEmpresa}}</p>
         <a class="fa fa-user" style="color:#000000; font-size: 14px; padding-top:20px;"></a>
         <a style="color:#000000; font-family: oswaldregular; font-size: 14px; padding-top: 8px;">{{vacanteId.categoria}}</a>

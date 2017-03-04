@@ -8,6 +8,7 @@ if($query->num_rows>0){
   $obj = new stdclass();
   $obj->true = "true";
   $obj->id = $row["id"];
+  $obj->imagen = $row["imagen"];
   $obj->categoria = $row["nombreCategoria"];
   $obj->nombreEmpresa = $row["nombreEmpresa"];
   $obj->direccionEmpresa = $row["direccionEmpresa"];
