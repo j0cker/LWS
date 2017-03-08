@@ -1,4 +1,4 @@
-<?PHP
+ <?PHP
 
 /*Versión Bamboostr*/
 $version_bamboostr = "V 2.182";
@@ -12,16 +12,26 @@ $version_bamboostr = "V 2.182";
 //$direccion_principal_config = "bamboostr.com";
 //$direccion_principal_config = "localhost/LWS";
 $direccion_principal_config = "boogapp.com/webs/LWS";
+//$direccion_principal_config = "lws.mx";
 /*Fin Dirección Principal*/
 
 
 /*Base de datos*/
 $servername = "localhost";
+
+/*LWS HOST*/
+$username = "lwsmx_system";
+$password = "weigr32b8q74";
+$mydb = "lwsmx_system";
+
 //$username = "scrapell_112372";
 //$password = "ASD0374lajdfg";
-$username = "root";
-$password = "";
-$mydb = "lws";
+//$mydb = "lws";
+
+
+//$username = "root";
+//$password = "";
+//$mydb = "lws";
 /*Fin Base de datos*/
 
 
