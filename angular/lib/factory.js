@@ -1,4 +1,5 @@
 app.factory('evt',function($http){
+	var imagenFacebook = "";
 	return{
         getCategorias:function(){
             var url = '../admin/scripts/get-categoriasTodas.php';

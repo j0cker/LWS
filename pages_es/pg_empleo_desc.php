@@ -49,7 +49,7 @@
        }
     </script>
 
-    <meta property='og:image' content='{{vacanteId.imagen}}'/>
+    <meta property='og:image' content='{{ metaservice.metaImagenFacebook() }}'/>
     
     
     <script>
