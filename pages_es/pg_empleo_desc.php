@@ -49,7 +49,7 @@
        }
     </script>
 
-    <meta property='og:image' content='http://lws.mx/pages_es/img/lws_solicita.png'/>
+    <meta property='og:image' content='http://lws.mx/images/lws_solicita.png'/>
     
     
     <script>
