@@ -85,6 +85,7 @@
                     type:  'POST',
                 success:  function (response) {
                   alert("CV Agregado");
+                  window.location = "pg_info_enviada.html";
                 }, error: function (response){
                   alert("ERROR inténtelo de nuevo más tarde");
                 }
@@ -159,6 +160,7 @@
                     type:  'POST',
                 success:  function (response) {
                   alert("CV Agregado");
+                  window.location = "pg_info_enviada.html";
                 }, error: function (response){
                   alert("ERROR inténtelo de nuevo más tarde");
                 }
