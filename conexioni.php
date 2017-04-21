@@ -7,14 +7,14 @@ $servername = "localhost";
 //$mydb = "scrapell_lws";
 
 /*LWS HOST*/
-//$username = "lwsmx_system";
-//$password = "weigr32b8q74";
-//$mydb = "lwsmx_system";
+$username = "lwsmx_system";
+$password = "weigr32b8q74";
+$mydb = "lwsmx_system";
 
 /*LOCALHOST*/
-$username = "root";
-$password = "";
-$mydb = "lws";
+//$username = "root";
+//$password = "";
+//$mydb = "lws";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $mydb);

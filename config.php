@@ -1,7 +1,7 @@
  <?PHP
 
 /*Versión Bamboostr*/
-$version_bamboostr = "V 2.182";
+$version_bamboostr = "V 1.2";
 /*Fin Versión Bamboostr*/
 
 /*Dirección Principal*/
@@ -10,9 +10,9 @@ $version_bamboostr = "V 2.182";
 //$direccion_principal_config = "localhost:8000";
 //$direccion_principal_config = "bam.boogapp.com";
 //$direccion_principal_config = "bamboostr.com";
-$direccion_principal_config = "localhost/LWS";
+//$direccion_principal_config = "localhost/LWS";
 //$direccion_principal_config = "boogapp.com/webs/LWS";
-//$direccion_principal_config = "lws.mx";
+$direccion_principal_config = "lws.mx";
 /*Fin Dirección Principal*/
 
 
